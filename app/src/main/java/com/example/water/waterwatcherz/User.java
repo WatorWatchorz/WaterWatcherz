@@ -17,7 +17,7 @@ public class User
     private int houseSize;
 
     //Stores the zip code of the user's house
-    private int zip;
+    private String zip;
 
     //Stores the numeric value of the weekly Goal
     private int weeklyGoal;
@@ -29,7 +29,7 @@ public class User
     //@param houseNumber a <code>int</code> value containing the number of people in the user's household
     //@param zipCode a <code>int</code> value containing the zip code of the user's house
     //@param weeklyWaterGoal an <code>String</code> value containing the weekly Goal
-    public User(String userTask, int houseNumber, int zipCode, int weeklyWaterGoal) {
+    public User(String userTask, int houseNumber, String zipCode, int weeklyWaterGoal) {
         task = userTask;
         houseSize = houseNumber;
         zip = zipCode;
@@ -39,7 +39,7 @@ public class User
     public User() {
         task = null;
         houseSize = 0;
-        zip = 0;
+        zip = null;
         weeklyGoal = 0;
     }
 
@@ -59,7 +59,7 @@ public class User
 
     //Accesses this <code>User's</code> zip code
     //Returns this <code>User's</code> zip code
-    public int getZip() {
+    public String getZip() {
         return zip;
     }
 
@@ -67,6 +67,12 @@ public class User
     //Returns this <code>User's</code> weekly goal
     public int getWeeklyGoal() {
         return weeklyGoal;
+    }
+
+    @Override
+    public String toString() {
+        return "Your task is " + task + " and you goal weekly goal is " + weeklyGoal + " for a household size of " + houseSize +
+                " in " + zip + ".";
     }
 
 }
