@@ -17,10 +17,10 @@ public class User
     private int houseSize;
 
     //Stores the zip code of the user's house
-    private int zip;
+    private String zip;
 
-    //Stores the String value of the weekly Goal
-    private String weeklyGoal;
+    //Stores the numeric value of the weekly Goal
+    private int weeklyGoal;
 
     //Constructor
 
@@ -29,7 +29,7 @@ public class User
     //@param houseNumber a <code>int</code> value containing the number of people in the user's household
     //@param zipCode a <code>int</code> value containing the zip code of the user's house
     //@param weeklyWaterGoal an <code>String</code> value containing the weekly Goal
-    public User(String userTask, int houseNumber, int zipCode, String weeklyWaterGoal) {
+    public User(String userTask, int houseNumber, String zipCode, int weeklyWaterGoal) {
         task = userTask;
         houseSize = houseNumber;
         zip = zipCode;
@@ -39,8 +39,8 @@ public class User
     public User() {
         task = null;
         houseSize = 0;
-        zip = 0;
-        weeklyGoal = null;
+        zip = null;
+        weeklyGoal = 0;
     }
 
     //Methods
@@ -59,14 +59,20 @@ public class User
 
     //Accesses this <code>User's</code> zip code
     //Returns this <code>User's</code> zip code
-    public int getZip() {
+    public String getZip() {
         return zip;
     }
 
     //Accesses this <code>User's</code> weekly goal
     //Returns this <code>User's</code> weekly goal
-    public String getWeeklyGoal() {
+    public int getWeeklyGoal() {
         return weeklyGoal;
+    }
+
+    @Override
+    public String toString() {
+        return "Your task is " + task + " and you goal weekly goal is " + weeklyGoal + " for a household size of " + houseSize +
+                " in " + zip + ".";
     }
 
 }
