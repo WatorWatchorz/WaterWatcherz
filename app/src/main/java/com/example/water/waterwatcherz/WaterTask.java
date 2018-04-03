@@ -22,7 +22,6 @@ public class WaterTask
                      int durationHour, int durationMinute)
     {
         this.taskName = taskName;
-        date =
         time = hour * 60 + minute;
         duration = durationHour * 60 + durationMinute;
 
