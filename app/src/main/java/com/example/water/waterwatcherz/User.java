@@ -1,4 +1,8 @@
 package com.example.water.waterwatcherz;
+import android.support.v4.content.WakefulBroadcastReceiver;
+
+import java.io.*;
+import java.util.ArrayList;
 
 /**
  * Creates a unique User. Contains WaterTask objects and data on a user's household size,
@@ -11,8 +15,7 @@ public class User
     //Data
 
     //Stores String value of the water task
-    private String task;
-
+    ArrayList<WaterTask> task;
     //Stores the number of people in the user's household
     private int houseSize;
 
@@ -22,6 +25,9 @@ public class User
     //Stores the numeric value of the weekly Goal
     private int weeklyGoal;
 
+    //Stores the name of the user
+    private String name;
+
     //Constructor
 
     //Creates a new user <code>User</code> instance
@@ -29,11 +35,12 @@ public class User
     //@param houseNumber a <code>int</code> value containing the number of people in the user's household
     //@param zipCode a <code>int</code> value containing the zip code of the user's house
     //@param weeklyWaterGoal an <code>String</code> value containing the weekly Goal
-    public User(String userTask, int houseNumber, String zipCode, int weeklyWaterGoal) {
-        task = userTask;
+    public User(ArrayList userTask, int houseNumber, String zipCode, int weeklyWaterGoal, String userName) {
+        task = new ArrayList<WaterTask>();
         houseSize = houseNumber;
         zip = zipCode;
         weeklyGoal = weeklyWaterGoal;
+        name = userName;
     }
 
     public User() {
@@ -47,7 +54,7 @@ public class User
 
     //Accesses this <code>User's</code> water task
     //Returns this <code>User's</code> water task
-    public String getTask() {
+    public ArrayList getTask() {
         return task;
     }
 
@@ -69,9 +76,13 @@ public class User
         return weeklyGoal;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
-        return "Your task is " + task + " and you goal weekly goal is " + weeklyGoal + " for a household size of " + houseSize +
+        return "Your tasks are " + task + " and you goal weekly goal is " + weeklyGoal + " for a household size of " + houseSize +
                 " in " + zip + ".";
     }
 
