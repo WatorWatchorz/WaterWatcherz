@@ -52,6 +52,9 @@ public class WaterTask
     {
         this.taskName = "Empty";
         date = new ArrayList<Integer>();
+            date.add(0);
+            date.add(0);
+            date.add(0);
         time = 0;
         duration = 0;
     }
