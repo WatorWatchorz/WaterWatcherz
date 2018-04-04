@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">WaterWatcherz</string>
+    <string name="app_name" translatable="false">WaterWatcherz</string>
+    <string name="welcome" translatable="false">Welcome, Name</string>
+    <string name="efficiency" translatable="false">Effciency Level</string>
+    <string name="profile" translatable="false">Profile</string>
+    <string name="calendar" translatable="false">Calendar</string>
+    <string name="group">Group</string>
+    <string name="checklist" translatable="false">Checklist/Log</string>
+
 </resources>
