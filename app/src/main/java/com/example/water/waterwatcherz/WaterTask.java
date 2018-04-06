@@ -92,8 +92,7 @@ public class WaterTask
      * Gets the duration of the water task in minutes
      * @return the duration of the task in minutes
      */
-    public int getDuration()
-    {
+    public int getDuration() {
         return duration;
     }
 
