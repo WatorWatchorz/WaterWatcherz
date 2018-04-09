@@ -4,7 +4,19 @@
     <string name="efficiency" translatable="false">Effciency Level</string>
     <string name="profile" translatable="false">Profile</string>
     <string name="calendar" translatable="false">Calendar</string>
-    <string name="group">Group</string>
+    <string name="group" translatable="false">Group</string>
+    <string name="weekly_log" translatable="false">Weekly Log</string>
+    <string name="week" translatable="false">Week:</string>
+    <string name="task" translatable="false">Task:</string>
+    <string name="month" translatable="false">Month:</string>
+    <string name="duration" translatable="false">Duration:</string>
     <string name="checklist" translatable="false">Checklist/Log</string>
+    <string name="house_information" translatable="false">House Information</string>
+    <string name="town" translatable="false">Town:</string>
+    <string-array name="tasks_array">
+        <item>Shower</item>
+        <item>Bath</item>
+        <item>Water Lawn</item>
+    </string-array>
 
 </resources>
