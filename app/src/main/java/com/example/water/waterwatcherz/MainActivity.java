@@ -3,11 +3,18 @@ package com.example.water.waterwatcherz;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
-    @Override
+public class MainActivity extends AppCompatActivity {
+    //Data
+    User new_user;
+    ArrayList<WaterTask> userTasks = new ArrayList<WaterTask>();
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+
+
 }
