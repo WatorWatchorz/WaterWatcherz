@@ -27,6 +27,9 @@ public class User
     //Stores the name of the user
     private String name;
 
+    //Stores data on whether the water bill is given quarterly, monthly, or yearly
+    private String paymentPeriod;
+
     //Constructor
 
     //Creates a new user <code>User</code> instance
@@ -34,19 +37,22 @@ public class User
     //@param houseNumber a <code>int</code> value containing the number of people in the user's household
     //@param zipCode a <code>int</code> value containing the zip code of the user's house
     //@param weeklyWaterGoal an <code>String</code> value containing the weekly Goal
-    public User(ArrayList<WaterTask> userTask, int houseNumber, String zipCode, int weeklyWaterGoal, String userName) {
+    public User(ArrayList<WaterTask> userTask, int houseNumber, String zipCode, int weeklyWaterGoal, String userName,
+                String paymentPeriod) {
         task = userTask;
         houseSize = houseNumber;
         zip = zipCode;
         weeklyGoal = weeklyWaterGoal;
         name = userName;
+        this.paymentPeriod = paymentPeriod;
     }
 
     public User() {
-        task = null;
+        task = new ArrayList<>();
         houseSize = 0;
-        zip = null;
+        zip = "null";
         weeklyGoal = 0;
+        this.paymentPeriod = null;
     }
 
     //Methods
@@ -81,10 +87,23 @@ public class User
         return weeklyGoal;
     }
 
+
+    /**
+     * Gets the name of the user
+     * @return the user's name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets data on how often the water bill is given (quarterly, monthly, yearly, or other)
+     * @return the payment period
+     */
+    public String getPaymentPeriod()
+    {
+        return paymentPeriod;
+    }
     @Override
     public String toString() {
         return "Your task is " + task; //+ " and you goal weekly goal is " + weeklyGoal + " for a household size of " + houseSize +
