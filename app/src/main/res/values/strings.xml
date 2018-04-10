@@ -13,6 +13,7 @@
     <string name="checklist" translatable="false">Checklist/Log</string>
     <string name="house_information" translatable="false">House Information</string>
     <string name="town" translatable="false">Town:</string>
+    <string name="numOfPpl" translatable="false">Household Size:</string>
     <string-array name="tasks_array">
         <item>Shower</item>
         <item>Bath</item>
@@ -20,7 +21,7 @@
     </string-array>
 
     <string name="utilitybillinfo" translatable="false">Utility Bill Information</string>
-    <string name="waterused" translatable="false">Total Water Used: </string>
+    <string name="waterused" translatable="false">Total Water Used:</string>
     <string name="goal_met" translatable="false">Did You Meet Your Goal?</string>
     <string name="yes" translatable="false">Yes</string>
     <string name="no" translatable="false">No</string>
