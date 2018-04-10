@@ -30,6 +30,9 @@ public class User
     //Stores data on whether the water bill is given quarterly, monthly, or yearly
     private String paymentPeriod;
 
+    private int brushTeethNum;
+    private int brushTeethTime;
+
     //Constructor
 
     /**
@@ -119,10 +122,35 @@ public class User
     {
         return paymentPeriod;
     }
+
+    /**
+     * Accepts values for the number of times a user brushes their teeth and for how long
+     * @param brushTeethNum the number of times a user brushes their teeth in a day
+     * @param brushTeethTime the amount of time the user brushes their teeth for each time
+     */
+    public void setBrushTeeth(int brushTeethNum, int brushTeethTime)
+    {
+        this.brushTeethNum = brushTeethNum;
+        this.brushTeethTime = brushTeethTime;
+    }
+
+    /**
+     * Gets the number of times a user brushes their teeth
+     * @return the number of times a user brushes their teeth
+     */
+    public int getBrushTeethNum(){return brushTeethNum;}
+
+    /**
+     * Gets the amount of time a user brushes their teeth for
+     * @return the amount of time a user brushes their teeth for
+     */
+    public int getBrushTeethTime(){return brushTeethTime;}
+
     @Override
     public String toString() {
         return "Your task is " + task; //+ " and you goal weekly goal is " + weeklyGoal + " for a household size of " + houseSize +
                 //" in " + zip + ".";
     }
+
 
 }
