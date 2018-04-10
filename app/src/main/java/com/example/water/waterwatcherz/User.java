@@ -13,7 +13,7 @@ public class User
     //Data
 
     //Stores String value of the water task
-    ArrayList<WaterTask> task;
+    private ArrayList<WaterTask> task;
 
     //Stores the number of people in the user's household
     private int houseSize;
@@ -32,11 +32,15 @@ public class User
 
     //Constructor
 
-    //Creates a new user <code>User</code> instance
-    //@param userTask a <code>String</code> value containing the water task
-    //@param houseNumber a <code>int</code> value containing the number of people in the user's household
-    //@param zipCode a <code>int</code> value containing the zip code of the user's house
-    //@param weeklyWaterGoal an <code>String</code> value containing the weekly Goal
+    /**
+     * Constructs a new User object
+     * @param userTask an ArrayList containing the user's WaterTask objects
+     * @param houseNumber an integer value containing the number of people in the user's household
+     * @param zipCode an integer value containing the zip code of the user's house
+     * @param weeklyWaterGoal a String containing the user's weekly goal
+     * @param userName a String containing the name of the user
+     * @param paymentPeriod a string containing data on how often the water bill is delivered
+     */
     public User(ArrayList<WaterTask> userTask, int houseNumber, String zipCode, int weeklyWaterGoal, String userName,
                 String paymentPeriod) {
         task = userTask;
@@ -47,6 +51,9 @@ public class User
         this.paymentPeriod = paymentPeriod;
     }
 
+    /**
+     * Constructs an empty User object
+     */
     public User() {
         task = new ArrayList<>();
         houseSize = 0;
@@ -57,8 +64,10 @@ public class User
 
     //Methods
 
-    //Accesses this <code>User's</code> water task
-    //Returns this <code>User's</code> water task
+    /**
+     * Accesses this User's water task
+     * @return this User's water task
+     */
     public String getTask() {
         String str = "";
         for(int i = 0; i < task.size(); i++)
@@ -69,20 +78,26 @@ public class User
         return str;
     }
 
-    //Accesses this <code>User's</code> house size
-    //Returns this <code>User's</code> house size
+    /**
+     * Accesses this User's house size
+     * @return this User's house size
+     */
     public int getHouseSize() {
         return houseSize;
     }
 
-    //Accesses this <code>User's</code> zip code
-    //Returns this <code>User's</code> zip code
+    /**
+     * Accesses this User's zip code
+     * @return this User's zip code
+     */
     public String getZip() {
         return zip;
     }
 
-    //Accesses this <code>User's</code> weekly goal
-    //Returns this <code>User's</code> weekly goal
+    /**
+     * Accesses this User's weekly goal
+     * @return this User's weekly goal
+     */
     public int getWeeklyGoal() {
         return weeklyGoal;
     }
