@@ -138,7 +138,6 @@ public class User
         this.brushTeethTime = brushTeethTime;
     }
 
-
     /**
      * Gets the number of times a user brushes their teeth
      * @return the number of times a user brushes their teeth
@@ -156,6 +155,5 @@ public class User
         return "Your task is " + task; //+ " and you goal weekly goal is " + weeklyGoal + " for a household size of " + houseSize +
                 //" in " + zip + ".";
     }
-
 
 }
