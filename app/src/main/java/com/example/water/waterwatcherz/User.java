@@ -32,6 +32,8 @@ public class User
 
     private int brushTeethNum;
     private int brushTeethTime;
+    private String wash;
+    private int numWash;
 
     //Constructor
 
@@ -45,7 +47,7 @@ public class User
      * @param paymentPeriod a string containing data on how often the water bill is delivered
      */
     public User(ArrayList<WaterTask> userTask, int houseNumber, String zipCode, int weeklyWaterGoal, String userName,
-                String paymentPeriod, int brushTeethNum, int brushTeethTime) {
+                String paymentPeriod, int brushTeethNum, int brushTeethTime, String wash, int numWash) {
         task = userTask;
         houseSize = houseNumber;
         zip = zipCode;
@@ -54,6 +56,8 @@ public class User
         this.paymentPeriod = paymentPeriod;
         this.brushTeethNum = brushTeethTime;
         this.brushTeethTime = brushTeethTime;
+        this.wash = wash;
+        this.numWash = numWash;
     }
 
     /**
@@ -67,6 +71,8 @@ public class User
         paymentPeriod = null;
         brushTeethNum = 0;
         brushTeethTime = 0;
+        wash = "null";
+        numWash = 0;
     }
 
     //Methods
@@ -78,10 +84,7 @@ public class User
     public String getTask() {
         String str = "";
         for(int i = 0; i < task.size(); i++)
-        {
-            str = str + task.get(i).getTaskName();
-        }
-
+        {str = str + task.get(i).getTaskName();}
         return str;
     }
 
@@ -137,6 +140,18 @@ public class User
         this.brushTeethNum = brushTeethNum;
         this.brushTeethTime = brushTeethTime;
     }
+
+    /**
+     * Gets data on whether the user generally showers or takes a bath
+     * @return a String; either "Shower" or "Bath"
+     */
+    public String getWash (){return wash;}
+
+    /**
+     * Gets the number of times a day the user showers or takes a bath
+     * @return the number of times a day the user showers or takes a bath
+     */
+    public int gettnumWash(){return numWash;}
 
     /**
      * Gets the number of times a user brushes their teeth
