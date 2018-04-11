@@ -45,13 +45,15 @@ public class User
      * @param paymentPeriod a string containing data on how often the water bill is delivered
      */
     public User(ArrayList<WaterTask> userTask, int houseNumber, String zipCode, int weeklyWaterGoal, String userName,
-                String paymentPeriod) {
+                String paymentPeriod, int brushTeethNum, int brushTeethTime) {
         task = userTask;
         houseSize = houseNumber;
         zip = zipCode;
         weeklyGoal = weeklyWaterGoal;
         name = userName;
         this.paymentPeriod = paymentPeriod;
+        this.brushTeethNum = brushTeethTime;
+        this.brushTeethTime = brushTeethTime;
     }
 
     /**
@@ -62,7 +64,9 @@ public class User
         houseSize = 0;
         zip = "null";
         weeklyGoal = 0;
-        this.paymentPeriod = null;
+        paymentPeriod = null;
+        brushTeethNum = 0;
+        brushTeethTime = 0;
     }
 
     //Methods
@@ -134,17 +138,18 @@ public class User
         this.brushTeethTime = brushTeethTime;
     }
 
+
     /**
      * Gets the number of times a user brushes their teeth
      * @return the number of times a user brushes their teeth
      */
-    public int getBrushTeethNum(){return brushTeethNum;}
+ //   public int getBrushTeethNum(){return brushTeethNum;}
 
     /**
      * Gets the amount of time a user brushes their teeth for
      * @return the amount of time a user brushes their teeth for
      */
-    public int getBrushTeethTime(){return brushTeethTime;}
+//    public int getBrushTeethTime(){return brushTeethTime;}
 
     @Override
     public String toString() {
