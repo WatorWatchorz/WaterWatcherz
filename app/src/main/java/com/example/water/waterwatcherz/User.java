@@ -30,9 +30,16 @@ public class User
     //Stores data on whether the water bill is given quarterly, monthly, or yearly
     private String paymentPeriod;
 
+    //Stores the number of times the user brushes their teeth in a day
     private int brushTeethNum;
+
+    //Stores the amount of time the user brushes their teeth for
     private int brushTeethTime;
+
+    //Stores data on whether the user generally showers or takes a bath
     private String wash;
+
+    //Stores the number of times a day the user showers or takes a bath
     private int numWash;
 
     //Constructor
@@ -45,6 +52,10 @@ public class User
      * @param weeklyWaterGoal a String containing the user's weekly goal
      * @param userName a String containing the name of the user
      * @param paymentPeriod a string containing data on how often the water bill is delivered
+     * @param brushTeethNum the number of times the user brushes their teeth in a day
+     * @param brushTeethTime the amount of time the user brushes their teeth for
+     * @param wash a String that stores whether the user generally showers or takes a bath
+     * @param numWash the number of times the user generally shower or takes a bath in a day
      */
     public User(ArrayList<WaterTask> userTask, int houseNumber, String zipCode, int weeklyWaterGoal, String userName,
                 String paymentPeriod, int brushTeethNum, int brushTeethTime, String wash, int numWash) {
@@ -68,6 +79,7 @@ public class User
         houseSize = 0;
         zip = "null";
         weeklyGoal = 0;
+        name = "null";
         paymentPeriod = null;
         brushTeethNum = 0;
         brushTeethTime = 0;
@@ -130,16 +142,32 @@ public class User
         return paymentPeriod;
     }
 
+
+
     /**
      * Accepts values for the number of times a user brushes their teeth and for how long
      * @param brushTeethNum the number of times a user brushes their teeth in a day
-     * @param brushTeethTime the amount of time the user brushes their teeth for each time
+     * @param brushTeethTime the amount of time the user brushes their teeth for each time, in minutes
      */
-    public void setBrushTeeth(int brushTeethNum, int brushTeethTime)
-    {
-        this.brushTeethNum = brushTeethNum;
-        this.brushTeethTime = brushTeethTime;
-    }
+//    public void setBrushTeeth(int brushTeethNum, int brushTeethTime)
+//    {
+//        this.brushTeethNum = brushTeethNum;
+//        this.brushTeethTime = brushTeethTime;
+//    }
+
+
+
+    /**
+     * Gets the number of times a user brushes their teeth
+     * @return the number of times a user brushes their teeth
+     */
+    public int getBrushTeethNum(){return brushTeethNum;}
+
+    /**
+     * Gets the amount of time a user brushes their teeth for
+     * @return the amount of time a user brushes their teeth for, in minutes
+     */
+    public int getBrushTeethTime(){return brushTeethTime;}
 
     /**
      * Gets data on whether the user generally showers or takes a bath
@@ -151,19 +179,7 @@ public class User
      * Gets the number of times a day the user showers or takes a bath
      * @return the number of times a day the user showers or takes a bath
      */
-    public int gettnumWash(){return numWash;}
-
-    /**
-     * Gets the number of times a user brushes their teeth
-     * @return the number of times a user brushes their teeth
-     */
- //   public int getBrushTeethNum(){return brushTeethNum;}
-
-    /**
-     * Gets the amount of time a user brushes their teeth for
-     * @return the amount of time a user brushes their teeth for
-     */
-//    public int getBrushTeethTime(){return brushTeethTime;}
+    public int getnumWash(){return numWash;}
 
     @Override
     public String toString() {
