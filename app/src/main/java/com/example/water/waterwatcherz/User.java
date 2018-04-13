@@ -93,6 +93,10 @@ public class User
      * Accesses this User's water task
      * @return this User's water task
      */
+    public void setHouseSize (int houseSize_in) {
+        houseSize = houseSize_in;
+    }
+
     public String getTask() {
         String str = "";
         for(int i = 0; i < task.size(); i++)
@@ -154,7 +158,6 @@ public class User
 //        this.brushTeethNum = brushTeethNum;
 //        this.brushTeethTime = brushTeethTime;
 //    }
-
 
 
     /**
