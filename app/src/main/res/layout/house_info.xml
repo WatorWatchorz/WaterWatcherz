@@ -9,13 +9,13 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirm">
 
         <!-- Content Container -->
 
@@ -63,17 +63,14 @@
         android:id="@+id/HouseInfo_lbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginBottom="105dp"
         android:layout_marginTop="16dp"
         android:text="@string/house_information"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintBottom_toTopOf="@+id/Town_lbl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/Town_lbl"
@@ -81,58 +78,65 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="84dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
         android:text="@string/town"
         app:layout_constraintBottom_toTopOf="@+id/NumPpl_lbl"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/townDropDown"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HouseInfo_lbl" />
 
     <TextView
         android:id="@+id/NumPpl_lbl"
         android:layout_width="wrap_content"
-        android:layout_height="14dp"
-        android:layout_marginBottom="220dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="46dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
         android:text="@string/numOfPpl"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/confirm"
+        app:layout_constraintEnd_toStartOf="@+id/NumPplEDT"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Town_lbl" />
 
     <EditText
         android:id="@+id/NumPplEDT"
-        android:onClick="storePpl"
-        android:layout_width="107dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="138dp"
+        android:layout_marginRight="138dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:onClick="storePpl"
+        app:layout_constraintBottom_toTopOf="@+id/confirm"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
-        app:layout_constraintStart_toEndOf="@+id/NumPpl_lbl"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.561" />
+        app:layout_constraintStart_toEndOf="@+id/NumPpl_lbl" />
 
     <Spinner
         android:id="@+id/townDropDown"
-        android:layout_width="189dp"
+        android:layout_width="0dp"
         android:layout_height="28dp"
-        tools:layout_editor_absoluteX="63dp"
-        tools:layout_editor_absoluteY="170dp" />
+        android:layout_marginEnd="132dp"
+        android:layout_marginRight="132dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Town_lbl"
+        app:layout_constraintTop_toTopOf="@+id/Town_lbl" />
 
     <Button
         android:id="@+id/confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="47dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginLeft="9dp"
         android:onClick="storeInformation"
         android:text="@string/confirm"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="328dp" />
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintStart_toStartOf="@+id/NumPplEDT"
+        app:layout_constraintTop_toBottomOf="@+id/NumPpl_lbl" />
 
 </android.support.constraint.ConstraintLayout>

@@ -31,26 +31,23 @@ public class MainActivity extends AppCompatActivity {
       /*  View.OnClickListener taskActivityListener;
         View.OnClickListener profileListener;
         View.OnClickListener utilityListener;
-
        taskActivityListener = new View.OnClickListener() {
             public void onClick(View v) {
                 openTaskActivity();
             }
         };
-
         profileListener = new View.OnClickListener() {
             public void onClick(View v) {
                 openProfile();
             }
         };
-
         utilityListener = new View.OnClickListener() {
             public void onClick(View v) {
                 openUtiltyInformation();
             }
         };
 */
-      taskActivityButton_home = (Button) findViewById(R.id.calendarhome);
+        taskActivityButton_home = (Button) findViewById(R.id.calendarhome);
         utilitybutton_home = (Button) findViewById(R.id.utilitybuttonhome);
         profilebutton_home = (Button) findViewById(R.id.profilehome);
 
@@ -63,15 +60,12 @@ public class MainActivity extends AppCompatActivity {
         profilebutton_profile = (Button) findViewById(R.id.profilehome);
 /*
         //setting all buttons to have the same onClickListener
-
         taskActivityButton_home.setOnClickListener(taskActivityListener);
         taskActivityButton_addTask.setOnClickListener(taskActivityListener);
         taskActivityButton_profile.setOnClickListener(taskActivityListener);
-
         utilitybutton_home.setOnClickListener(utilityListener);
         utilitybutton_addTask.setOnClickListener(utilityListener);
         utilitybutton_profile.setOnClickListener(utilityListener);
-
         profilebutton_home.setOnClickListener(profileListener);
         profilebutton_addTask.setOnClickListener(profileListener);
         profilebutton_profile.setOnClickListener(profileListener);

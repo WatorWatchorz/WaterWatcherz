@@ -96,6 +96,32 @@ public class WaterTask
         return duration;
     }
 
+    /**
+     * Gets the duration of the water task in minutes
+     * @return the duration of the task in minutes
+     */
+    public double getAmt_gallons() {
+        switch (taskName)
+        {
+            case "Brushing Teeth":
+                return time;
+            case "Shower":
+                return time*3;
+            case "Bath":
+                return 36;
+            case "Watering Lawn":
+                return time * 2;
+            case "Filling Pool":
+                return 16590;
+            case "Washing Dishes":
+                return 6;
+            case "Laundry":
+                return 25;
+            default:
+                return 0;
+        }
+    }
+
 }
 
 

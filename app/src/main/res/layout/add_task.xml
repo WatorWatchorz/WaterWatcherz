@@ -9,13 +9,13 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NumPpl_lbl">
 
         <!-- Content Container -->
 
@@ -60,17 +60,14 @@
         android:id="@+id/WeeklyLog_lbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
         android:layout_marginTop="16dp"
         android:text="@string/weekly_log"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintBottom_toTopOf="@+id/weekEDT"
+        app:layout_constraintEnd_toEndOf="@+id/weekEDT"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/Task_lbl"
@@ -78,88 +75,90 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="84dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
         android:text="@string/task"
         app:layout_constraintBottom_toTopOf="@+id/NumPpl_lbl"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/taskDropDown"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Week_lbl" />
 
     <TextView
         android:id="@+id/Month_lbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         android:text="@string/month"
-        app:layout_constraintBottom_toTopOf="@+id/taskDropDown"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/monthEDT"
+        app:layout_constraintEnd_toStartOf="@+id/monthEDT"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/NumPpl_lbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="220dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginBottom="141dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:text="@string/duration"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Task_lbl" />
 
     <TextView
         android:id="@+id/Week_lbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="78dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginRight="11dp"
         android:text="@string/week"
-        app:layout_constraintBottom_toTopOf="@+id/taskDropDown"
+        app:layout_constraintBottom_toTopOf="@+id/Task_lbl"
         app:layout_constraintEnd_toStartOf="@+id/weekEDT"
-        app:layout_constraintHorizontal_bias="0.732"
         app:layout_constraintStart_toEndOf="@+id/monthEDT"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.503" />
+        app:layout_constraintTop_toBottomOf="@+id/weekEDT" />
 
     <EditText
         android:id="@+id/monthEDT"
-        android:layout_width="93dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="44dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/taskDropDown"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.509" />
+        app:layout_constraintEnd_toStartOf="@+id/Week_lbl"
+        app:layout_constraintStart_toEndOf="@+id/Month_lbl"
+        app:layout_constraintTop_toTopOf="@+id/WeeklyLog_lbl" />
 
     <EditText
         android:id="@+id/weekEDT"
-        android:layout_width="86dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="72dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginRight="72dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/taskDropDown"
+        app:layout_constraintBottom_toTopOf="@+id/Week_lbl"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.509" />
+        app:layout_constraintStart_toEndOf="@+id/Week_lbl"
+        app:layout_constraintTop_toBottomOf="@+id/WeeklyLog_lbl" />
 
     <Spinner
         android:id="@+id/taskDropDown"
-        android:layout_width="204dp"
+        android:layout_width="0dp"
         android:layout_height="30dp"
-        tools:layout_editor_absoluteX="59dp"
-        tools:layout_editor_absoluteY="164dp" />
+        android:layout_marginBottom="98dp"
+        android:layout_marginEnd="121dp"
+        android:layout_marginRight="121dp"
+        android:layout_marginTop="99dp"
+        app:layout_constraintBottom_toBottomOf="@+id/NumPpl_lbl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Task_lbl"
+        app:layout_constraintTop_toBottomOf="@+id/WeeklyLog_lbl" />
 
 </android.support.constraint.ConstraintLayout>

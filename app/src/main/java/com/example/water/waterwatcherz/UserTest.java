@@ -15,6 +15,7 @@ public class UserTest {
         WaterTask activity = new WaterTask("Water Lawn", 1, 3, 2018,
                 1, 2, 2, 7);
         testTask.add(activity);
+
         User user = new User(testTask, 4, "01605", 15, "Chris","Quarterly", 2, 2, "Shower",1);
         System.out.println(user.getTask());
         System.out.println(user.getHouseSize());
