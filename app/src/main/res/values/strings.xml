@@ -3,7 +3,7 @@
     <string name="welcome" translatable="false">Welcome, Name</string>
     <string name="efficiency" translatable="false">Efficiency Level</string>
     <string name="profile" translatable="false">Profile</string>
-    <string name="calendar" translatable="false">Calendar</string>
+    <string name="calendar" translatable="false">Add Task</string>
     <string name="group" translatable="false">Group</string>
     <string name="weekly_log" translatable="false">Weekly Log</string>
     <string name="week" translatable="false">Week:</string>

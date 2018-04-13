@@ -11,7 +11,7 @@ import java.io.File;
  * Created by krish on 4/10/2018.
  */
 
-public class House_Info extends AppCompatActivity {
+public class HouseInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Bundle bundle = getIntent().getExtras();
         super.onCreate(savedInstanceState);
