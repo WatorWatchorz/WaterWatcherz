@@ -12,11 +12,41 @@ import android.view.View;
  */
 
 public class ProfileActivity  extends AppCompatActivity {
+
+    private Button taskActivityButton_profile;
+    private Button profilebutton_profile;
+    private Button utilitybutton_profile;
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.house_info);
         Bundle bundle = getIntent().getExtras();
+
+
+        taskActivityButton_profile = (Button) findViewById(R.id.calendar_houseinfo);
+        utilitybutton_profile = (Button) findViewById(R.id.utilitybutton_houseinfo);
+        profilebutton_profile = (Button) findViewById(R.id.profile_houseinfo);
+
+
+        taskActivityButton_profile.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openTaskActivity();
+            }
+        });
+        profilebutton_profile.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openProfile();
+            }
+        });
+        utilitybutton_profile.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openUtiltyInformation();
+            }
+        });
     }
+
+
     public void openProfile() {
         Intent intent = new Intent(this,ProfileActivity.class);
         startActivity(intent);
@@ -30,13 +60,6 @@ public class ProfileActivity  extends AppCompatActivity {
         Intent intent = new Intent(this,UtilityInformationActivity.class);
         startActivity(intent);
     }
-
-   /* Button confirm = (Button) findViewById(R.id.confirm);
-     confirm.setOnClickListener(new View.OnClickListener() {
-        public void onClick(View v) {
-            openProfile();
-        }
-    }); */
 
     public void setUserInformation() {
         EditText householdsizetext = (EditText) findViewById(R.id.NumPplEDT);
