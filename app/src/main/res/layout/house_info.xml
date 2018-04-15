@@ -2,7 +2,6 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/NumPplEDT"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:layout_editor_absoluteY="81dp">
@@ -27,32 +26,35 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/profile"
+                android:id="@+id/profile_houseinfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="openProfile"
                 android:text="@string/profile" />
 
             <Button
-                android:id="@+id/calendar"
+                android:id="@+id/calendar_houseinfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="openCalendar"
                 android:text="@string/calendar" />
 
             <Button
-                android:id="@+id/group"
+                android:id="@+id/utilitybutton_houseinfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/group" />
+                android:text="@string/utilitybillinfo" />
 
             <Button
-                android:id="@+id/checklist"
+                android:id="@+id/group_checklist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/checklist" />
+
         </LinearLayout>
 
     </RelativeLayout>
@@ -89,7 +91,7 @@
     <TextView
         android:id="@+id/NumPpl_lbl"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="14dp"
         android:layout_marginBottom="220dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -101,6 +103,7 @@
 
     <EditText
         android:id="@+id/NumPplEDT"
+        android:onClick="storePpl"
         android:layout_width="107dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -111,10 +114,10 @@
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.246"
+        app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toEndOf="@+id/NumPpl_lbl"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.556" />
+        app:layout_constraintVertical_bias="0.561" />
 
     <Spinner
         android:id="@+id/townDropDown"
@@ -122,5 +125,14 @@
         android:layout_height="28dp"
         tools:layout_editor_absoluteX="63dp"
         tools:layout_editor_absoluteY="170dp" />
+
+    <Button
+        android:id="@+id/confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="storeInformation"
+        android:text="@string/confirm"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="328dp" />
 
 </android.support.constraint.ConstraintLayout>

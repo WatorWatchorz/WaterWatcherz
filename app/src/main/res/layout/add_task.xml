@@ -26,28 +26,28 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/profile"
+                android:id="@+id/profile_addtask"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/profile" />
 
             <Button
-                android:id="@+id/calendar"
+                android:id="@+id/calendar_addtask"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/calendar" />
 
             <Button
-                android:id="@+id/group"
+                android:id="@+id/utilitybutton_addtask"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/group" />
+                android:text="@string/utilitybillinfo" />
 
             <Button
-                android:id="@+id/checklist"
+                android:id="@+id/checklist_addtask"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
