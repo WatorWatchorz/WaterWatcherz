@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class UserTest {
 
     public static void main(String[] args) {
-        ArrayList<WaterTask> testTask = new ArrayList<WaterTask>();
+      /*  ArrayList<WaterTask> testTask = new ArrayList<WaterTask>();
         WaterTask activity = new WaterTask("Shower", 1, 3, 2018, 1, 2, 8, 7);
         testTask.add(activity);
         User user = new User(testTask, 4, "01605", 15, "Chris","Quarterly");
@@ -28,6 +28,6 @@ public class UserTest {
         System.out.println(user2.getWeeklyGoal());
         System.out.println(user2.getName());
         System.out.println(user2.getPaymentPeriod());
-
+*/
     }
 }
