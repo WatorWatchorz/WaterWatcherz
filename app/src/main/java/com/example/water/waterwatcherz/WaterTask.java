@@ -36,12 +36,13 @@ public class WaterTask
                      int durationHour, int durationMinute)
     {
         this.taskName = taskName;
-        date = new ArrayList<Integer>();
+        date = new ArrayList<>();
             date.add(month);
             date.add(day);
             date.add(year);
         time = hour * 60 + minute;
         duration = durationHour * 60 + durationMinute;
+
     }
 
     /**
@@ -51,7 +52,7 @@ public class WaterTask
     public WaterTask()
     {
         this.taskName = "Empty";
-        date = new ArrayList<Integer>();
+        date = new ArrayList<>();
             date.add(0);
             date.add(0);
             date.add(0);
@@ -121,7 +122,6 @@ public class WaterTask
                 return 0;
         }
     }
-
 }
 
 
