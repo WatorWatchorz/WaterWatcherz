@@ -12,7 +12,7 @@ public class UserTest {
 
     public static void main(String[] args) {
         ArrayList<WaterTask> testTask = new ArrayList<>();
-        testTask.add(new WaterTask("Water Lawn", 1, 3, 2018,
+        testTask.add(new WaterTask("Watering Lawn", 1, 3, 2018,
                 1, 2, 2, 7));
         User user = new User(testTask, 4, "01605", 15, "Chris","Quarterly", 2, 2, "Shower",1);
 
@@ -26,6 +26,7 @@ public class UserTest {
         System.out.println(user.getBrushTeethTime());
         System.out.println(user.getWash());
         System.out.println(user.getnumWash());
+        System.out.println(user.checkGoal());
 
         User user2 = new User();
         System.out.println(user2.getTasks());

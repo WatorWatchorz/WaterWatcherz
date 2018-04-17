@@ -14,6 +14,7 @@ public class WaterTaskTester
             System.out.println(activity.getDate());
             System.out.println(activity.getTime());
             System.out.println(activity.getDuration());
+            System.out.println(activity.getAmt_gallons());
 
             WaterTask activity2 = new WaterTask();
 
