@@ -202,6 +202,19 @@ public class User {
         brushTeethTime = brushTime;
     }
 
+    public void leavesWaterOn() {
+        String ans = "Yes";
+
+        if (ans == "Yes") {
+           getBrushTeethNum();
+           getBrushTeethTime();
+        }
+        else {
+            
+        }
+
+    }
+
     /**
      * Accesses the number of times a user brushes their teeth
      *
