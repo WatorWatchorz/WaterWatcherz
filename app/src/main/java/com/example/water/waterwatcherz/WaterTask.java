@@ -42,7 +42,6 @@ public class WaterTask
             date.add(year);
         time = hour * 60 + minute;
         duration = durationHour * 60 + durationMinute;
-
     }
 
     /**
@@ -123,6 +122,3 @@ public class WaterTask
         }
     }
 }
-
-
-
