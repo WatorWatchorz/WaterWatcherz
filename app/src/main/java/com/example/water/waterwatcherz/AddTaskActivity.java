@@ -2,15 +2,28 @@ package com.example.water.waterwatcherz;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 /**
  * Created by krish on 4/12/2018.
  */
 
 public class AddTaskActivity  extends AppCompatActivity {
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_task);
         Bundle bundle = getIntent().getExtras();
+
+
+        Spinner taskSpinner = (Spinner) findViewById(R.id.taskDropDown);
+        String[] tasks = new String[]{"Brushing Teeth", "Shower", "Bath", "Watering Lawn", "Filling Pool",
+                "Washing Dishes", "Laundry"};
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
+                R.array.tasks_array, android.R.layout.simple_spinner_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        taskSpinner.setAdapter(adapter1);
+
     }
 }
