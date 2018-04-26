@@ -16,9 +16,13 @@
     <string name="confirm" translatable="false">Confirm</string>
     <string name="numOfPpl" translatable="false">Household Size:</string>
     <string-array name="tasks_array">
-        <item>Shower</item>
         <item>Bath</item>
-        <item>Water Lawn</item>
+        <item>Brushing Teeth</item>
+        <item>Filling Pool</item>
+        <item>Laundry</item>
+        <item>Shower</item>
+        <item>Washing Dishes</item>
+        <item>Watering Lawn</item>
     </string-array>
 
     <string name="utilitybillinfo" translatable="false">Utility Bill</string>

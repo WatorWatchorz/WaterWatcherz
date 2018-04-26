@@ -18,27 +18,19 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
         setContentView(R.layout.add_task);
         Bundle bundle = getIntent().getExtras();
 
-
-        Spinner taskSpinner = (Spinner) findViewById(R.id.taskDropDown);
-//        String[] tasks = new String[]{"Brushing Teeth", "Shower", "Bath", "Watering Lawn", "Filling Pool",
-//                "Washing Dishes", "Laundry"};
+        Spinner taskSpinner = findViewById(R.id.taskDropDown);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
                 R.array.tasks_array, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         taskSpinner.setAdapter(adapter1);
-
         taskSpinner.setOnItemSelectedListener(this);
-
     }
-
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         // An item was selected. You can retrieve the selected item using
         // parent.getItemAtPosition(pos)
     }
-
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
     }
-
 }

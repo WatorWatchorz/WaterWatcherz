@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.water.waterwatcherz.AddTaskActivity">
+        <activity android:name="com.example.water.waterwatcherz.AddTaskActivity" android:exported="true">
         </activity>
         <activity android:name="com.example.water.waterwatcherz.ProfileActivity">
         </activity>
