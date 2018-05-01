@@ -24,7 +24,260 @@
         <item>Washing Dishes</item>
         <item>Watering Lawn</item>
     </string-array>
-
+    <string-array name="towns_array">
+        <item>Other</item>
+        <item>Abington</item>
+        <item>Acton</item>
+        <item>Adams</item>
+        <item>Agawam</item>
+        <item>Amesbury</item>
+        <item>Amherst</item>
+        <item>Andover</item>
+        <item>Arlington</item>
+        <item>Ashburnham</item>
+        <item>Ashfield</item>
+        <item>Ashland</item>
+        <item>Attleboro</item>
+        <item>Avon</item>
+        <item>Ayer</item>
+        <item>Barnstable</item>
+        <item>Barre</item>
+        <item>Bedford</item>
+        <item>Belchertown</item>
+        <item>Bellingham</item>
+        <item>Belmont</item>
+        <item>Beverly</item>
+        <item>Billerica</item>
+        <item>Blackstone</item>
+        <item>Boston</item>
+        <item>Bourne</item>
+        <item>Boylston</item>
+        <item>Braintree</item>
+        <item>Brewster</item>
+        <item>Bridgewater</item>
+        <item>Brockton</item>
+        <item>Brookfield</item>
+        <item>Brookline</item>
+        <item>Burlington</item>
+        <item>Cambridge</item>
+        <item>Canton</item>
+        <item>Canton</item>
+        <item>Chatham</item>
+        <item>Chelmsford</item>
+        <item>Chelsea</item>
+        <item>Chicopee</item>
+        <item>Clinton</item>
+        <item>Cohasset</item>
+        <item>Concord</item>
+        <item>Dalton</item>
+        <item>Danvers</item>
+        <item>Dartmouth</item>
+        <item>Dedham</item>
+        <item>Deerfield</item>
+        <item>Dennis</item>
+        <item>Dighton</item>
+        <item>Douglas</item>
+        <item>Dover</item>
+        <item>Dracut</item>
+        <item>Dudley</item>
+        <item>Dunstable</item>
+        <item>Duxbury</item>
+        <item>East Bridgewate</item>r
+        <item>Easthampton</item>
+        <item>East Longmeadow</item>
+        <item>Easton</item>
+        <item>Edgartown</item>
+        <item>Erving</item>
+        <item>Essex</item>
+        <item>Everett</item>
+        <item>Fairhaven</item>
+        <item>Fall River</item>
+        <item>Falmouth</item>
+        <item>Fitchburg</item>
+        <item>Foxborough</item>
+        <item>Framingham</item>
+        <item>Franklin</item>
+        <item>Franklin</item>
+        <item>Gardner</item>
+        <item>Georgetown</item>
+        <item>Gill</item>
+        <item>Gloucester</item>
+        <item>Grafton</item>
+        <item>Great Barrington</item>
+        <item>Greenfield</item>
+        <item>Groton</item>
+        <item>Groveland</item>
+        <item>Hadley</item>
+        <item>Halifax</item>
+        <item>Hamilton</item>
+        <item>Hanson</item>
+        <item>Hardwick</item>
+        <item>Harwich</item>
+        <item>Hatfield</item>
+        <item>Haverhill</item>
+        <item>Hingham</item>
+        <item>Holbrook</item>
+        <item>Holden</item>
+        <item>Holliston</item>
+        <item>Holyoke</item>
+        <item>Hopedale</item>
+        <item>Hopkinton</item>
+        <item>Hudson</item>
+        <item>Hull</item>
+        <item>Huntington</item>
+        <item>Ipswich</item>
+        <item>Kingston</item>
+        <item>Lancaster</item>
+        <item>Lanesborough</item>
+        <item>Lawrence</item>
+        <item>Lee</item>
+        <item>Leicester</item>
+        <item>Lenox</item>
+        <item>Leominster</item>
+        <item>Lexington</item>
+        <item>Lincoln</item>
+        <item>Longmeadow</item>
+        <item>Lowell</item>
+        <item>Ludlow</item>
+        <item>Lunenburg</item>
+        <item>Lynn</item>
+        <item>Lynnfield</item>
+        <item>Malden</item>
+        <item>Manchester</item>
+        <item>Mansfield</item>
+        <item>Marblehead</item>
+        <item>Marion</item>
+        <item>Marlborough</item>
+        <item>Marshfield</item>
+        <item>Mashpee</item>
+        <item>Mattapoisett</item>
+        <item>Maynard</item>
+        <item>Medfield</item>
+        <item>Medford</item>
+        <item>Medway</item>
+        <item>Melrose</item>
+        <item>Merrimac</item>
+        <item>Methuen</item>
+        <item>Middleborough</item>
+        <item>Milford</item>
+        <item>Millbury</item>
+        <item>Millis</item>
+        <item>Milton</item>
+        <item>Monson</item>
+        <item>Montague</item>
+        <item>Nahant</item>
+        <item>Nantucket</item>
+        <item>Natick</item>
+        <item>Needham</item>
+        <item>New Bedford</item>
+        <item>Newburyport</item>
+        <item>Newton</item>
+        <item>Norfolk</item>
+        <item>North Adams</item>
+        <item>Northampton</item>
+        <item>North Andover</item>
+        <item>North Attleborough</item>
+        <item>Northborough</item>
+        <item>Northbridge</item>
+        <item>North Brookfield</item>
+        <item>North Reading</item>
+        <item>Norton</item>
+        <item>Norwell</item>
+        <item>Norwood</item>
+        <item>Oak Bluffs</item>
+        <item>Orange</item>
+        <item>Orleans</item>
+        <item>Oxford</item>
+        <item>Palmer</item>
+        <item>Paxton</item>
+        <item>Peabody</item>
+        <item>Pembroke</item>
+        <item>Pepperell</item>
+        <item>Pittsfield</item>
+        <item>Plainfield</item>
+        <item>Plymouth</item>
+        <item>Provincetown</item>
+        <item>Quincy</item>
+        <item>Randolph</item>
+        <item>Raynham</item>
+        <item>Reading</item>
+        <item>Revere</item>
+        <item>Rockland</item>
+        <item>Rockport</item>
+        <item>Rutland</item>
+        <item>Salem</item>
+        <item>Salisbury</item>
+        <item>Sandwich</item>
+        <item>Saugus</item>
+        <item>Scituate</item>
+        <item>Seekonk</item>
+        <item>Sharon</item>
+        <item>Shirley</item>
+        <item>Shrewsbury</item>
+        <item>Somerset</item>
+        <item>Somerville</item>
+        <item>Southampton</item>
+        <item>Southborough</item>
+        <item>Southbridge</item>
+        <item>South Hadley</item>
+        <item>Southwick</item>
+        <item>Spencer</item>
+        <item>Springfield</item>
+        <item>Sterling</item>
+        <item>Stockbridge</item>
+        <item>Stoneham</item>
+        <item>Stoughton</item>
+        <item>Sturbridge</item>
+        <item>Sudbury</item>
+        <item>Swampscott</item>
+        <item>Swansea</item>
+        <item>Taunton</item>
+        <item>Templeton</item>
+        <item>Tewksbury</item>
+        <item>Tisbury</item>
+        <item>Topsfield</item>
+        <item>Tyngsborough</item>
+        <item>Upton</item>
+        <item>Uxbridge</item>
+        <item>Wakefield</item>
+        <item>Walpole</item>
+        <item>Waltham</item>
+        <item>Ware</item>
+        <item>Wareham</item>
+        <item>Warren</item>
+        <item>Watertown</item>
+        <item>Wayland</item>
+        <item>Webster </item>
+        <item>Wellesley</item>
+        <item>Wellfleet</item>
+        <item>Wenham</item>
+        <item>Westborough</item>
+        <item>West Boylston</item>
+        <item>West Bridgewater</item>
+        <item>West Brookfield</item>
+        <item>Westfield</item>
+        <item>Westford</item>
+        <item>Westminster</item>
+        <item>West Newbury</item>
+        <item>Weston</item>
+        <item>West Springfield</item>
+        <item>West Stockbridge</item>
+        <item>Westwood</item>
+        <item>Weymouth</item>
+        <item>Whateley</item>
+        <item>Winchendon</item>
+        <item>Wilbraham</item>
+        <item>Williamsburg</item>
+        <item>Williamstown</item>
+        <item>Wilmington</item>
+        <item>Winchester</item>
+        <item>Winthrop</item>
+        <item>Woburn</item>
+        <item>Worcester</item>
+        <item>Worthington</item>
+        <item>Wrentham</item>
+        <item>Yarmouth</item>
+    </string-array>
     <string name="utilitybillinfo" translatable="false">Utility Bill</string>
     <string name="waterused" translatable="false">Total Water Used:</string>
     <string name="goal_met" translatable="false">Did You Meet Your Goal?</string>
