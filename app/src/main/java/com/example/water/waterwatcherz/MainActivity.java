@@ -15,8 +15,9 @@ public class MainActivity extends AppCompatActivity {
     //Data
     User new_user;
     ArrayList<WaterTask> userTasks = new ArrayList<WaterTask>();
-    private Button taskActivityButton_home;
+
     private Button profilebutton_home;
+    private Button taskActivityButton_home;
     private Button utilitybutton_home;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +42,10 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 */
+        profilebutton_home = (Button) findViewById(R.id.profilehome);
         taskActivityButton_home = (Button) findViewById(R.id.calendarhome);
         utilitybutton_home = (Button) findViewById(R.id.utilitybuttonhome);
-        profilebutton_home = (Button) findViewById(R.id.profilehome);
+
 /*
         //setting all buttons to have the same onClickListener
         taskActivityButton_home.setOnClickListener(taskActivityListener);
@@ -56,9 +58,6 @@ public class MainActivity extends AppCompatActivity {
         profilebutton_addTask.setOnClickListener(profileListener);
         profilebutton_profile.setOnClickListener(profileListener);
 */
-
-
-
         taskActivityButton_home.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 openTaskActivity();
@@ -77,8 +76,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
     public void openProfile() {
         Intent intent = new Intent(this,ProfileActivity.class);
         startActivity(intent);
@@ -92,5 +89,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,UtilityInformationActivity.class);
         startActivity(intent);
     }
-
 }

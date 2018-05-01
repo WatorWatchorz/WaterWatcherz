@@ -1,10 +1,12 @@
 package com.example.water.waterwatcherz;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 /**
@@ -12,6 +14,9 @@ import android.widget.Spinner;
  */
 
 public class AddTaskActivity  extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    private Button profilebutton_addtask;
+    private Button utilitybutton_addtask;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +29,33 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         taskSpinner.setAdapter(adapter1);
         taskSpinner.setOnItemSelectedListener(this);
+
+        profilebutton_addtask = (Button) findViewById(R.id.profile_addtask);
+        utilitybutton_addtask = (Button) findViewById(R.id.utilitybutton_addtask);
+
+
+        profilebutton_addtask.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openProfile();
+            }
+        });
+        utilitybutton_addtask.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openUtiltyInformation();
+            }
+        });
     }
+
+    public void openProfile() {
+        Intent intent = new Intent(this,ProfileActivity.class);
+        startActivity(intent);
+    }
+
+    public void openUtiltyInformation() {
+        Intent intent = new Intent(this,UtilityInformationActivity.class);
+        startActivity(intent);
+    }
+
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         // An item was selected. You can retrieve the selected item using
