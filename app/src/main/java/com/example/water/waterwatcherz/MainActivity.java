@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     //Data
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private Button taskActivityButton_home;
     private Button profilebutton_home;
     private Button utilitybutton_home;
+    private Button listview_home;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         taskActivityButton_home = (Button) findViewById(R.id.calendarhome);
         utilitybutton_home = (Button) findViewById(R.id.utilitybuttonhome);
         profilebutton_home = (Button) findViewById(R.id.profilehome);
+        //listview_home = (Button) findViewById(R.id.listview);
+
 /*
         //setting all buttons to have the same onClickListener
         taskActivityButton_home.setOnClickListener(taskActivityListener);
@@ -71,9 +75,14 @@ public class MainActivity extends AppCompatActivity {
         });
         utilitybutton_home.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                openUtiltyInformation();
+                listView();
             }
         });
+        /*listview_home.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                listView();
+            }
+        });*/
 
     }
 
@@ -90,6 +99,12 @@ public class MainActivity extends AppCompatActivity {
     }
     public void openUtiltyInformation() {
         Intent intent = new Intent(this,UtilityInformationActivity.class);
+        startActivity(intent);
+    }
+
+
+    public void listView() {
+        Intent intent  = new Intent(this, DatabaseTest.class);
         startActivity(intent);
     }
 
