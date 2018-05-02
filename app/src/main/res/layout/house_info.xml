@@ -11,8 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
+        android:layout_marginStart="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirm">
@@ -98,12 +97,12 @@
         android:layout_marginLeft="15dp"
         android:text="@string/numOfPpl"
         app:layout_constraintBottom_toTopOf="@+id/confirm"
-        app:layout_constraintEnd_toStartOf="@+id/NumPplEDT"
+        app:layout_constraintEnd_toStartOf="@+id/NumPplEdit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Town_lbl" />
 
     <EditText
-        android:id="@+id/NumPplEDT"
+        android:id="@+id/NumPplEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
@@ -111,7 +110,7 @@
         android:layout_marginRight="138dp"
         android:ems="10"
         android:inputType="number"
-        android:onClick="storePpl"
+
         app:layout_constraintBottom_toTopOf="@+id/confirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/NumPpl_lbl" />
@@ -133,10 +132,22 @@
         android:layout_marginBottom="47dp"
         android:layout_marginStart="9dp"
         android:layout_marginLeft="9dp"
-        android:onClick="storeInformation"
         android:text="@string/confirm"
         app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
-        app:layout_constraintStart_toStartOf="@+id/NumPplEDT"
+        app:layout_constraintStart_toStartOf="@+id/NumPplEdit"
         app:layout_constraintTop_toBottomOf="@+id/NumPpl_lbl" />
+
+    <TextView
+        android:id="@+id/displayNumPpl"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:layout_marginBottom="260dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

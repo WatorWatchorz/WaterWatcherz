@@ -16,7 +16,7 @@ public class UserTest {
                 1, 2, 2, 7));
         User user = new User(testTask, 4, "01605", 15, "Chris","Quarterly", 2, 2, "Shower",1);
 
-        System.out.println(user.getTasks());
+//        System.out.println(user.getTasks());
         System.out.println(user.getHouseSize());
         System.out.println(user.getZip());
         System.out.println(user.getWeeklyGoal());
@@ -26,10 +26,10 @@ public class UserTest {
         System.out.println(user.getBrushTeethTime());
         System.out.println(user.getWash());
         System.out.println(user.getnumWash());
-        System.out.println(user.checkGoal());
+     //   System.out.println(user.checkGoal());
 
         User user2 = new User();
-        System.out.println(user2.getTasks());
+   //     System.out.println(user2.getTasks());
         System.out.println(user2.getHouseSize());
         System.out.println(user2.getZip());
         System.out.println(user2.getWeeklyGoal());
