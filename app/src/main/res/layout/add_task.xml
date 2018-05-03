@@ -78,7 +78,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
         android:text="@string/task"
         app:layout_constraintBottom_toTopOf="@+id/NumPpl_lbl"
         app:layout_constraintEnd_toStartOf="@+id/taskDropDown"
@@ -90,12 +89,12 @@
         android:id="@+id/Month_lbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="37dp"
+        android:layout_marginBottom="48dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="85dp"
         android:text="@string/month"
-        app:layout_constraintBottom_toTopOf="@+id/taskDropDown"
+        app:layout_constraintBottom_toTopOf="@+id/Task_lbl"
         app:layout_constraintEnd_toStartOf="@+id/monthEDT"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -124,7 +123,7 @@
         app:layout_constraintEnd_toStartOf="@+id/weekEDT"
         app:layout_constraintStart_toEndOf="@+id/monthEDT"
         app:layout_constraintTop_toBottomOf="@+id/WeeklyLog_lbl"
-        app:layout_constraintVertical_bias="0.972"
+        app:layout_constraintVertical_bias="0.777"
         android:layout_marginRight="11dp" />
 
     <EditText
@@ -145,7 +144,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="72dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
