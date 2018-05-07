@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteY="81dp">
+//DONT USE
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="0dp"
+        android:layout_height="77dp"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <!-- Content Container -->
+
+        <LinearLayout
+            android:id="@+id/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/profile_addtask"
+                android:layout_width="123dp"
+                android:layout_height="73dp"
+                android:layout_weight="1"
+                android:text="Profile" />
+
+            <Button
+                android:id="@+id/calendar_addtask"
+                android:layout_width="152dp"
+                android:layout_height="73dp"
+                android:layout_weight="1"
+                android:text="Add Task" />
+
+            <Button
+                android:id="@+id/utilitybutton_addtask"
+                android:layout_width="179dp"
+                android:layout_height="73dp"
+                android:layout_weight="1"
+                android:text="Utility Bill" />
+
+            <Button
+                android:id="@+id/checklist_addtask"
+                android:layout_width="188dp"
+                android:layout_height="73dp"
+                android:layout_weight="1"
+                android:text="Checklist/Log" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>
