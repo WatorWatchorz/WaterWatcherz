@@ -63,20 +63,6 @@ public class ProfileActivity  extends AppCompatActivity {
             Log.d("TAG","onClick: firstName: " + hhldsize.getText().toString());
             }
         });
-
-        users = new ArrayList<>();
-        for (int i=0;i<10;i++) {
-            User user = new User();
-            user.setName("Krish");
-            users.add(user);
-        }
-       /*
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production")
-                .allowMainThreadQueries()
-                .build();
-
-        List<User> users = db.UserDao().getAllUsers();
-        */
     }
 
 

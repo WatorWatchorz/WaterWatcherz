@@ -1,5 +1,11 @@
 package com.example.water.waterwatcherz;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.v4.app.ServiceCompat;
+
 import java.util.ArrayList;
 
 /**
@@ -7,17 +13,95 @@ import java.util.ArrayList;
  * and the duration of the task
  * Created by WaterWatcherz on 3/28/2018.
  */
-
+@Entity
+        //(foreignKeys = @ForeignKey(entity = User.class, parentColumns = "id",childColumns = "userid"))
 public class WaterTask
 {
-    //Data
+    public int getUserid() {
+        return userid;
+    }
 
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
+
+    //Data
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "userid")
+    private int userid;
+
+    @ColumnInfo(name = "taskName")
     private String taskName;
-    private ArrayList<Integer> date;
+//    private ArrayList<Integer> date;
+    @ColumnInfo(name = "month")
+    private int month;
+    @ColumnInfo(name = "day")
+    private int day;
+    @ColumnInfo(name = "year")
+    private int year;
+
+    @ColumnInfo(name = "time")
     private int time;
+
+    public int getWeek() {
+        return week;
+    }
+
+    public void setWeek(int week) {
+        this.week = week;
+    }
+
+    @ColumnInfo(name = "week")
+    private int week;
+
+
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
+
+ /*   public void setDate(ArrayList<Integer> date) {
+        this.date = date;
+    }*/
+
+  /*  public void setTime(int time) {
+        this.time = time;
+    }*/
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
     private int duration;
 
     //Constructors
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
 
     /**
      * Constructs a WaterTask object with a given name, date of occurrence(M/D/Y format),
@@ -36,10 +120,10 @@ public class WaterTask
                      int durationHour, int durationMinute)
     {
         this.taskName = taskName;
-        date = new ArrayList<>();
+   /*     date = new ArrayList<>();
             date.add(month);
             date.add(day);
-            date.add(year);
+            date.add(year);*/
         time = hour * 60 + minute;
         duration = durationHour * 60 + durationMinute;
     }
@@ -51,10 +135,10 @@ public class WaterTask
     public WaterTask()
     {
         this.taskName = "Empty";
-        date = new ArrayList<>();
+       /* date = new ArrayList<>();
             date.add(0);
             date.add(0);
-            date.add(0);
+            date.add(0);*/
         time = 0;
         duration = 0;
     }
@@ -74,10 +158,10 @@ public class WaterTask
      * Gets the date the water task takes place
      * @return the month, day, and year when the task takes place
      */
-    public String getDate()
+   /* public String getDate()
     {
         return date.get(0) + "/" + date.get (1) + "/" + date.get(2);
-    }
+    }*/
 
     /**
      * Gets the time when the water task takes place
