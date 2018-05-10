@@ -24,12 +24,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-      /*  View.OnClickListener taskActivityListener;
+        Bundle bundle = getIntent().getExtras();
+
+
+        View.OnClickListener taskActivityListener;
         View.OnClickListener profileListener;
         View.OnClickListener utilityListener;
+
        taskActivityListener = new View.OnClickListener() {
             public void onClick(View v) {
-                openTaskActivity();
+                listView();
             }
         };
         profileListener = new View.OnClickListener() {
@@ -39,10 +43,10 @@ public class MainActivity extends AppCompatActivity {
         };
         utilityListener = new View.OnClickListener() {
             public void onClick(View v) {
-                openUtiltyInformation();
+                listView();
             }
         };
-*/
+
 
         taskActivityButton_main = (Button) findViewById(R.id.calendar_home);
         profilebutton_main = (Button) findViewById(R.id.profile_home);
@@ -62,11 +66,11 @@ public class MainActivity extends AppCompatActivity {
         profilebutton_profile.setOnClickListener(profileListener);
 */
 
-        profilebutton_main.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                openProfile();
-            }
-        });
+//        profilebutton_main.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                openProfile();
+//            }
+//        });
         taskActivityButton_main.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 openTaskActivity();
@@ -86,6 +90,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openTaskActivity() {
+        Intent intent = new Intent(this,DatabaseTest.class);
+        startActivity(intent);
+    }
+
+    public void openUtilityInformation() {
+        Intent intent = new Intent(this,SettingsActivity.class);
         Intent intent = new Intent(this,DatabaseTest.class);
         startActivity(intent);
     }
