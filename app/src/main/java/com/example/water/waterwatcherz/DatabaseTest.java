@@ -34,7 +34,6 @@ public class DatabaseTest extends AppCompatActivity {
                 updateDb();
             }
         });
-
     }
         protected void updateDb() {
 

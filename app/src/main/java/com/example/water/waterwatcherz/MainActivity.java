@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         };
 */
 
-        taskActivityButton_main = (Button) findViewById(R.id.calendar_settings);
-        profilebutton_main = (Button) findViewById(R.id.profile_settings);
+        taskActivityButton_main = (Button) findViewById(R.id.settings_addtask);
+        profilebutton_main = (Button) findViewById(R.id.settings_profile);
         //listview_home = (Button) findViewById(R.id.listview);
 
 

@@ -47,7 +47,7 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
                         .build();
 
                 profileButton_addtask = (Button) findViewById(R.id.profile_addtask);
-                settingsButton_addtask = (Button) findViewById(R.id.settings_addtask);
+                settingsButton_addtask = (Button) findViewById(R.id.utilitybutton_addtask);
 
 
                 profileButton_addtask.setOnClickListener(new View.OnClickListener() {
