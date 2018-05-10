@@ -4,10 +4,11 @@ import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 
 /**
- * Created by krish on 5/11/2018.
+ * Created by krish
  */
-@Database(entities = {User.class}, version=1,  exportSchema = false)
+@Database(entities = {User.class,WaterTask.class}, version=4,  exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();
+    public abstract WaterTaskDao waterTaskDao();
 }
 
