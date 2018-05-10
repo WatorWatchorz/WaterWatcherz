@@ -22,4 +22,5 @@ public interface UserDao {
     public void insertallUsers(List<User> users);
     //@Query("SELECT * FROM watertask WHERE userid=:id")
     //public void getUserWaterTasks(int id);
+
 }

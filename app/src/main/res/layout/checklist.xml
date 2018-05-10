@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:layout_editor_absoluteY="81dp">
+    tools:context="com.example.water.waterwatcherz.DatabaseTest">
 
 
     <RelativeLayout
@@ -19,7 +20,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
-
         <!-- Content Container -->
 
         <LinearLayout
@@ -30,28 +30,28 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/profile"
+                android:id="@+id/profile_checklist"
                 android:layout_width="123dp"
                 android:layout_height="73dp"
                 android:layout_weight="1"
                 android:text="Profile" />
 
             <Button
-                android:id="@+id/calendar"
+                android:id="@+id/calendar_checklist"
                 android:layout_width="152dp"
                 android:layout_height="73dp"
                 android:layout_weight="1"
                 android:text="Add Task" />
 
             <Button
-                android:id="@+id/utility"
+                android:id="@+id/settings_checklist"
                 android:layout_width="179dp"
                 android:layout_height="73dp"
                 android:layout_weight="1"
-                android:text="Utility Bill" />
+                android:text="Settings" />
 
             <Button
-                android:id="@+id/checklist"
+                android:id="@+id/checklist_checklist"
                 android:layout_width="188dp"
                 android:layout_height="73dp"
                 android:layout_weight="1"
@@ -60,8 +60,23 @@
 
     </RelativeLayout>
 
+    <!--<ListView-->
+    <!--android:id="@+id/simple_listview"-->
+    <!--android:layout_width="471dp"-->
+    <!--android:layout_height="451dp"-->
+    <!--android:layout_marginBottom="8dp"-->
+    <!--android:layout_marginEnd="8dp"-->
+    <!--android:layout_marginStart="8dp"-->
+    <!--android:layout_marginTop="8dp"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintHorizontal_bias="0.353"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent"-->
+    <!--app:layout_constraintVertical_bias="0.469" />-->
+
     <TextView
-        android:id="@+id/utilitybillinfo"
+        android:id="@+id/ChecklistTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -72,26 +87,10 @@
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.477"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="52dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.205" />
 
     <TextView
         android:id="@+id/textView"
@@ -105,10 +104,10 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.123"
+        app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.209" />
+        app:layout_constraintVertical_bias="0.136" />
 
     <TextView
         android:id="@+id/textView2"
@@ -122,40 +121,26 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintHorizontal_bias="0.835"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.435" />
+        app:layout_constraintVertical_bias="0.135" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="225dp"
-        android:layout_height="44dp"
+    <ListView
+        android:id="@+id/taskstest_listview"
+        android:layout_width="402dp"
+        android:layout_height="386dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.434" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="blah"
-        android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" /><![CDATA[
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.534" /><![CDATA[
+
+
 
 
 
@@ -167,6 +152,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.261" />
+
 
 
 ]]>
