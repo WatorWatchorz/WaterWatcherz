@@ -58,28 +58,28 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/profilehome"
+                android:id="@+id/profile_home"
                 android:layout_width="123dp"
                 android:layout_height="73dp"
                 android:layout_weight="1"
                 android:text="@string/profile" />
 
             <Button
-                android:id="@+id/calendarhome"
+                android:id="@+id/calendar_home"
                 android:layout_width="152dp"
                 android:layout_height="73dp"
                 android:layout_weight="1"
                 android:text="@string/calendar" />
 
             <Button
-                android:id="@+id/utilitybuttonhome"
+                android:id="@+id/settings_home"
                 android:layout_width="179dp"
                 android:layout_height="73dp"
                 android:layout_weight="1"
-                android:text="@string/utilitybillinfo" />
+                android:text="Settings" />
 
             <Button
-                android:id="@+id/checklisthome"
+                android:id="@+id/checklist_home"
                 android:layout_width="188dp"
                 android:layout_height="73dp"
                 android:layout_weight="1"

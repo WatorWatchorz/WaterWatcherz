@@ -42,11 +42,11 @@
                 android:text="Add Task" />
 
             <Button
-                android:id="@+id/utilitybutton_addtask"
+                android:id="@+id/settings_addtask"
                 android:layout_width="179dp"
                 android:layout_height="73dp"
                 android:layout_weight="1"
-                android:text="Utility Bill" />
+                android:text="Settings" />
 
             <Button
                 android:id="@+id/checklist_addtask"
@@ -60,130 +60,154 @@
 
 
     <TextView
-        android:id="@+id/WeeklyLog_lbl"
+        android:id="@+id/WaterTaskTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
-        android:layout_marginStart="101dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/weekly_log"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Add Water Task"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/weekEDT"
-        app:layout_constraintEnd_toEndOf="@+id/weekEDT"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="101dp"
-        android:layout_marginRight="28dp" />
+        app:layout_constraintVertical_bias="0.01" />
 
     <TextView
-        android:id="@+id/Task_lbl"
+        android:id="@+id/Month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:layout_marginStart="16dp"
-        android:text="@string/task"
-        app:layout_constraintBottom_toTopOf="@+id/NumPpl_lbl"
-        app:layout_constraintEnd_toStartOf="@+id/taskDropDown"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Month_lbl"
-        android:layout_marginLeft="16dp" />
-
-    <TextView
-        android:id="@+id/Month_lbl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="85dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="@string/month"
-        app:layout_constraintBottom_toTopOf="@+id/Task_lbl"
-        app:layout_constraintEnd_toStartOf="@+id/monthEDT"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.037"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.154" />
 
     <TextView
-        android:id="@+id/NumPpl_lbl"
+        android:id="@+id/Week"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="210dp"
-        android:layout_marginStart="16dp"
-        android:text="@string/duration"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Task_lbl"
-        android:layout_marginLeft="16dp" />
-
-    <TextView
-        android:id="@+id/Week_lbl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginRight="11dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/week"
-        app:layout_constraintBottom_toTopOf="@+id/taskDropDown"
-        app:layout_constraintEnd_toStartOf="@+id/weekEDT"
-        app:layout_constraintStart_toEndOf="@+id/monthEDT"
-        app:layout_constraintTop_toBottomOf="@+id/WeeklyLog_lbl"
-        app:layout_constraintVertical_bias="0.563" />
+        android:textSize="23sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.036"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.253" />
+
+    <TextView
+        android:id="@+id/Task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/task"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.035"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.358" />
+
+    <TextView
+        android:id="@+id/Duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Duration (minutes)"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.461" />
 
     <EditText
         android:id="@+id/monthEDT"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/Week_lbl"
-        app:layout_constraintStart_toEndOf="@+id/Month_lbl"
-        app:layout_constraintTop_toBottomOf="@+id/WeeklyLog_lbl" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.829"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.128" />
 
     <EditText
         android:id="@+id/weekEDT"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="72dp"
-        android:layout_marginRight="72dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Week_lbl"
-        app:layout_constraintTop_toBottomOf="@+id/WeeklyLog_lbl" />
+        app:layout_constraintHorizontal_bias="0.829"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.258" />
 
     <Spinner
         android:id="@+id/taskDropDown"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="32dp"
-        android:layout_marginEnd="121dp"
-        android:layout_marginRight="121dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="99dp"
-        app:layout_constraintBottom_toBottomOf="@+id/NumPpl_lbl"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Task_lbl"
-        app:layout_constraintTop_toBottomOf="@+id/WeeklyLog_lbl"
-        app:layout_constraintVertical_bias="0.485" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="283dp"
-        android:layout_marginEnd="230dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="210dp"
+        android:layout_width="239dp"
+        android:layout_height="23sp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/NumPpl_lbl"
+        app:layout_constraintHorizontal_bias="0.817"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginRight="230dp"
-        android:layout_marginLeft="32dp" />
+        app:layout_constraintVertical_bias="0.364" />
+
+    <EditText
+        android:id="@+id/durationEntry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.796"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.446" />
 
 </android.support.constraint.ConstraintLayout>

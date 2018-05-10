@@ -48,10 +48,8 @@ public class User
 
     @ColumnInfo(name = "houseSize")
     private int houseSize;
-    //Stores the zip code of the user's house
 
-    @ColumnInfo(name = "zip")
-    private String zip;
+
     //Stores the numeric value of the weekly goal in gallons
 
     @ColumnInfo(name="weeklyGoal")
@@ -98,11 +96,12 @@ public class User
     private int numWash;
     //Constructor
 
+    //take out zipcode
+
     /**
      * Constructs a new User object
      * @param userTask an ArrayList containing the user's WaterTask objects
      * @param houseNumber an integer value containing the number of people in the user's household
-     * @param zipCode a String value containing the zip code of the user's house
      * @param weeklyWaterGoal a String containing the user's weekly goal
      * @param userName a String containing the name of the user
      * @param paymentPeriod a string containing data on how often the water bill is delivered
@@ -111,11 +110,10 @@ public class User
      * @param wash a String that stores whether the user generally showers or takes a bath
      * @param numWash the number of times the user generally shower or takes a bath in a day
      */
-    public User(ArrayList<WaterTask> userTask, int houseNumber, String zipCode, int weeklyWaterGoal, String userName,
+    public User(ArrayList<WaterTask> userTask, int houseNumber, int weeklyWaterGoal, String userName,
                 String paymentPeriod, int brushTeethNum, int brushTeethTime, String wash, int numWash) {
         tasks = userTask;
         houseSize = houseNumber;
-        zip = zipCode;
         weeklyGoal = weeklyWaterGoal;
         name = userName;
         this.paymentPeriod = paymentPeriod;
@@ -131,7 +129,6 @@ public class User
     public User() {
         tasks = new ArrayList<>();
         houseSize = 0;
-        zip = "null";
         weeklyGoal = 0;
         name = "null";
         paymentPeriod = null;
@@ -174,20 +171,6 @@ public class User
      * @param userTask a new water task
      */
     public void setUserTask(WaterTask userTask){tasks.add(userTask);}
-
-    /**
-     * Sets the zipcode of a user
-     * @param zipCode the zipcode of the user
-     */
-    public void setZip(String zipCode){zip = zipCode;}
-
-    /**
-     * Accesses this user's zip code
-     * @return this user's zip code
-     */
-    public String getZip() {
-        return zip;
-    }
 
     /**
      * Sets the weekly water goal

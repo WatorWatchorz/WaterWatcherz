@@ -15,8 +15,8 @@ import android.widget.Spinner;
 
 public class AddTaskActivity  extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private Button profilebutton_addtask;
-    private Button utilitybutton_addtask;
+    private Button profileButton_addtask;
+    private Button settingsButton_addtask;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,29 +30,29 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
         taskSpinner.setAdapter(adapter1);
         taskSpinner.setOnItemSelectedListener(this);
 
-        profilebutton_addtask = (Button) findViewById(R.id.profile_addtask);
-        utilitybutton_addtask = (Button) findViewById(R.id.utilitybutton_addtask);
+        profileButton_addtask = (Button) findViewById(R.id.profile_addtask);
+        settingsButton_addtask = (Button) findViewById(R.id.settings_addtask);
 
 
-        profilebutton_addtask.setOnClickListener(new View.OnClickListener() {
+        profileButton_addtask.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 openProfile();
             }
         });
-        utilitybutton_addtask.setOnClickListener(new View.OnClickListener() {
+        settingsButton_addtask.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                openUtiltyInformation();
+                openSettings();
             }
         });
     }
 
     public void openProfile() {
-        Intent intent = new Intent(this,ProfileActivity.class);
+        Intent intent = new Intent(this,HomeActivity.class);
         startActivity(intent);
     }
 
-    public void openUtiltyInformation() {
-        Intent intent = new Intent(this,UtilityInformationActivity.class);
+    public void openSettings() {
+        Intent intent = new Intent(this,SettingsActivity.class);
         startActivity(intent);
     }
 

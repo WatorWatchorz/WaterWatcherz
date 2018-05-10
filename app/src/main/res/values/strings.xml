@@ -278,6 +278,15 @@
         <item>Wrentham</item>
         <item>Yarmouth</item>
     </string-array>
+    <string-array name="paymentperiods_array">
+        <item>Monthly</item>
+        <item>Quarterly</item>
+        <item>Yearly</item>
+    </string-array>
+    <string-array name="bathORshower_array">
+        <item>Bath</item>
+        <item>Shower</item>
+    </string-array>
     <string name="utilitybillinfo" translatable="false">Utility Bill</string>
     <string name="waterused" translatable="false">Total Water Used:</string>
     <string name="goal_met" translatable="false">Did You Meet Your Goal?</string>

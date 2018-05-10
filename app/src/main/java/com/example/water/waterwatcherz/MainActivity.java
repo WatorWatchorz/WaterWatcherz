@@ -17,14 +17,13 @@ public class MainActivity extends AppCompatActivity {
     User new_user;
     ArrayList<WaterTask> userTasks = new ArrayList<WaterTask>();
 
-    private Button profilebutton_home;
-    private Button taskActivityButton_home;
-    private Button utilitybutton_home;
-    private Button listview_home;
+    private Button profilebutton_main;
+    private Button taskActivityButton_main;
+    private Button listview_main;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.settings);
       /*  View.OnClickListener taskActivityListener;
         View.OnClickListener profileListener;
         View.OnClickListener utilityListener;
@@ -45,9 +44,8 @@ public class MainActivity extends AppCompatActivity {
         };
 */
 
-        taskActivityButton_home = (Button) findViewById(R.id.calendarhome);
-        utilitybutton_home = (Button) findViewById(R.id.utilitybuttonhome);
-        profilebutton_home = (Button) findViewById(R.id.profilehome);
+        taskActivityButton_main = (Button) findViewById(R.id.calendar_settings);
+        profilebutton_main = (Button) findViewById(R.id.profile_settings);
         //listview_home = (Button) findViewById(R.id.listview);
 
 
@@ -63,20 +61,15 @@ public class MainActivity extends AppCompatActivity {
         profilebutton_addTask.setOnClickListener(profileListener);
         profilebutton_profile.setOnClickListener(profileListener);
 */
-        taskActivityButton_home.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                openTaskActivity();
-            }
-        });
-        profilebutton_home.setOnClickListener(new View.OnClickListener() {
+
+        profilebutton_main.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 openProfile();
             }
         });
-        utilitybutton_home.setOnClickListener(new View.OnClickListener() {
+        taskActivityButton_main.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                openUtiltyInformation();
-                listView();
+                openTaskActivity();
             }
         });
         /*listview_home.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openProfile() {
-        Intent intent = new Intent(this,ProfileActivity.class);
+        Intent intent = new Intent(this,HomeActivity.class);
         startActivity(intent);
     }
 
@@ -96,11 +89,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,AddTaskActivity.class);
         startActivity(intent);
     }
-    public void openUtiltyInformation() {
-        Intent intent = new Intent(this,UtilityInformationActivity.class);
-        startActivity(intent);
-    }
-
 
     public void listView() {
         Intent intent  = new Intent(this, DatabaseTest.class);

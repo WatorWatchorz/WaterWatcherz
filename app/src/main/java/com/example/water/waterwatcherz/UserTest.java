@@ -14,11 +14,10 @@ public class UserTest {
         ArrayList<WaterTask> testTask = new ArrayList<>();
         testTask.add(new WaterTask("Watering Lawn", 1, 3, 2018,
                 1, 2, 2, 7));
-        User user = new User(testTask, 4, "01605", 15, "Chris","Quarterly", 2, 2, "Shower",1);
+        User user = new User(testTask, 4, 15, "Chris","Quarterly", 2, 2, "Shower",1);
 
 //        System.out.println(user.getTasks());
         System.out.println(user.getHouseSize());
-        System.out.println(user.getZip());
         System.out.println(user.getWeeklyGoal());
         System.out.println(user.getName());
         System.out.println(user.getPaymentPeriod());
@@ -31,7 +30,6 @@ public class UserTest {
         User user2 = new User();
    //     System.out.println(user2.getTasks());
         System.out.println(user2.getHouseSize());
-        System.out.println(user2.getZip());
         System.out.println(user2.getWeeklyGoal());
         System.out.println(user2.getName());
         System.out.println(user2.getPaymentPeriod());
