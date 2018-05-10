@@ -35,6 +35,7 @@ public class WaterTask
 //    private ArrayList<Integer> date;
     @ColumnInfo(name = "month")
     private int month;
+
     @ColumnInfo(name = "day")
     private int day;
     @ColumnInfo(name = "year")
@@ -42,14 +43,6 @@ public class WaterTask
 
     @ColumnInfo(name = "time")
     private int time;
-
-    public int getWeek() {
-        return week;
-    }
-
-    public void setWeek(int week) {
-        this.week = week;
-    }
 
     @ColumnInfo(name = "week")
     private int week;
@@ -83,6 +76,14 @@ public class WaterTask
         this.month = month;
     }
 
+    public int getWeek() {
+        return week;
+    }
+
+    public void setWeek(int week) {
+        this.week = week;
+    }
+
     public int getDay() {
         return day;
     }
@@ -108,6 +109,7 @@ public class WaterTask
      * time of occurrence(in minutes), and duration time (in minutes)
      * @param taskName the name of the water task
      * @param month the month the water task takes place
+     * @param week the week the water task takes place
      * @param day the day the water task takes place
      * @param year the year the water task takes place
      * @param hour the hour the water task takes place
@@ -116,7 +118,7 @@ public class WaterTask
      * @param durationMinute the integer number of minutes extra, after the number of hours, the
      *                       water task takes place
      */
-    public WaterTask(String taskName, int month, int day, int year, int hour, int minute,
+    public WaterTask(String taskName, int month, int week, int day, int year, int hour, int minute,
                      int durationHour, int durationMinute)
     {
         this.taskName = taskName;

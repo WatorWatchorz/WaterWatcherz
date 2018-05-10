@@ -20,6 +20,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
     private Button profileButton_settings;
     private Button taskActivityButton_settings;
+    private Button checklistButton_settings;
     private Button confirmButton_settings;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,8 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
         profileButton_settings = (Button) findViewById(R.id.profile_settings);
         taskActivityButton_settings = (Button) findViewById(R.id.calendar_settings);
+        checklistButton_settings = (Button) findViewById(R.id.checklist_settings);
+
         confirmButton_settings = (Button) findViewById(R.id.confirm);
 
         profileButton_settings.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +64,9 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             public void onClick(View v) {openTaskActivity();
             }
         });
+        checklistButton_settings.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {openChecklist();
+            }});
 
         confirmButton_settings.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -93,6 +99,10 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         startActivity(intent);
     }
 
+    public void openChecklist() {
+        Intent intent = new Intent(this, ChecklistActivity.class);
+        startActivity(intent);
+    }
 
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {

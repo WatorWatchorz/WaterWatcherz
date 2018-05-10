@@ -27,6 +27,7 @@ public class HomeActivity  extends AppCompatActivity {//implements AdapterView.O
     List<User> users;
     private Button taskActivityButton_home;
     private Button settingsButton_home;
+    private Button checklistButton_home;
     private Button confirmbutton_home;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,8 @@ public class HomeActivity  extends AppCompatActivity {//implements AdapterView.O
 
         taskActivityButton_home = (Button) findViewById(R.id.calendar_home);
         settingsButton_home = (Button) findViewById(R.id.settings_home);
+        checklistButton_home = (Button) findViewById(R.id.checklist_home);
+
 
         taskActivityButton_home.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {openTaskActivity();
@@ -45,7 +48,14 @@ public class HomeActivity  extends AppCompatActivity {//implements AdapterView.O
             public void onClick(View v) {
                 openSettings();
             }
-        });}
+        });
+
+        checklistButton_home.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {openChecklist();
+            }});
+
+    }
+
 
     //    confirmbutton_profile = (Button) findViewById(R.id.confirm);
 
@@ -78,6 +88,10 @@ public class HomeActivity  extends AppCompatActivity {//implements AdapterView.O
     }
     public void openSettings() {
         Intent intent = new Intent(this,SettingsActivity.class);
+        startActivity(intent);
+    }
+    public void openChecklist() {
+        Intent intent = new Intent(this, ChecklistActivity.class);
         startActivity(intent);
     }
 //
@@ -122,7 +136,7 @@ public class HomeActivity  extends AppCompatActivity {//implements AdapterView.O
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }*/
-    }
+  //  }
 
 //    public void displayInformation() {
 //        /*Context context = getApplicationContext();
@@ -140,13 +154,13 @@ public class HomeActivity  extends AppCompatActivity {//implements AdapterView.O
 //        }*/
 //    }
 
-//    public void onItemSelected(AdapterView<?> parent, View view,
-//                               int pos, long id) {
-//        // An item was selected. You can retrieve the selected item using
-//        // parent.getItemAtPosition(pos)
-//    }
-//    public void onNothingSelected(AdapterView<?> parent) {
-//        // Another interface callback
-//   }
-
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+        // An item was selected. You can retrieve the selected item using
+        // parent.getItemAtPosition(pos)
+    }
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback
+   }
+}
 
