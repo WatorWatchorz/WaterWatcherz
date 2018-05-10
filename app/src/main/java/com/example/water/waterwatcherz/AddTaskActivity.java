@@ -23,18 +23,18 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
     private Button profileButton_addtask;
     private Button settingsButton_addtask;
 
-    Spinner taskSpinner = findViewById(R.id.taskDropDown);
     final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
 
         }
     };
-
-            protected void onCreate (Bundle savedInstanceState){
-                super.onCreate(savedInstanceState);
-                setContentView(R.layout.add_task);
-                Bundle bundle = getIntent().getExtras();
+    Spinner taskSpinner;
+    protected void onCreate (Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.add_task);
+        taskSpinner = findViewById(R.id.taskDropDown);
+        Bundle bundle = getIntent().getExtras();
 
                 ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
                         R.array.tasks_array, android.R.layout.simple_spinner_item);
@@ -61,7 +61,6 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
                     }
                 });
             }
-        }
 
     public void openProfile() {
         Intent intent = new Intent(this,HomeActivity.class);
