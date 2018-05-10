@@ -205,4 +205,7 @@ public class WaterTask
                 return 0;
         }
     }
+    public String toString() {
+        return taskName;
+    }
 }

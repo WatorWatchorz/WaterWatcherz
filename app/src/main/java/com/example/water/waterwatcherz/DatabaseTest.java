@@ -53,10 +53,11 @@ public class DatabaseTest extends AppCompatActivity {
                 waterTask.setTaskName(name);
                 db.waterTaskDao().insertWaterTask(waterTask);
                 //db.userDao().insertUser(jim);
-                List<WaterTask> waterTasks = db.waterTaskDao().getAllWaterTasks();
-                ArrayAdapter<WaterTask> myAdapter = new ArrayAdapter<WaterTask>(this, android.R.layout.simple_list_item_1, waterTasks);
-                ListView listView = findViewById(R.id.simple_listview);
-                listView.setAdapter(myAdapter);
+
                 }
+            List<WaterTask> waterTasks = db.waterTaskDao().getAllWaterTasks();
+            ArrayAdapter<WaterTask> myAdapter = new ArrayAdapter<WaterTask>(this, android.R.layout.simple_list_item_1, waterTasks);
+            ListView listView = findViewById(R.id.simple_listview);
+            listView.setAdapter(myAdapter);
         }
 }
