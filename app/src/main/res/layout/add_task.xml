@@ -8,53 +8,56 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
+        android:layout_width="0dp"
+        android:layout_height="77dp"
+        android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/NumPpl_lbl">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <!-- Content Container -->
 
         <LinearLayout
-            android:id="@+id/navbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:id="@+id/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/profile_addtask"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="123dp"
+                android:layout_height="73dp"
                 android:layout_weight="1"
-                android:text="@string/profile" />
+                android:text="Profile" />
 
             <Button
                 android:id="@+id/calendar_addtask"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="152dp"
+                android:layout_height="73dp"
                 android:layout_weight="1"
-                android:text="@string/calendar" />
+                android:text="Add Task" />
 
             <Button
                 android:id="@+id/utilitybutton_addtask"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="179dp"
+                android:layout_height="73dp"
                 android:layout_weight="1"
-                android:text="@string/utilitybillinfo" />
+                android:text="Utility Bill" />
 
             <Button
                 android:id="@+id/checklist_addtask"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="188dp"
+                android:layout_height="73dp"
                 android:layout_weight="1"
-                android:text="@string/checklist" />
+                android:text="Checklist/Log" />
         </LinearLayout>
 
     </RelativeLayout>
+
 
     <TextView
         android:id="@+id/WeeklyLog_lbl"
@@ -117,40 +120,40 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="36dp"
         android:layout_marginEnd="11dp"
+        android:layout_marginRight="11dp"
         android:layout_marginTop="8dp"
         android:text="@string/week"
         app:layout_constraintBottom_toTopOf="@+id/taskDropDown"
         app:layout_constraintEnd_toStartOf="@+id/weekEDT"
         app:layout_constraintStart_toEndOf="@+id/monthEDT"
         app:layout_constraintTop_toBottomOf="@+id/WeeklyLog_lbl"
-        app:layout_constraintVertical_bias="0.777"
-        android:layout_marginRight="11dp" />
+        app:layout_constraintVertical_bias="0.563" />
 
     <EditText
         android:id="@+id/monthEDT"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="64dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/Week_lbl"
         app:layout_constraintStart_toEndOf="@+id/Month_lbl"
-        app:layout_constraintTop_toBottomOf="@+id/WeeklyLog_lbl"
-        android:layout_marginRight="16dp" />
+        app:layout_constraintTop_toBottomOf="@+id/WeeklyLog_lbl" />
 
     <EditText
         android:id="@+id/weekEDT"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="72dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginRight="72dp"
+        android:layout_marginTop="64dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Week_lbl"
-        app:layout_constraintTop_toBottomOf="@+id/WeeklyLog_lbl"
-        android:layout_marginRight="72dp" />
+        app:layout_constraintTop_toBottomOf="@+id/WeeklyLog_lbl" />
 
     <Spinner
         android:id="@+id/taskDropDown"
@@ -158,15 +161,15 @@
         android:layout_height="30dp"
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="121dp"
+        android:layout_marginRight="121dp"
         android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="99dp"
         app:layout_constraintBottom_toBottomOf="@+id/NumPpl_lbl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Task_lbl"
         app:layout_constraintTop_toBottomOf="@+id/WeeklyLog_lbl"
-        app:layout_constraintVertical_bias="0.0"
-        android:layout_marginRight="121dp"
-        android:layout_marginLeft="32dp" />
+        app:layout_constraintVertical_bias="0.485" />
 
     <EditText
         android:id="@+id/editText2"

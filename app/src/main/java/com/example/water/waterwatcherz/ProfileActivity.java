@@ -1,14 +1,13 @@
 package com.example.water.waterwatcherz;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.view.View;
@@ -23,22 +22,40 @@ import java.util.List;
  * Created by krish on 4/12/2018.
  */
 
-public class ProfileActivity  extends AppCompatActivity {
+public class ProfileActivity  extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     List<User> users;
     private Button taskActivityButton_profile;
-    private Button profilebutton_profile;
     private Button utilitybutton_profile;
     private Button confirmbutton_profile;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.house_info);
+        setContentView(R.layout.settings);
         Bundle bundle = getIntent().getExtras();
+
+        Spinner townSpinner = findViewById(R.id.townDropDown);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
+                R.array.towns_array, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        townSpinner.setAdapter(adapter2);
+        townSpinner.setOnItemSelectedListener(this);
 
         taskActivityButton_profile = (Button) findViewById(R.id.calendar_houseinfo);
         utilitybutton_profile = (Button) findViewById(R.id.utilitybutton_houseinfo);
-        profilebutton_profile = (Button) findViewById(R.id.profile_houseinfo);
+
+        taskActivityButton_profile.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {openTaskActivity();
+            }
+        });
+        utilitybutton_profile.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openUtiltyInformation();
+            }
+        });
+
+        taskActivityButton_profile = (Button) findViewById(R.id.calendar_houseinfo);
+        utilitybutton_profile = (Button) findViewById(R.id.utilitybutton_houseinfo);
         confirmbutton_profile = (Button) findViewById(R.id.confirm);
 
 
@@ -47,11 +64,7 @@ public class ProfileActivity  extends AppCompatActivity {
                 openTaskActivity();
             }
         });
-        profilebutton_profile.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                openProfile();
-            }
-        });
+
         utilitybutton_profile.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 openUtiltyInformation();
@@ -63,12 +76,6 @@ public class ProfileActivity  extends AppCompatActivity {
             Log.d("TAG","onClick: firstName: " + hhldsize.getText().toString());
             }
         });
-    }
-
-
-    public void openProfile() {
-        Intent intent = new Intent(this,ProfileActivity.class);
-        startActivity(intent);
     }
 
     public void openTaskActivity() {
@@ -91,7 +98,7 @@ public class ProfileActivity  extends AppCompatActivity {
     }
 
     public void storeInformation() {
-        Spinner townSpinner = findViewById(R.id.townDropDown);
+       // Spinner townSpinner = findViewById(R.id.townDropDown);
         EditText numPplEdit = findViewById(R.id.NumPplEdit);
         String numPplStr = numPplEdit.getText().toString();
         if (!(numPplStr.isEmpty())) {
@@ -123,20 +130,29 @@ public class ProfileActivity  extends AppCompatActivity {
         }*/
     }
 
-    public void displayInformation() {
-        /*Context context = getApplicationContext();
-        String filename = "UserInformation";
-        File directory = context.getFilesDir();
-        File file = new File(directory, filename);
+//    public void displayInformation() {
+//        /*Context context = getApplicationContext();
+//        String filename = "UserInformation";
+//        File directory = context.getFilesDir();
+//        File file = new File(directory, filename);
+//
+//        FileOutputStream outputStream;
+//        try {
+//            outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+//            outputStream.write(fileContents.getBytes());
+//            outputStream.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }*/
+//    }
 
-        FileOutputStream outputStream;
-        try {
-            outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
-            outputStream.write(fileContents.getBytes());
-            outputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+        // An item was selected. You can retrieve the selected item using
+        // parent.getItemAtPosition(pos)
+    }
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback
     }
 }
 

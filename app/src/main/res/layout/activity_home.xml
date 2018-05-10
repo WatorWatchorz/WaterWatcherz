@@ -14,7 +14,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_weight="1"
-        android:text="@string/efficiency"
+        android:text="Percentage of Goal Reached"
         android:textSize="27sp"
         app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
 
     <TextView
         android:id="@+id/welcome"
-        android:layout_width="377dp"
+        android:layout_width="226dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -47,7 +47,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
-
 
         <!-- Content Container -->
 
@@ -91,7 +90,10 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:progress="75"
+        android:progressTint="#4747d1"
+        android:progressBackgroundTint="#cccccc"
         android:layout_width="277dp"
         android:layout_height="279dp"
         android:layout_marginBottom="8dp"
@@ -104,7 +106,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.183" />
-
 
 
 </android.support.constraint.ConstraintLayout>
