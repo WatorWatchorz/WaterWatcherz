@@ -181,8 +181,8 @@ public class WaterTask
     }
 
     /**
-     * Gets the duration of the water task in minutes
-     * @return the duration of the task in minutes
+     * Gets the amount of the water in gallons
+     * @return the amount of water for each task in gallons
      */
     public double getAmt_gallons() {
         switch (taskName)
@@ -196,15 +196,39 @@ public class WaterTask
             case "Laundry":
                 return 25;
             case "Shower":
-                return time*3;
+                return duration*3;
             case "Washing Dishes":
                 return 6;
             case "Watering Lawn":
-                return time * 2;
+                return duration * 2;
             default:
                 return 0;
         }
     }
+
+    public double getAmt_ActualGallons() {
+        int total = 0;
+        switch (taskName)
+        {
+            case "Bath":
+                return total + 36;
+            case "Brushing Teeth":
+                return duration;
+            case "Filling Pool":
+                return total + 16590;
+            case "Laundry":
+                return total + 25;
+            case "Shower":
+                return total + duration*3;
+            case "Washing Dishes":
+                return total + 6;
+            case "Watering Lawn":
+                return total + duration * 2;
+            default:
+                return 0;
+        }
+    }
+
     public String toString() {
         return taskName;
     }

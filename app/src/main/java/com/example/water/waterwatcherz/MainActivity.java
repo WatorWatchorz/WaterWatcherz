@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings);
+        setContentView(R.layout.activity_home);
       /*  View.OnClickListener taskActivityListener;
         View.OnClickListener profileListener;
         View.OnClickListener utilityListener;
@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         };
 */
 
-        taskActivityButton_main = (Button) findViewById(R.id.calendar_settings);
-        profilebutton_main = (Button) findViewById(R.id.profile_settings);
+        taskActivityButton_main = (Button) findViewById(R.id.calendar_home);
+        profilebutton_main = (Button) findViewById(R.id.profile_home);
         //listview_home = (Button) findViewById(R.id.listview);
 
 
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openTaskActivity() {
-        Intent intent = new Intent(this,AddTaskActivity.class);
+        Intent intent = new Intent(this,DatabaseTest.class);
         startActivity(intent);
     }
 
