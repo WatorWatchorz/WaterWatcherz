@@ -49,7 +49,6 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
                 profileButton_addtask = (Button) findViewById(R.id.profile_addtask);
                 settingsButton_addtask = (Button) findViewById(R.id.settings_addtask);
 
-
                 profileButton_addtask.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         openProfile();
@@ -60,6 +59,7 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
                         openSettings();
                     }
                 });
+
             }
 
     public void openProfile() {
