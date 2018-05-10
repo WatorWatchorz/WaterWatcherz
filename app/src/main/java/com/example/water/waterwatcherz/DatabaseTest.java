@@ -17,7 +17,7 @@ import java.util.List;
 
 public class DatabaseTest extends AppCompatActivity {
 
-    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+    static final Migration MIGRATION_1_2 = new Migration(1, 4) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
 

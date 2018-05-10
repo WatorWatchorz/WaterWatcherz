@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void openUtilityInformation() {
         Intent intent = new Intent(this,SettingsActivity.class);
-        Intent intent = new Intent(this,DatabaseTest.class);
+//        Intent intent = new Intent(this,DatabaseTest.class);
         startActivity(intent);
     }
 
