@@ -17,7 +17,7 @@ import android.widget.Spinner;
 
 
 public class AddTaskActivity  extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    Spinner taskSpinner = findViewById(R.id.taskDropDown);
+
     static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
@@ -25,9 +25,12 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
         }
     };
 
+    Spinner taskSpinner;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_task);
+        taskSpinner = findViewById(R.id.taskDropDown);
         Bundle bundle = getIntent().getExtras();
 
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
