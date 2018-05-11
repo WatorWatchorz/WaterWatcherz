@@ -30,9 +30,10 @@ public class WaterTask
     }
 
     //Data
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "userid")
-    private int userid;
+    int userid;
 
     @ColumnInfo(name = "taskName")
     private String taskName;

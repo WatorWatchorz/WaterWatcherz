@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.List;
@@ -28,7 +29,11 @@ public class ChecklistActivity  extends AppCompatActivity {
     private Button settingsButton_checklist;
     private Button taskActivityButton_checklist;
     private Button deleteTestButton;
-    private List<WaterTask> waterTasks;
+    List<WaterTask> waterTasks;
+    ListView tasktest_listview;
+    WaterTask task1;
+    int WaterTaskId;
+    int id;
 
 
     final Migration MIGRATION_1_6 = new Migration(1, 6) {
@@ -78,10 +83,23 @@ public class ChecklistActivity  extends AppCompatActivity {
                         .addMigrations(MIGRATION_1_6)
                         .build();
 
-                    db.waterTaskDao().deleteWaterTasks(waterTasks.get(0));
+                EditText numdeleteEnter = findViewById(R.id.numDelete);
+                if(!numdeleteEnter.getText().toString().isEmpty()) {
+                    int numdeleteInt = Integer.parseInt(numdeleteEnter.getText().toString());
+                    db.waterTaskDao().deleteWaterTasks(waterTasks.get(numdeleteInt-1));
+                }
+
+//            for(WaterTask task1: waterTasks){
+//                for(int i=0;i<waterTasks.size();i++) {
+//
+//                    if (id == task1.getUserid()) {
+//                        int place = i;
+//                        db.waterTaskDao().deleteWaterTasks(waterTasks.get(place));
+//                    }
+//                }
+//            }
                 }
         });
-
 
 //        for(int i=0;i<waterTasks.size();i++) {
 //
@@ -89,10 +107,17 @@ public class ChecklistActivity  extends AppCompatActivity {
 //        }
         waterTasks = db.waterTaskDao().getAllWaterTasks();
 
-        ListView tasktest_listview = findViewById(R.id.taskstest_listview);
+        tasktest_listview = findViewById(R.id.taskstest_listview1);
         ArrayAdapter<WaterTask> myAdapter =  new ArrayAdapter<WaterTask>(this,android.R.layout.simple_list_item_1,waterTasks);
         tasktest_listview.setAdapter(myAdapter);
 
+        tasktest_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                task1 =(WaterTask) tasktest_listview.getItemAtPosition(position);
+                WaterTaskId = task1.getUserid();
+            }
+        });
     }
 
     public void openProfile() {
