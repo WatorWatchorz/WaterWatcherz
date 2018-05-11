@@ -49,7 +49,6 @@ public class User
     @ColumnInfo(name = "houseSize")
     private int houseSize;
 
-
     //Stores the numeric value of the weekly goal in gallons
 
     @ColumnInfo(name="weeklyGoal")
@@ -67,7 +66,19 @@ public class User
         this.id = id;
     }
 
-/*    public void setTasks(ArrayList<WaterTask> tasks) {
+    @ColumnInfo(name="town")
+    public String town;
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
+    }
+
+
+    /*    public void setTasks(ArrayList<WaterTask> tasks) {
         this.tasks = tasks;
     }
 */
@@ -94,6 +105,10 @@ public class User
 
     @ColumnInfo(name="numWash")
     private int numWash;
+
+
+    @ColumnInfo(name="billAmount")
+    private int billamt;
     //Constructor
 
     //take out zipcode
@@ -274,6 +289,14 @@ public class User
       //  return "Your tasks are " + getTasks(); //+ " and you goal weekly goal is " + weeklyGoal + " for a household size of " + houseSize +
                 //" in " + zip + ".";
         return name+houseSize+weeklyGoal+numWash;
+    }
+
+    public int getBillamt() {
+        return billamt;
+    }
+
+    public void setBillamt(int billamt) {
+        this.billamt = billamt;
     }
 
 }

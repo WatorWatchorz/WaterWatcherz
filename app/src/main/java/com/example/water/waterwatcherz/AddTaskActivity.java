@@ -75,22 +75,36 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         // An item was selected. You can retrieve the selected item using
-        Integer week = 0;
-        Integer month = 0;
+       Integer week;
+       Integer month;
+       Integer duration;
+
         parent.getItemAtPosition(pos);
         EditText monthEnter = findViewById(R.id.monthEDT);
-        EditText weekEnter = findViewById(R.id.weekEDT);
         if (!monthEnter.getText().toString().isEmpty()) {
              month = Integer.parseInt(monthEnter.getText().toString());
         }
+        else{month=0;}
+
+        EditText weekEnter = findViewById(R.id.weekEDT);
         if(!weekEnter.getText().toString().isEmpty()) {
              week = Integer.parseInt(weekEnter.getText().toString());
         }
+        else{week=0;}
+
+        EditText durationEnter = findViewById(R.id.duration);
+        if(!durationEnter.getText().toString().isEmpty()){
+            duration = Integer.parseInt(durationEnter.getText().toString());
+        }
+        else{duration=0;}
 
         String taskName = taskSpinner.getSelectedItem().toString();
         WaterTask waterTask = new WaterTask();
         waterTask.setTaskName(taskName);
+        waterTask.setMonth(month);
         waterTask.setWeek(week);
+        waterTask.setDuration(duration);
+
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
                 .allowMainThreadQueries()
                 .addMigrations(MIGRATION_1_6)

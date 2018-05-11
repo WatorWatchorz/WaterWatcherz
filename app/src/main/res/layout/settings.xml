@@ -305,7 +305,7 @@
     <TextView
         android:id="@+id/goalHowTo"
         android:layout_width="531dp"
-        android:layout_height="88dp"
+        android:layout_height="86dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
