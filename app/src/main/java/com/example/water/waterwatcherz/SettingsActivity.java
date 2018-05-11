@@ -49,7 +49,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
 
     protected void onCreate(Bundle savedInstanceState) {
-        final Migration MIGRATION_1_2 = new Migration(1, 4) {
+        final Migration MIGRATION_1_2 = new Migration(1, 6) {
             @Override
             public void migrate(SupportSQLiteDatabase database) {
             }

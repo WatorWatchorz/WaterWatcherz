@@ -25,7 +25,7 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
     private Button checkButton_addtask;
     private Button confirmButton_addtask;
 
-    final Migration MIGRATION_1_2 = new Migration(1, 2) {
+    final Migration MIGRATION_1_2 = new Migration(1, 6) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
 
