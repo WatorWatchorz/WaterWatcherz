@@ -69,7 +69,7 @@ public class ChecklistActivity  extends AppCompatActivity {
         ListView tasktest_listview = findViewById(R.id.taskstest_listview);
         ArrayAdapter<WaterTask> myAdapter =  new ArrayAdapter<WaterTask>(this,android.R.layout.simple_list_item_1,waterTasks);
         tasktest_listview.setAdapter(myAdapter);
-        
+
     }
 
     public void openProfile() {

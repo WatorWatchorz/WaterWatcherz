@@ -17,7 +17,7 @@ public interface UserDao {
     @Query("SELECT * FROM user")
     List<User> getAllUsers();
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    public void insertUser(User...users);
+    public void insertUser(User user);
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insertallUsers(List<User> users);
     //@Query("SELECT * FROM watertask WHERE userid=:id")
