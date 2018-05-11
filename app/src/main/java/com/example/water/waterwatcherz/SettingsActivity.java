@@ -107,7 +107,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                 user.setBillamt(billamt);
                 user.setWeeklyGoal(wklygoal);
                 user.setBrushTeethNum(timesBrush);
-                user.setNumWash(numBoS);
+              //  user.setNumWash(numBoS);
                 user.setPaymentPeriod(paymentPeriod);
                 Log.d(townName,"EDT townName");
                 user.setTown(townName);

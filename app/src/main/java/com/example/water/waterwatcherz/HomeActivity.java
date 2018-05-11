@@ -80,7 +80,7 @@ public class HomeActivity  extends AppCompatActivity {//implements AdapterView.O
             else
             {
                 perc = 0;
-                Log.d("PERC", "there are no goals yet, you fool");
+                Log.d("PERC", "there are no goals yet");
             }
             if(perc>99)
             {
