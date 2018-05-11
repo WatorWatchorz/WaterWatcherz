@@ -254,7 +254,7 @@ public class User
      * Sets the number of times the user takes either a bath or a shower
      * @param numWash the number times the user showers or bathes a day
      */
-    public void setnumWash(int numWash) {this.numWash = numWash;}
+   // public void setnumWash(int numWash) {this.numWash = numWash;}
 
     /**
      * Accesses the number of times a day the user showers or takes a bath
@@ -273,7 +273,7 @@ public class User
     public String toString() {
       //  return "Your tasks are " + getTasks(); //+ " and you goal weekly goal is " + weeklyGoal + " for a household size of " + houseSize +
                 //" in " + zip + ".";
-        return name;
+        return name+houseSize+weeklyGoal+numWash;
     }
 
 }

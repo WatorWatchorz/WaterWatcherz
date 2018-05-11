@@ -17,7 +17,7 @@ import java.util.List;
 
 public class DatabaseTest extends AppCompatActivity {
 
-    static final Migration MIGRATION_1_2 = new Migration(1, 4) {
+    static final Migration MIGRATION_1_6 = new Migration(1, 6) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
 
@@ -34,13 +34,12 @@ public class DatabaseTest extends AppCompatActivity {
                 updateDb();
             }
         });
-
     }
         protected void updateDb() {
 
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
                     .allowMainThreadQueries()
-                    .addMigrations(MIGRATION_1_2)
+                    .addMigrations(MIGRATION_1_6)
                     .build();
             EditText nameEnter = findViewById(R.id.nameEnter);
             String name = nameEnter.getText().toString();
@@ -55,8 +54,9 @@ public class DatabaseTest extends AppCompatActivity {
                 //db.userDao().insertUser(jim);
 
                 }
-            List<WaterTask> waterTasks = db.waterTaskDao().getAllWaterTasks();
-            ArrayAdapter<WaterTask> myAdapter = new ArrayAdapter<WaterTask>(this, android.R.layout.simple_list_item_1, waterTasks);
+            //List<WaterTask> waterTasks = db.waterTaskDao().getAllWaterTasks();
+            List<Town> towns = db.townDao().getallTowns();
+            ArrayAdapter<Town> myAdapter = new ArrayAdapter<Town>(this, android.R.layout.simple_list_item_1, towns);
             ListView listView = findViewById(R.id.simple_listview);
             listView.setAdapter(myAdapter);
         }

@@ -6,6 +6,7 @@ import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.migration.Migration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,14 +24,18 @@ public class ChecklistActivity  extends AppCompatActivity {
     private Button settingsButton_checklist;
     private Button taskActivityButton_checklist;
 
-    final Migration MIGRATION_1_2 = new Migration(1, 2) {
+    final Migration MIGRATION_1_6 = new Migration(1, 6) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
-
         }
     };
 
     protected void onCreate(Bundle savedInstanceState) {
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
+                .allowMainThreadQueries()
+                .addMigrations(MIGRATION_1_6)
+                .build();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.checklist);
 
@@ -56,6 +61,15 @@ public class ChecklistActivity  extends AppCompatActivity {
             }
         });
 
+        List<WaterTask> waterTasks = db.waterTaskDao().getAllWaterTasks();
+//        for(int i=0;i<waterTasks.size();i++) {
+//
+//            Log.d(waterTasks.get(i).toString(),"WaterTasks");
+//        }
+        ListView tasktest_listview = findViewById(R.id.taskstest_listview);
+        ArrayAdapter<WaterTask> myAdapter =  new ArrayAdapter<WaterTask>(this,android.R.layout.simple_list_item_1,waterTasks);
+        tasktest_listview.setAdapter(myAdapter);
+        
     }
 
     public void openProfile() {
