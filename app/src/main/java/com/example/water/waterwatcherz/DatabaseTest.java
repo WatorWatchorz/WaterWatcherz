@@ -14,10 +14,9 @@ import android.widget.ListView;
 
 import java.util.List;
 
-
 public class DatabaseTest extends AppCompatActivity {
 
-    static final Migration MIGRATION_1_6 = new Migration(1, 6) {
+    static final Migration MIGRATION_1_2 = new Migration(1, 4) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
 
@@ -39,7 +38,7 @@ public class DatabaseTest extends AppCompatActivity {
 
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
                     .allowMainThreadQueries()
-                    .addMigrations(MIGRATION_1_6)
+                    .addMigrations(MIGRATION_1_2)
                     .build();
             EditText nameEnter = findViewById(R.id.nameEnter);
             String name = nameEnter.getText().toString();

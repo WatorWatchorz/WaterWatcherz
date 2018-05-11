@@ -152,6 +152,7 @@ public class User
         wash = "null";
         numWash = 0;
     }
+
     //Methods
 
     /**
