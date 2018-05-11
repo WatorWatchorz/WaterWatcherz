@@ -1,0 +1,1239 @@
+Index: app/src/main/res/layout/fake_settings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fake_settings.xml	(date 1525881246625)
++++ app/src/main/res/layout/fake_settings.xml	(date 1525881246625)
+@@ -0,0 +1,62 @@
++<?xml version="1.0" encoding="utf-8"?>
++<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:layout_editor_absoluteY="81dp">
++//DONT USE
++    <RelativeLayout
++        android:id="@+id/relativeLayout"
++        android:layout_width="0dp"
++        android:layout_height="77dp"
++        android:layout_alignParentBottom="true"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.49"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="1.0">
++
++        <!-- Content Container -->
++
++        <LinearLayout
++            android:id="@+id/progressbar"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_alignParentBottom="true"
++            android:orientation="horizontal">
++
++            <Button
++                android:id="@+id/profile_addtask"
++                android:layout_width="123dp"
++                android:layout_height="73dp"
++                android:layout_weight="1"
++                android:text="Profile" />
++
++            <Button
++                android:id="@+id/calendar_addtask"
++                android:layout_width="152dp"
++                android:layout_height="73dp"
++                android:layout_weight="1"
++                android:text="Add Task" />
++
++            <Button
++                android:id="@+id/utilitybutton_addtask"
++                android:layout_width="179dp"
++                android:layout_height="73dp"
++                android:layout_weight="1"
++                android:text="Utility Bill" />
++
++            <Button
++                android:id="@+id/checklist_addtask"
++                android:layout_width="188dp"
++                android:layout_height="73dp"
++                android:layout_weight="1"
++                android:text="Checklist/Log" />
++        </LinearLayout>
++
++    </RelativeLayout>
++
++
++</android.support.constraint.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/water/waterwatcherz/AddTaskActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/water/waterwatcherz/AddTaskActivity.java	(date 1525880996000)
++++ app/src/main/java/com/example/water/waterwatcherz/AddTaskActivity.java	(date 1525882379656)
+@@ -3,12 +3,15 @@
+ import android.arch.persistence.db.SupportSQLiteDatabase;
+ import android.arch.persistence.room.Room;
+ import android.arch.persistence.room.migration.Migration;
++import android.content.Context;
++import android.content.Intent;
+ import android.os.Bundle;
+ import android.support.v7.app.AppCompatActivity;
+ import android.view.View;
+ import android.widget.AdapterView;
+ import android.widget.ArrayAdapter;
+ import android.widget.EditText;
++import android.widget.Button;
+ import android.widget.Spinner;
+ 
+ /**
+@@ -17,30 +20,61 @@
+ 
+ 
+ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+-    Spinner taskSpinner = findViewById(R.id.taskDropDown);
+-    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
++    Spinner taskSpinner;
++    static final Migration MIGRATION_3_4 = new Migration(3, 4) {
+         @Override
+         public void migrate(SupportSQLiteDatabase database) {
+ 
+         }
+     };
++    Context context = (Context) getApplicationContext();
++    AppDatabase db = Room.databaseBuilder(context,AppDatabase.class,"Database")
++            .allowMainThreadQueries()
++            .addMigrations(MIGRATION_3_4)
++            .build();
++
++    private Button profilebutton_addtask;
++    private Button utilitybutton_addtask;
+ 
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.add_task);
+         Bundle bundle = getIntent().getExtras();
++        taskSpinner = findViewById(R.id.taskDropDown);
+ 
+         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
+                 R.array.tasks_array, android.R.layout.simple_spinner_item);
+         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+         taskSpinner.setAdapter(adapter1);
+         taskSpinner.setOnItemSelectedListener(this);
+-        AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
+-                .allowMainThreadQueries()
+-                .addMigrations(MIGRATION_1_2)
+-                .build();
++
++
++        profilebutton_addtask = (Button) findViewById(R.id.profile_addtask);
++        utilitybutton_addtask = (Button) findViewById(R.id.utilitybutton_addtask);
++
++
++        profilebutton_addtask.setOnClickListener(new View.OnClickListener() {
++            public void onClick(View v) {
++                openProfile();
++            }
++        });
++        utilitybutton_addtask.setOnClickListener(new View.OnClickListener() {
++            public void onClick(View v) {
++                openUtiltyInformation();
++            }
++        });
++    }
+ 
++    public void openProfile() {
++        Intent intent = new Intent(this,ProfileActivity.class);
++        startActivity(intent);
+     }
++
++    public void openUtiltyInformation() {
++        Intent intent = new Intent(this,UtilityInformationActivity.class);
++        startActivity(intent);
++    }
++
+     public void onItemSelected(AdapterView<?> parent, View view,
+                                int pos, long id) {
+         // An item was selected. You can retrieve the selected item using
+@@ -60,6 +94,8 @@
+         WaterTask waterTask = new WaterTask();
+         waterTask.setTaskName(taskName);
+         waterTask.setWeek(week);
++        waterTask.setMonth(month);
++        db.waterTaskDao().insertWaterTask(waterTask);
+     }
+     public void onNothingSelected(AdapterView<?> parent) {
+         // Another interface callback
+Index: app/src/main/java/com/example/water/waterwatcherz/AppDatabase.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/water/waterwatcherz/AppDatabase.java	(date 1525880996000)
++++ app/src/main/java/com/example/water/waterwatcherz/AppDatabase.java	(date 1525881638930)
+@@ -6,7 +6,7 @@
+ /**
+  * Created by krish
+  */
+-@Database(entities = {User.class,WaterTask.class}, version=3,  exportSchema = false)
++@Database(entities = {User.class,WaterTask.class}, version=4,  exportSchema = false)
+ public abstract class AppDatabase extends RoomDatabase {
+     public abstract UserDao userDao();
+     public abstract WaterTaskDao waterTaskDao();
+Index: app/src/main/java/com/example/water/waterwatcherz/DatabaseTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/water/waterwatcherz/DatabaseTest.java	(date 1525880996000)
++++ app/src/main/java/com/example/water/waterwatcherz/DatabaseTest.java	(date 1525881535566)
+@@ -53,10 +53,11 @@
+                 waterTask.setTaskName(name);
+                 db.waterTaskDao().insertWaterTask(waterTask);
+                 //db.userDao().insertUser(jim);
+-                List<WaterTask> waterTasks = db.waterTaskDao().getAllWaterTasks();
+-                ArrayAdapter<WaterTask> myAdapter = new ArrayAdapter<WaterTask>(this, android.R.layout.simple_list_item_1, waterTasks);
+-                ListView listView = findViewById(R.id.simple_listview);
+-                listView.setAdapter(myAdapter);
+-                }
++
++                }
++            List<WaterTask> waterTasks = db.waterTaskDao().getAllWaterTasks();
++            ArrayAdapter<WaterTask> myAdapter = new ArrayAdapter<WaterTask>(this, android.R.layout.simple_list_item_1, waterTasks);
++            ListView listView = findViewById(R.id.simple_listview);
++            listView.setAdapter(myAdapter);
+         }
+ }
+Index: app/src/main/java/com/example/water/waterwatcherz/HouseInfoActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/water/waterwatcherz/HouseInfoActivity.java	(date 1525880996000)
++++ app/src/main/java/com/example/water/waterwatcherz/HouseInfoActivity.java	(date 1525881246616)
+@@ -1,7 +1,12 @@
+ package com.example.water.waterwatcherz;
+ 
++import android.content.Intent;
+ import android.os.Bundle;
+ import android.support.v7.app.AppCompatActivity;
++import android.view.View;
++import android.widget.AdapterView;
++import android.widget.ArrayAdapter;
++import android.widget.Button;
+ import android.widget.EditText;
+ import android.widget.Spinner;
+ 
+@@ -11,18 +16,65 @@
+  * Created by krish on 4/10/2018.
+  */
+ 
+-public class HouseInfoActivity extends AppCompatActivity {
+-    protected void onCreate(Bundle savedInstanceState) {
+-        Bundle bundle = getIntent().getExtras();
+-        super.onCreate(savedInstanceState);
+-        setContentView(R.layout.house_info);
+-    }
+-   /* public void storeInformation() {
+-        Spinner townSpinner = findViewById(R.id.townDropDown);
+-        EditText numPplEdit = findViewById(R.id.NumPplEDT);
+-        String numPplStr = numPplEdit.getText().toString();
+-        if (!(numPplStr.isEmpty())) {
+-            int numPpl = Integer.parseInt(numPplStr);
+-        }
+-    }*/
++public class HouseInfoActivity // extends AppCompatActivity implements AdapterView.OnItemSelectedListener
++{
++//                UNUSED ACTIVITY
++
++
++//    private Button taskActivityButton_houseinfo;
++//    private Button utilitybutton_houseinfo;
++//
++//    protected void onCreate(Bundle savedInstanceState) {
++//        super.onCreate(savedInstanceState);
++//        setContentView(R.layout.settings);
++//        Bundle bundle = getIntent().getExtras();
++//
++//        Spinner townSpinner = findViewById(R.id.townDropDown);
++//        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
++//                R.array.towns_array, android.R.layout.simple_spinner_item);
++//        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
++//        townSpinner.setAdapter(adapter2);
++//        townSpinner.setOnItemSelectedListener(this);
++//
++//        taskActivityButton_houseinfo = (Button) findViewById(R.id.calendar_houseinfo);
++//        utilitybutton_houseinfo = (Button) findViewById(R.id.utilitybutton_houseinfo);
++//
++//        taskActivityButton_houseinfo.setOnClickListener(new View.OnClickListener() {
++//            public void onClick(View v) {openTaskActivity();
++//            }
++//        });
++//        utilitybutton_houseinfo.setOnClickListener(new View.OnClickListener() {
++//            public void onClick(View v) {
++//                openUtiltyInformation();
++//            }
++//        });
++//    }
++//
++////  public void storeInformation() {
++//// EditText numPplEdit = findViewById(R.id.NumPplEDT);
++////        String numPplStr = numPplEdit.getText().toString();
++////        if (!(numPplStr.isEmpty())) {
++////            int numPpl = Integer.parseInt(numPplStr);
++////        }
++////    }
++//
++//
++//    public void openTaskActivity() {
++//        Intent intent = new Intent(this,AddTaskActivity.class);
++//        startActivity(intent);
++//    }
++//    public void openUtiltyInformation() {
++//        Intent intent = new Intent(this,UtilityInformationActivity.class);
++//        startActivity(intent);
++//    }
++//
++//    public void onItemSelected(AdapterView<?> parent, View view,
++//                               int pos, long id) {
++//        // An item was selected. You can retrieve the selected item using
++//        // parent.getItemAtPosition(pos)
++//    }
++//    public void onNothingSelected(AdapterView<?> parent) {
++//        // Another interface callback
++//   }
++
+ }
+Index: app/src/main/java/com/example/water/waterwatcherz/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/water/waterwatcherz/MainActivity.java	(date 1525880996000)
++++ app/src/main/java/com/example/water/waterwatcherz/MainActivity.java	(date 1525881246619)
+@@ -16,8 +16,9 @@
+     //Data
+     User new_user;
+     ArrayList<WaterTask> userTasks = new ArrayList<WaterTask>();
+-    private Button taskActivityButton_home;
++
+     private Button profilebutton_home;
++    private Button taskActivityButton_home;
+     private Button utilitybutton_home;
+     private Button listview_home;
+ 
+@@ -43,11 +44,13 @@
+             }
+         };
+ */
++
+         taskActivityButton_home = (Button) findViewById(R.id.calendarhome);
+         utilitybutton_home = (Button) findViewById(R.id.utilitybuttonhome);
+         profilebutton_home = (Button) findViewById(R.id.profilehome);
+         //listview_home = (Button) findViewById(R.id.listview);
+ 
++
+ /*
+         //setting all buttons to have the same onClickListener
+         taskActivityButton_home.setOnClickListener(taskActivityListener);
+@@ -60,9 +63,6 @@
+         profilebutton_addTask.setOnClickListener(profileListener);
+         profilebutton_profile.setOnClickListener(profileListener);
+ */
+-
+-
+-
+         taskActivityButton_home.setOnClickListener(new View.OnClickListener() {
+             public void onClick(View v) {
+                 openTaskActivity();
+@@ -75,6 +75,7 @@
+         });
+         utilitybutton_home.setOnClickListener(new View.OnClickListener() {
+             public void onClick(View v) {
++                openUtiltyInformation();
+                 listView();
+             }
+         });
+@@ -86,8 +87,6 @@
+ 
+     }
+ 
+-
+-
+     public void openProfile() {
+         Intent intent = new Intent(this,ProfileActivity.class);
+         startActivity(intent);
+Index: app/src/main/java/com/example/water/waterwatcherz/ProfileActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/water/waterwatcherz/ProfileActivity.java	(date 1525880996000)
++++ app/src/main/java/com/example/water/waterwatcherz/ProfileActivity.java	(date 1525881246691)
+@@ -1,14 +1,13 @@
+ package com.example.water.waterwatcherz;
+ 
+-import android.arch.lifecycle.Observer;
+-import android.arch.lifecycle.ViewModelProviders;
+ import android.arch.persistence.room.Room;
+ import android.content.Context;
+ import android.content.Intent;
+ import android.os.Bundle;
+-import android.support.annotation.Nullable;
+ import android.support.v7.app.AppCompatActivity;
+ import android.util.Log;
++import android.widget.AdapterView;
++import android.widget.ArrayAdapter;
+ import android.widget.Button;
+ import android.widget.EditText;
+ import android.view.View;
+@@ -23,22 +22,40 @@
+  * Created by krish on 4/12/2018.
+  */
+ 
+-public class ProfileActivity  extends AppCompatActivity {
++public class ProfileActivity  extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+ 
+     List<User> users;
+     private Button taskActivityButton_profile;
+-    private Button profilebutton_profile;
+     private Button utilitybutton_profile;
+     private Button confirmbutton_profile;
+ 
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+-        setContentView(R.layout.house_info);
++        setContentView(R.layout.settings);
+         Bundle bundle = getIntent().getExtras();
+ 
++        Spinner townSpinner = findViewById(R.id.townDropDown);
++        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
++                R.array.towns_array, android.R.layout.simple_spinner_item);
++        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
++        townSpinner.setAdapter(adapter2);
++        townSpinner.setOnItemSelectedListener(this);
++
+         taskActivityButton_profile = (Button) findViewById(R.id.calendar_houseinfo);
+         utilitybutton_profile = (Button) findViewById(R.id.utilitybutton_houseinfo);
+-        profilebutton_profile = (Button) findViewById(R.id.profile_houseinfo);
++
++        taskActivityButton_profile.setOnClickListener(new View.OnClickListener() {
++            public void onClick(View v) {openTaskActivity();
++            }
++        });
++        utilitybutton_profile.setOnClickListener(new View.OnClickListener() {
++            public void onClick(View v) {
++                openUtiltyInformation();
++            }
++        });
++
++        taskActivityButton_profile = (Button) findViewById(R.id.calendar_houseinfo);
++        utilitybutton_profile = (Button) findViewById(R.id.utilitybutton_houseinfo);
+         confirmbutton_profile = (Button) findViewById(R.id.confirm);
+ 
+ 
+@@ -47,11 +64,7 @@
+                 openTaskActivity();
+             }
+         });
+-        profilebutton_profile.setOnClickListener(new View.OnClickListener() {
+-            public void onClick(View v) {
+-                openProfile();
+-            }
+-        });
++
+         utilitybutton_profile.setOnClickListener(new View.OnClickListener() {
+             public void onClick(View v) {
+                 openUtiltyInformation();
+@@ -65,12 +78,6 @@
+         });
+     }
+ 
+-
+-    public void openProfile() {
+-        Intent intent = new Intent(this,ProfileActivity.class);
+-        startActivity(intent);
+-    }
+-
+     public void openTaskActivity() {
+         Intent intent = new Intent(this,AddTaskActivity.class);
+         startActivity(intent);
+@@ -91,7 +98,7 @@
+     }
+ 
+     public void storeInformation() {
+-        Spinner townSpinner = findViewById(R.id.townDropDown);
++       // Spinner townSpinner = findViewById(R.id.townDropDown);
+         EditText numPplEdit = findViewById(R.id.NumPplEdit);
+         String numPplStr = numPplEdit.getText().toString();
+         if (!(numPplStr.isEmpty())) {
+@@ -123,20 +130,29 @@
+         }*/
+     }
+ 
+-    public void displayInformation() {
+-        /*Context context = getApplicationContext();
+-        String filename = "UserInformation";
+-        File directory = context.getFilesDir();
+-        File file = new File(directory, filename);
+-
+-        FileOutputStream outputStream;
+-        try {
+-            outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+-            outputStream.write(fileContents.getBytes());
+-            outputStream.close();
+-        } catch (Exception e) {
+-            e.printStackTrace();
+-        }*/
++//    public void displayInformation() {
++//        /*Context context = getApplicationContext();
++//        String filename = "UserInformation";
++//        File directory = context.getFilesDir();
++//        File file = new File(directory, filename);
++//
++//        FileOutputStream outputStream;
++//        try {
++//            outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
++//            outputStream.write(fileContents.getBytes());
++//            outputStream.close();
++//        } catch (Exception e) {
++//            e.printStackTrace();
++//        }*/
++//    }
++
++    public void onItemSelected(AdapterView<?> parent, View view,
++                               int pos, long id) {
++        // An item was selected. You can retrieve the selected item using
++        // parent.getItemAtPosition(pos)
++    }
++    public void onNothingSelected(AdapterView<?> parent) {
++        // Another interface callback
+     }
+ }
+ 
+Index: app/src/main/java/com/example/water/waterwatcherz/UtilityInformationActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/water/waterwatcherz/UtilityInformationActivity.java	(date 1525880996000)
++++ app/src/main/java/com/example/water/waterwatcherz/UtilityInformationActivity.java	(date 1525881246621)
+@@ -6,6 +6,7 @@
+ import android.os.Bundle;
+ import android.support.v7.app.AppCompatActivity;
+ import android.view.View;
++import android.widget.AdapterView;
+ import android.widget.Button;
+ import android.widget.EditText;
+ 
+@@ -14,25 +15,42 @@
+  */
+ 
+ public class UtilityInformationActivity  extends AppCompatActivity {
++
++    private Button profileButton_utilityinfo;
++    private Button taskActivityButton_utilityinfo;
++
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.utility_bill_information);
+         Bundle bundle = getIntent().getExtras();
+-    }
+-
+-    public void storeWaterUsed(){
+-        EditText waterUsed = (EditText) findViewById(R.id.waterUsed);
+-       Double waterUsedDbl = 0.0;
+-        if (!waterUsed.toString().isEmpty()) {
+-            waterUsedDbl = Double.parseDouble(waterUsed.toString());
+-        }
+-        /*
+-        Intent intent = new Intent (this, SQLHandler.class);
++
++        profileButton_utilityinfo = (Button) findViewById(R.id.profile);
++        taskActivityButton_utilityinfo = (Button) findViewById(R.id.calendar);
++
++        profileButton_utilityinfo.setOnClickListener(new View.OnClickListener() {
++            public void onClick(View v) {
++                openProfile();
++            }
++        });
++        taskActivityButton_utilityinfo.setOnClickListener(new View.OnClickListener() {
++            public void onClick(View v) {openTaskActivity();
++            }
++        });
++    }
+ 
+-        intent.putExtra("Water Used",waterUsedDbl);
+-        startActivity(intent);
+-        */
+-        }
++//    public void storeWaterUsed(){
++//        EditText waterUsed = (EditText) findViewById(R.id.waterUsed);
++//       Double waterUsedDbl = 0.0;
++//        if (!waterUsed.toString().isEmpty()) {
++//            waterUsedDbl = Double.parseDouble(waterUsed.toString());
++//        }
++//        /*
++//        Intent intent = new Intent (this, SQLHandler.class);
++//
++//        intent.putExtra("Water Used",waterUsedDbl);
++//        startActivity(intent);
++//        */
++//        }
+ 
+     public void openProfile() {
+         Intent intent = new Intent(this,ProfileActivity.class);
+@@ -43,10 +61,5 @@
+         Intent intent = new Intent(this,AddTaskActivity.class);
+         startActivity(intent);
+     }
+-    public void openUtiltyInformation() {
+-        Intent intent = new Intent(this,UtilityInformationActivity.class);
+-        startActivity(intent);
+-    }
+ 
+-
+-}
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/water/waterwatcherz/WaterTask.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/water/waterwatcherz/WaterTask.java	(date 1525880996000)
++++ app/src/main/java/com/example/water/waterwatcherz/WaterTask.java	(date 1525882748744)
+@@ -205,4 +205,7 @@
+                 return 0;
+         }
+     }
++    public String toString() {
++        return taskName;
++    }
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_home.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_home.xml	(date 1525880996000)
++++ app/src/main/res/layout/activity_home.xml	(date 1525881246624)
+@@ -14,7 +14,7 @@
+         android:layout_marginEnd="8dp"
+         android:layout_marginStart="8dp"
+         android:layout_weight="1"
+-        android:text="@string/efficiency"
++        android:text="Percentage of Goal Reached"
+         android:textSize="27sp"
+         app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+         app:layout_constraintEnd_toEndOf="parent"
+@@ -23,7 +23,7 @@
+ 
+     <TextView
+         android:id="@+id/welcome"
+-        android:layout_width="377dp"
++        android:layout_width="226dp"
+         android:layout_height="wrap_content"
+         android:layout_marginBottom="8dp"
+         android:layout_marginEnd="8dp"
+@@ -48,7 +48,6 @@
+         app:layout_constraintTop_toTopOf="parent"
+         app:layout_constraintVertical_bias="1.0">
+ 
+-
+         <!-- Content Container -->
+ 
+         <LinearLayout
+@@ -91,7 +90,10 @@
+ 
+     <ProgressBar
+         android:id="@+id/progressBar"
+-        style="?android:attr/progressBarStyle"
++        style="@android:style/Widget.ProgressBar.Horizontal"
++        android:progress="75"
++        android:progressTint="#4747d1"
++        android:progressBackgroundTint="#cccccc"
+         android:layout_width="277dp"
+         android:layout_height="279dp"
+         android:layout_marginBottom="8dp"
+@@ -106,5 +108,4 @@
+         app:layout_constraintVertical_bias="0.183" />
+ 
+ 
+-
+ </android.support.constraint.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/add_task.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/add_task.xml	(date 1525880996000)
++++ app/src/main/res/layout/add_task.xml	(date 1525881246672)
+@@ -8,54 +8,57 @@
+ 
+     <RelativeLayout
+         android:id="@+id/relativeLayout"
+-        android:layout_width="wrap_content"
+-        android:layout_height="0dp"
+-        android:layout_marginBottom="8dp"
+-        android:layout_marginStart="1dp"
+-        android:layout_marginLeft="1dp"
++        android:layout_width="0dp"
++        android:layout_height="77dp"
++        android:layout_alignParentBottom="true"
+         app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.49"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/NumPpl_lbl">
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="1.0">
+ 
+         <!-- Content Container -->
+ 
+         <LinearLayout
+-            android:id="@+id/navbar"
+-            android:layout_width="match_parent"
+-            android:layout_height="match_parent"
++            android:id="@+id/progressbar"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_alignParentBottom="true"
+             android:orientation="horizontal">
+ 
+             <Button
+                 android:id="@+id/profile_addtask"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
++                android:layout_width="123dp"
++                android:layout_height="73dp"
+                 android:layout_weight="1"
+-                android:text="@string/profile" />
++                android:text="Profile" />
+ 
+             <Button
+                 android:id="@+id/calendar_addtask"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
++                android:layout_width="152dp"
++                android:layout_height="73dp"
+                 android:layout_weight="1"
+-                android:text="@string/calendar" />
++                android:text="Add Task" />
+ 
+             <Button
+                 android:id="@+id/utilitybutton_addtask"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
++                android:layout_width="179dp"
++                android:layout_height="73dp"
+                 android:layout_weight="1"
+-                android:text="@string/utilitybillinfo" />
++                android:text="Utility Bill" />
+ 
+             <Button
+                 android:id="@+id/checklist_addtask"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
++                android:layout_width="188dp"
++                android:layout_height="73dp"
+                 android:layout_weight="1"
+-                android:text="@string/checklist" />
++                android:text="Checklist/Log" />
+         </LinearLayout>
+ 
+     </RelativeLayout>
+ 
++
+     <TextView
+         android:id="@+id/WeeklyLog_lbl"
+         android:layout_width="wrap_content"
+@@ -117,40 +120,40 @@
+         android:layout_height="wrap_content"
+         android:layout_marginBottom="36dp"
+         android:layout_marginEnd="11dp"
++        android:layout_marginRight="11dp"
+         android:layout_marginTop="8dp"
+         android:text="@string/week"
+         app:layout_constraintBottom_toTopOf="@+id/taskDropDown"
+         app:layout_constraintEnd_toStartOf="@+id/weekEDT"
+         app:layout_constraintStart_toEndOf="@+id/monthEDT"
+         app:layout_constraintTop_toBottomOf="@+id/WeeklyLog_lbl"
+-        app:layout_constraintVertical_bias="0.777"
+-        android:layout_marginRight="11dp" />
++        app:layout_constraintVertical_bias="0.563" />
+ 
+     <EditText
+         android:id="@+id/monthEDT"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_marginEnd="16dp"
+-        android:layout_marginTop="16dp"
++        android:layout_marginRight="16dp"
++        android:layout_marginTop="64dp"
+         android:ems="10"
+         android:inputType="number"
+         app:layout_constraintEnd_toStartOf="@+id/Week_lbl"
+         app:layout_constraintStart_toEndOf="@+id/Month_lbl"
+-        app:layout_constraintTop_toBottomOf="@+id/WeeklyLog_lbl"
+-        android:layout_marginRight="16dp" />
++        app:layout_constraintTop_toBottomOf="@+id/WeeklyLog_lbl" />
+ 
+     <EditText
+         android:id="@+id/weekEDT"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_marginEnd="72dp"
+-        android:layout_marginTop="16dp"
++        android:layout_marginRight="72dp"
++        android:layout_marginTop="64dp"
+         android:ems="10"
+         android:inputType="number"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toEndOf="@+id/Week_lbl"
+-        app:layout_constraintTop_toBottomOf="@+id/WeeklyLog_lbl"
+-        android:layout_marginRight="72dp" />
++        app:layout_constraintTop_toBottomOf="@+id/WeeklyLog_lbl" />
+ 
+     <Spinner
+         android:id="@+id/taskDropDown"
+@@ -158,15 +161,15 @@
+         android:layout_height="30dp"
+         android:layout_marginBottom="32dp"
+         android:layout_marginEnd="121dp"
++        android:layout_marginRight="121dp"
+         android:layout_marginStart="32dp"
++        android:layout_marginLeft="32dp"
+         android:layout_marginTop="99dp"
+         app:layout_constraintBottom_toBottomOf="@+id/NumPpl_lbl"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toEndOf="@+id/Task_lbl"
+         app:layout_constraintTop_toBottomOf="@+id/WeeklyLog_lbl"
+-        app:layout_constraintVertical_bias="0.0"
+-        android:layout_marginRight="121dp"
+-        android:layout_marginLeft="32dp" />
++        app:layout_constraintVertical_bias="0.485" />
+ 
+     <EditText
+         android:id="@+id/editText2"
+Index: app/src/main/res/layout/house_info.xml
+===================================================================
+--- app/src/main/res/layout/house_info.xml	(date 1525880996000)
++++ app/src/main/res/layout/settings.xml	(date 1525881246651)
+@@ -8,63 +8,63 @@
+ 
+     <RelativeLayout
+         android:id="@+id/relativeLayout"
+-        android:layout_width="wrap_content"
+-        android:layout_height="0dp"
+-        android:layout_marginBottom="8dp"
+-        android:layout_marginStart="32dp"
++        android:layout_width="0dp"
++        android:layout_height="77dp"
++        android:layout_alignParentBottom="true"
+         app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.49"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/confirm">
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="1.0">
+ 
+         <!-- Content Container -->
+ 
+         <LinearLayout
+-            android:id="@+id/navbar"
+-            android:layout_width="match_parent"
+-            android:layout_height="match_parent"
++            android:id="@+id/progressbar"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_alignParentBottom="true"
+             android:orientation="horizontal">
+ 
+             <Button
+                 android:id="@+id/profile_houseinfo"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
++                android:layout_width="123dp"
++                android:layout_height="73dp"
+                 android:layout_weight="1"
+-                android:onClick="openProfile"
+                 android:text="@string/profile" />
+ 
+             <Button
+                 android:id="@+id/calendar_houseinfo"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
++                android:layout_width="152dp"
++                android:layout_height="73dp"
+                 android:layout_weight="1"
+-                android:onClick="openCalendar"
+                 android:text="@string/calendar" />
+ 
+             <Button
+                 android:id="@+id/utilitybutton_houseinfo"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
++                android:layout_width="179dp"
++                android:layout_height="73dp"
+                 android:layout_weight="1"
+                 android:text="@string/utilitybillinfo" />
+ 
+             <Button
+                 android:id="@+id/group_checklist"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
++                android:layout_width="188dp"
++                android:layout_height="73dp"
+                 android:layout_weight="1"
+-                android:text="@string/checklist" />
+-
++                android:text="Checklist/Log" />
+         </LinearLayout>
+ 
+     </RelativeLayout>
+ 
+     <TextView
+-        android:id="@+id/HouseInfo_lbl"
++        android:id="@+id/Settings_lbl"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginBottom="105dp"
+         android:layout_marginTop="16dp"
+-        android:text="@string/house_information"
++        android:text="Settings"
+         android:textSize="36sp"
+         app:layout_constraintBottom_toTopOf="@+id/Town_lbl"
+         app:layout_constraintEnd_toEndOf="parent"
+@@ -81,21 +81,23 @@
+         android:layout_marginStart="17dp"
+         android:layout_marginLeft="17dp"
+         android:text="@string/town"
++        android:textSize="23sp"
+         app:layout_constraintBottom_toTopOf="@+id/NumPpl_lbl"
+         app:layout_constraintEnd_toStartOf="@+id/townDropDown"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/HouseInfo_lbl" />
++        app:layout_constraintTop_toBottomOf="@+id/Settings_lbl" />
+ 
+     <TextView
+         android:id="@+id/NumPpl_lbl"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginBottom="46dp"
+-        android:layout_marginEnd="24dp"
+-        android:layout_marginRight="24dp"
++        android:layout_marginEnd="8dp"
++        android:layout_marginRight="8dp"
+         android:layout_marginStart="15dp"
+         android:layout_marginLeft="15dp"
+         android:text="@string/numOfPpl"
++        android:textSize="23sp"
+         app:layout_constraintBottom_toTopOf="@+id/confirm"
+         app:layout_constraintEnd_toStartOf="@+id/NumPplEdit"
+         app:layout_constraintStart_toStartOf="parent"
+@@ -105,49 +107,45 @@
+         android:id="@+id/NumPplEdit"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+-        android:layout_marginBottom="32dp"
+-        android:layout_marginEnd="138dp"
+-        android:layout_marginRight="138dp"
++        android:layout_marginBottom="8dp"
++        android:layout_marginEnd="16dp"
++        android:layout_marginRight="16dp"
++        android:layout_marginTop="8dp"
+         android:ems="10"
+         android:inputType="number"
+-
+-        app:layout_constraintBottom_toTopOf="@+id/confirm"
++        android:textSize="23sp"
++        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toEndOf="@+id/NumPpl_lbl" />
++        app:layout_constraintTop_toBottomOf="@+id/townDropDown"
++        app:layout_constraintVertical_bias="0.29" />
+ 
+     <Spinner
+         android:id="@+id/townDropDown"
+-        android:layout_width="0dp"
+-        android:layout_height="28dp"
+-        android:layout_marginEnd="132dp"
+-        android:layout_marginRight="132dp"
++        android:layout_width="236dp"
++        android:layout_height="48dp"
++        android:layout_marginBottom="8dp"
++        android:layout_marginEnd="8dp"
++        android:layout_marginStart="8dp"
++        android:layout_marginTop="8dp"
++        app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toEndOf="@+id/Town_lbl"
+-        app:layout_constraintTop_toTopOf="@+id/Town_lbl" />
++        app:layout_constraintHorizontal_bias="0.689"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.213" />
+ 
+     <Button
+         android:id="@+id/confirm"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:layout_marginBottom="47dp"
+-        android:layout_marginStart="9dp"
+-        android:layout_marginLeft="9dp"
+-        android:text="@string/confirm"
+-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+-        app:layout_constraintStart_toStartOf="@+id/NumPplEdit"
+-        app:layout_constraintTop_toBottomOf="@+id/NumPpl_lbl" />
+-
+-    <TextView
+-        android:id="@+id/displayNumPpl"
+-        android:layout_width="wrap_content"
+-        android:layout_height="15dp"
+-        android:layout_marginBottom="260dp"
++        android:layout_marginBottom="8dp"
+         android:layout_marginEnd="8dp"
+         android:layout_marginStart="8dp"
+-        android:text="TextView"
+-        app:layout_constraintBottom_toBottomOf="parent"
++        android:layout_marginTop="8dp"
++        android:text="@string/confirm"
++        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.893"
+-        app:layout_constraintStart_toStartOf="parent" />
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/NumPplEdit" />
+ 
+ </android.support.constraint.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/utility_bill_information.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/utility_bill_information.xml	(date 1525880996000)
++++ app/src/main/res/layout/utility_bill_information.xml	(date 1525881246634)
+@@ -6,52 +6,56 @@
+     android:layout_height="match_parent"
+     tools:layout_editor_absoluteY="81dp">
+ 
++
+     <RelativeLayout
+         android:id="@+id/relativeLayout"
+-        android:layout_width="383dp"
+-        android:layout_height="70dp"
++        android:layout_width="0dp"
++        android:layout_height="77dp"
++        android:layout_alignParentBottom="true"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="1.0"
++        app:layout_constraintHorizontal_bias="0.49"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+         app:layout_constraintVertical_bias="1.0">
+ 
++
+         <!-- Content Container -->
+ 
+         <LinearLayout
+             android:id="@+id/progressbar"
+-            android:layout_width="match_parent"
+-            android:layout_height="match_parent"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_alignParentBottom="true"
+             android:orientation="horizontal">
+ 
+             <Button
+                 android:id="@+id/profile"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
++                android:layout_width="123dp"
++                android:layout_height="73dp"
+                 android:layout_weight="1"
+-                android:text="@string/profile" />
++                android:text="Profile" />
+ 
+             <Button
+                 android:id="@+id/calendar"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
++                android:layout_width="152dp"
++                android:layout_height="73dp"
+                 android:layout_weight="1"
+-                android:text="@string/calendar" />
++                android:text="Add Task" />
+ 
+             <Button
+                 android:id="@+id/utility"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
++                android:layout_width="179dp"
++                android:layout_height="73dp"
+                 android:layout_weight="1"
+-                android:text="@string/utilitybillinfo" />
++                android:text="Utility Bill" />
+ 
+             <Button
+                 android:id="@+id/checklist"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
++                android:layout_width="188dp"
++                android:layout_height="73dp"
+                 android:layout_weight="1"
+-                android:text="@string/checklist" />
++                android:text="Checklist/Log" />
+         </LinearLayout>
+ 
+     </RelativeLayout>
+@@ -63,105 +67,46 @@
+         android:layout_marginEnd="8dp"
+         android:layout_marginStart="8dp"
+         android:layout_marginTop="16dp"
+-        android:text="@string/utilitybillinfo"
++        android:text="Utility Bill Information"
+         android:textSize="36sp"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintHorizontal_bias="0.523"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />
+-
+-    <TextView
+-        android:id="@+id/waterused"
+-        android:layout_width="wrap_content"
+-        android:layout_height="16dp"
+-        android:layout_marginBottom="8dp"
+-        android:layout_marginEnd="8dp"
+-        android:layout_marginStart="8dp"
+-        android:layout_marginTop="8dp"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.042"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
+-        app:layout_constraintVertical_bias="0.201" />
+-
+-    <Button
+-        android:id="@+id/yes"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginBottom="8dp"
+-        android:layout_marginEnd="8dp"
+-        android:layout_marginStart="8dp"
+-        android:layout_marginTop="8dp"
+-        android:text="@string/yes"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toStartOf="@+id/no"
+-        app:layout_constraintHorizontal_bias="0.843"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
+-        app:layout_constraintVertical_bias="0.642" />
+-
+-    <Button
+-        android:id="@+id/no"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginBottom="8dp"
+-        android:layout_marginEnd="96dp"
+-        android:layout_marginRight="96dp"
+-        android:layout_marginTop="8dp"
+-        android:text="@string/no"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
+-        app:layout_constraintVertical_bias="0.642" />
+-
+-    <TextView
+-        android:id="@+id/textView"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginBottom="8dp"
+-        android:layout_marginEnd="8dp"
+-        android:layout_marginStart="8dp"
+-        android:layout_marginTop="8dp"
+-        android:text="@string/goal_met"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
+ 
+     <EditText
+-        android:id="@+id/enterWaterUsed"
+-        android:layout_width="161dp"
+-        android:layout_height="wrap_content"
++        android:id="@+id/waterUsed"
++        android:layout_width="200dp"
++        android:layout_height="46dp"
+         android:layout_marginBottom="8dp"
+         android:layout_marginEnd="8dp"
+         android:layout_marginStart="8dp"
+         android:layout_marginTop="8dp"
+         android:ems="10"
+         android:inputType="numberDecimal"
+-        android:text="@string/waterused"
++        android:textSize="25sp"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.038"
++        app:layout_constraintHorizontal_bias="0.877"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+-        app:layout_constraintVertical_bias="0.251" />
++        app:layout_constraintVertical_bias="0.261" />
+ 
+-    <EditText
+-        android:id="@+id/waterUsed"
+-        android:layout_width="170dp"
+-        android:layout_height="wrap_content"
++    <TextView
++        android:id="@+id/WaterUsedText"
++        android:layout_width="234dp"
++        android:layout_height="46dp"
+         android:layout_marginBottom="8dp"
+-        android:layout_marginEnd="8dp"
+-        android:layout_marginStart="8dp"
++        android:layout_marginStart="24dp"
++        android:layout_marginLeft="24dp"
+         android:layout_marginTop="8dp"
+-        android:ems="10"
+-        android:inputType="numberDecimal"
++        android:text="Total Water Used:"
++        android:textAlignment="center"
++        android:textColor="@color/cardview_dark_background"
++        android:textSize="25sp"
+         app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.888"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+-        app:layout_constraintVertical_bias="0.251" />
++        app:layout_constraintVertical_bias="0.261" />
+ 
+ </android.support.constraint.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(date 1525880996000)
++++ app/src/main/res/values/strings.xml	(date 1525881246639)
+@@ -1,6 +1,6 @@
+ <resources>
+     <string name="app_name" translatable="false">WaterWatcherz</string>
+-    <string name="welcome" translatable="false">Welcome, Name</string>
++    <string name="welcome" translatable="false">Welcome!</string>
+     <string name="efficiency" translatable="false">Efficiency Level</string>
+     <string name="profile" translatable="false">Profile</string>
+     <string name="calendar" translatable="false">Add Task</string>

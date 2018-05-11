@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "243726554221",
+    "firebase_url": "https://waterwatcherz.firebaseio.com",
+    "project_id": "waterwatcherz",
+    "storage_bucket": "waterwatcherz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243726554221:android:c23b838e016a3db0",
+        "android_client_info": {
+          "package_name": "com.example.water.waterwatcherz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "243726554221-0235taah735mp4cban76nfolr30ie738.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.water.waterwatcherz",
+            "certificate_hash": "980074fe448ec235cfef965d2397e0d258e49b21"
+          }
+        },
+        {
+          "client_id": "243726554221-j3rp6rp3ndb6rk1ritm6c7m8b1b12hp0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-lEqk3uUblfTJHGpJmkR4ps-VeGh6XC8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "243726554221-j3rp6rp3ndb6rk1ritm6c7m8b1b12hp0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
