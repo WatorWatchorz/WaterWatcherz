@@ -5,7 +5,7 @@
     <string name="profile" translatable="false">Profile</string>
     <string name="calendar" translatable="false">Add Task</string>
     <string name="group" translatable="false">Group</string>
-    <string name="weekly_log" translatable="false">Weekly Log</string>
+    <string name="weekly_log" translatable="false">Add Task</string>
     <string name="week" translatable="false">Week:</string>
     <string name="task" translatable="false">Task:</string>
     <string name="month" translatable="false">Month:</string>

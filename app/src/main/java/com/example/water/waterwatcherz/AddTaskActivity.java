@@ -22,8 +22,10 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
 
     private Button profileButton_addtask;
     private Button settingsButton_addtask;
+    private Button checkButton_addtask;
+    private Button confirmButton_addtask;
 
-    final Migration MIGRATION_1_6 = new Migration(1, 6) {
+    final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
 
@@ -43,11 +45,13 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
                 taskSpinner.setOnItemSelectedListener(this);
                 AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Database")
                         .allowMainThreadQueries()
-                        .addMigrations(MIGRATION_1_6)
+                        .addMigrations(MIGRATION_1_2)
                         .build();
 
                 profileButton_addtask = (Button) findViewById(R.id.profile_addtask);
                 settingsButton_addtask = (Button) findViewById(R.id.settings_addtask);
+                checkButton_addtask = (Button) findViewById(R.id.checklist_addtask);
+                confirmButton_addtask = (Button) findViewById(R.id.confirm_dbTest);
 
                 profileButton_addtask.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
@@ -59,6 +63,16 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
                         openSettings();
                     }
                 });
+                checkButton_addtask.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openChecklist();
+            }
+        });
+        confirmButton_addtask.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                
+            }
+        });
 
             }
 
@@ -69,6 +83,10 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
 
     public void openSettings() {
         Intent intent = new Intent(this,SettingsActivity.class);
+        startActivity(intent);
+    }
+    public void openChecklist() {
+        Intent intent = new Intent(this,ChecklistActivity.class);
         startActivity(intent);
     }
 
@@ -107,7 +125,7 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
 
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
                 .allowMainThreadQueries()
-                .addMigrations(MIGRATION_1_6)
+                .addMigrations(MIGRATION_1_2)
                 .build();
         db.waterTaskDao().insertWaterTask(waterTask);
     }

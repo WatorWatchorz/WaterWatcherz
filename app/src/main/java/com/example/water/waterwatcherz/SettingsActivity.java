@@ -20,6 +20,8 @@ import android.widget.TextView;
 import java.util.Arrays;
 import java.util.List;
 
+import java.util.List;
+
 /**
  * Created by krish on 4/12/2018.
  */
@@ -47,7 +49,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
 
     protected void onCreate(Bundle savedInstanceState) {
-        final Migration MIGRATION_1_6 = new Migration(1, 6) {
+        final Migration MIGRATION_1_2 = new Migration(1, 4) {
             @Override
             public void migrate(SupportSQLiteDatabase database) {
             }
@@ -56,6 +58,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
         Bundle bundle = getIntent().getExtras();
+
 
         Spinner townSpinner = findViewById(R.id.townDropDown);
         ArrayAdapter<CharSequence> adapterTown = ArrayAdapter.createFromResource(this,
@@ -71,69 +74,22 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         PaymentPeriodSpinner.setAdapter(adapterPayment);
         PaymentPeriodSpinner.setOnItemSelectedListener(this);
 
-        Spinner bOsSpinner = findViewById(R.id.bathORshower);
-        ArrayAdapter<CharSequence> adapterbOs = ArrayAdapter.createFromResource(this,
-                R.array.bathORshower_array, android.R.layout.simple_spinner_item);
-        adapterbOs.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        bOsSpinner.setAdapter(adapterbOs);
-        bOsSpinner.setOnItemSelectedListener(this);
-
-        nameEnter = findViewById(R.id.PersonName);
-        householdsize = findViewById(R.id.NumPplEdit);
-        billamount = findViewById(R.id.BillAmountEnter);
-        weeklygoal = findViewById(R.id.GoalAmount);
-        timesBrushEntry = findViewById(R.id.timesBrushEntry);
-        numBoSEntry = findViewById(R.id.numBoSEntry);
-
-        if (!nameEnter.getText().toString().isEmpty()){
-             name = nameEnter.getText().toString();
-        }
-
-        if (!householdsize.getText().toString().isEmpty()){
-             hhsize = Integer.parseInt(householdsize.getText().toString());
-        }
-        if (!billamount.getText().toString().isEmpty()){
-             billamt = Integer.parseInt(billamount.getText().toString());
-        }
-        if (!weeklygoal.getText().toString().isEmpty()){
-             wklygoal = Integer.parseInt(weeklygoal.getText().toString());
-        }
-        if (!timesBrushEntry.getText().toString().isEmpty()){
-            timesBrush = Integer.parseInt(timesBrushEntry.getText().toString());
-        }
-        if (!numBoSEntry.getText().toString().isEmpty()){
-            numBoS = Integer.parseInt(numBoSEntry.getText().toString());
-        }
-        if (!townSpinner.getSelectedItem().toString().isEmpty()){
-            townName = townSpinner.getSelectedItem().toString();
-        }
-
-        if (!PaymentPeriodSpinner.getSelectedItem().toString().isEmpty()){
-            paymentPeriod = townSpinner.getSelectedItem().toString();
-        }
-
-
-
-
-
-
         profileButton_settings = (Button) findViewById(R.id.profile_settings);
-        taskActivityButton_settings = (Button) findViewById(R.id.calendar_settings);
         checklistButton_settings = (Button) findViewById(R.id.checklist_settings);
-
         confirmButton_settings = (Button) findViewById(R.id.confirm);
+        taskActivityButton_settings = (Button) findViewById(R.id.calendar_settings);
 
         profileButton_settings.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 openProfile();
             }
         });
-        taskActivityButton_settings.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {openTaskActivity();
-            }
-        });
         checklistButton_settings.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {openChecklist();
+            }});
+
+        taskActivityButton_settings.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {openTaskActivity();
             }});
 
         confirmButton_settings.setOnClickListener(new View.OnClickListener() {
@@ -151,7 +107,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
                 AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
                         .allowMainThreadQueries()
-                        .addMigrations(MIGRATION_1_6)
+                        .addMigrations(MIGRATION_1_2)
                         .build();
                 db.userDao().insertUser(user);
 
@@ -165,37 +121,11 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                     townlist[i] = town;
                 }
                 db.townDao().insertAllTowns(Arrays.asList(townlist));
-//                User user2 = db.userDao().getAllUsers().get(0);
-//                Log.d(user2.toString(),"user");
-//                String database_town = db.userDao().getAllUsers().get(0).getTown();
-//                Log.d(database_town,"town");
-//                List<Town> dbtownlist = db.townDao().getallTowns();
-//                for (int i=0;i<dbtownlist.size();i++) {
-//                    Log.d(dbtownlist.get(i).toString(),"townlist");
-//                }
-//                Town town = db.townDao().getTownfromName(database_town);
-//                Integer database_gallons = town.getGallons();
-//                TextView goalHowTo = findViewById(R.id.goalHowTo);
-//                goalHowTo.setText("Choose a weekly goal based off of your town's average water use per person per day. Your town's average water use per day is: " + Integer.toString(database_gallons));
             }});
 
 
 
     }
-
-//    public void storeWaterUsed(){
-//        EditText waterUsed = (EditText) findViewById(R.id.waterUsed);
-//       Double waterUsedDbl = 0.0;
-//        if (!waterUsed.toString().isEmpty()) {
-//            waterUsedDbl = Double.parseDouble(waterUsed.toString());
-//        }
-//        /*
-//        Intent intent = new Intent (this, SQLHandler.class);
-//
-//        intent.putExtra("Water Used",waterUsedDbl);
-//        startActivity(intent);
-//        */
-//        }
 
     public void openProfile() {
         Intent intent = new Intent(this,HomeActivity.class);

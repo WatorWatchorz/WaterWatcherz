@@ -1,6 +1,8 @@
 package com.example.water.waterwatcherz;
 
+import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
+import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import java.io.File;
@@ -29,19 +32,70 @@ public class HomeActivity  extends AppCompatActivity {//implements AdapterView.O
     private Button settingsButton_home;
     private Button checklistButton_home;
     private Button confirmbutton_home;
+    private ProgressBar progBar;
+
+    static final Migration MIGRATION_1_2 = new Migration(1, 4) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {}
+    };
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Bundle bundle = getIntent().getExtras();
 
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Database")
+                .allowMainThreadQueries()
+                .addMigrations(MIGRATION_1_2)
+                .build();
+
+        double sum = 0;
+        List<WaterTask> waterTasks = db.waterTaskDao().getAllWaterTasks();
+        for(int i = 0; i<waterTasks.size(); i++)
+        {
+            sum = sum + waterTasks.get(i).getAmt_gallons();
+        }
+        Log.d("SUM ",String.valueOf(sum));
+        User user = new User();
+        List<User> users = db.userDao().getAllUsers();
+        progBar = findViewById(R.id.BarOfProgress);
+
+        if(users.isEmpty())
+        {
+            Log.d("users list", "users is empty");
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+        }
+        else {
+            User u = users.get(0);
+            int perc;
+            if(user.getWeeklyGoal()!= 0)
+            {
+                perc = (int) sum/user.getWeeklyGoal();
+                Log.d("PERC", String.valueOf(perc));
+            }
+            else
+            {
+                perc = 0;
+                Log.d("PERC", "there are no goals yet, you fool");
+            }
+            if(perc>99)
+            {
+                perc = 99;
+                Log.d("PERC", String.valueOf(perc));
+            }
+            progBar.setProgress(perc);
+        }
+
+
+
         taskActivityButton_home = (Button) findViewById(R.id.calendar_home);
         settingsButton_home = (Button) findViewById(R.id.settings_home);
         checklistButton_home = (Button) findViewById(R.id.checklist_home);
 
-
         taskActivityButton_home.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {openTaskActivity();
+            public void onClick(View v) {
+                openTaskActivity();
             }
         });
         settingsButton_home.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +103,6 @@ public class HomeActivity  extends AppCompatActivity {//implements AdapterView.O
                 openSettings();
             }
         });
-
         checklistButton_home.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {openChecklist();
             }});
@@ -82,16 +135,17 @@ public class HomeActivity  extends AppCompatActivity {//implements AdapterView.O
         */
     //}
 
-    public void openTaskActivity() {
-        Intent intent = new Intent(this,AddTaskActivity.class);
-        startActivity(intent);
-    }
-    public void openSettings() {
-        Intent intent = new Intent(this,SettingsActivity.class);
-        startActivity(intent);
-    }
     public void openChecklist() {
         Intent intent = new Intent(this, ChecklistActivity.class);
+        startActivity(intent);
+    }
+    public void openTaskActivity() {
+        Intent intent = new Intent(this, AddTaskActivity.class);
+        startActivity(intent);
+    }
+
+    public void openSettings() {
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 
@@ -137,7 +191,7 @@ public class HomeActivity  extends AppCompatActivity {//implements AdapterView.O
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }*/
-  //  }
+    }
 
 //    public void displayInformation() {
 //        /*Context context = getApplicationContext();
@@ -155,13 +209,13 @@ public class HomeActivity  extends AppCompatActivity {//implements AdapterView.O
 //        }*/
 //    }
 
-    public void onItemSelected(AdapterView<?> parent, View view,
-                               int pos, long id) {
-        // An item was selected. You can retrieve the selected item using
-        // parent.getItemAtPosition(pos)
-    }
-    public void onNothingSelected(AdapterView<?> parent) {
-        // Another interface callback
-   }
-}
+//    public void onItemSelected(AdapterView<?> parent, View view,
+//                               int pos, long id) {
+//        // An item was selected. You can retrieve the selected item using
+//        // parent.getItemAtPosition(pos)
+//    }
+//    public void onNothingSelected(AdapterView<?> parent) {
+//        // Another interface callback
+//   }
+
 

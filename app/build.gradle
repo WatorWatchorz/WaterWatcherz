@@ -41,6 +41,7 @@ dependencies {
     compile 'com.android.support:cardview-v7:27.1.0'
     compile 'com.android.support:support-v13:27.1.0'
     compile 'com.android.support:support-v4:27.1.0'
+
     // NOTE: Do not place your application dependencies here; they belongf
     // in the individual module build.gradle files
     // ViewModel and LiveData
@@ -66,5 +67,7 @@ dependencies {
     testImplementation "android.arch.persistence.room:testing:1.0.0"
     // Java8 support for Lifecycles
     implementation "android.arch.lifecycle:common-java8:1.1.1"
+
+    implementation "com.android.support:support-compat:27.1.1"
 
 }
