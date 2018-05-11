@@ -94,6 +94,7 @@ public class HomeActivity  extends AppCompatActivity {//implements AdapterView.O
         Intent intent = new Intent(this, ChecklistActivity.class);
         startActivity(intent);
     }
+
 //
 //    public void setUserInformation() {
 //        EditText householdsizetext = (EditText) findViewById(R.id.NumPplEdit);

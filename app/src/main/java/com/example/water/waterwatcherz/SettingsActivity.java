@@ -49,8 +49,8 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         bOsSpinner.setAdapter(adapterbOs);
         bOsSpinner.setOnItemSelectedListener(this);
 
-        profileButton_settings = (Button) findViewById(R.id.settings_profile);
-        taskActivityButton_settings = (Button) findViewById(R.id.settings_addtask);
+        profileButton_settings = (Button) findViewById(R.id.profile_settings);
+        taskActivityButton_settings = (Button) findViewById(R.id.calendar_settings);
         checklistButton_settings = (Button) findViewById(R.id.checklist_settings);
 
         confirmButton_settings = (Button) findViewById(R.id.confirm);
