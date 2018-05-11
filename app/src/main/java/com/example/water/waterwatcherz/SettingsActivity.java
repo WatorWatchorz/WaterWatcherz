@@ -87,10 +87,17 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         checklistButton_settings.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {openChecklist();
             }});
-
         taskActivityButton_settings.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {openTaskActivity();
             }});
+
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
+                .allowMainThreadQueries()
+                .addMigrations(MIGRATION_1_2)
+                .build();
+
+        User user = new User();
+        db.userDao().insertUser(user);
 
         confirmButton_settings.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -109,6 +116,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                         .allowMainThreadQueries()
                         .addMigrations(MIGRATION_1_2)
                         .build();
+                db.userDao().deleteTables();
                 db.userDao().insertUser(user);
 
                 String[] towns = {"Worcester","Leominster","Auburn","Shrewsbury","Westborough","Fitchburg","West Brookfield","Leicester","Sturbridge","Holden","Northborough","Gardner","Dudley","Webster","Millbury","Milford","Northbridge","Rutland","Southbridge","Athol","Charlton","Sutton","Grafton","Oxford","Clinton","Berlin","Brookfield","Spencer","West Boylston","Southborough","Winchendon","Hardwick","Boylston","Hopedale","Ashburnham","North Brookfield","Bolton","Hubbardston","East Brookfield","New Braintree","Phillipston","Mendon","Barre","Blackstone","Royalston","Harvard","Douglas","Lunenburg","Uxbridge","Westminster","Templeton"};

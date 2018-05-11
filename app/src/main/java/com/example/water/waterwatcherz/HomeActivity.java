@@ -43,6 +43,9 @@ public class HomeActivity  extends AppCompatActivity {//implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Bundle bundle = getIntent().getExtras();
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setLogo(R.drawable.watericon);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Database")
                 .allowMainThreadQueries()
@@ -67,7 +70,7 @@ public class HomeActivity  extends AppCompatActivity {//implements AdapterView.O
             startActivity(intent);
         }
         else {
-            User u = users.get(0);
+            User u = users.get(users.size()-1);
             int perc;
             if(user.getWeeklyGoal()!= 0)
             {

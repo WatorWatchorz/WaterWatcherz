@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Bundle bundle = getIntent().getExtras();
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setLogo(R.drawable.watericon);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         View.OnClickListener taskActivityListener;
         View.OnClickListener profileListener;

@@ -18,7 +18,7 @@ import android.widget.Spinner;
  */
 
 
-public class AddTaskActivity  extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class AddTaskActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Button profileButton_addtask;
     private Button settingsButton_addtask;
@@ -70,7 +70,7 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
         });
         confirmButton_addtask.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                
+
             }
         });
 
