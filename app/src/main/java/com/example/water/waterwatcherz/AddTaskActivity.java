@@ -28,7 +28,6 @@ public class AddTaskActivity extends AppCompatActivity implements AdapterView.On
     final Migration MIGRATION_1_2 = new Migration(1, 6) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
-
         }
     };
     Spinner taskSpinner;
