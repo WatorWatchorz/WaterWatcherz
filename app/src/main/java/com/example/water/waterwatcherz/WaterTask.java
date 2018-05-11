@@ -212,6 +212,6 @@ public class WaterTask
         }
     }
     public String toString() {
-        return taskName;
+        return "Month: " + Integer.toString(month) + " Week: " + Integer.toString(week) + "\t" + "\t" + "\t" + taskName;
     }
 }

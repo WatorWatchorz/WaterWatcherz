@@ -23,7 +23,7 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
     private Button profileButton_addtask;
     private Button settingsButton_addtask;
 
-    final Migration MIGRATION_1_2 = new Migration(1, 2) {
+    final Migration MIGRATION_1_6 = new Migration(1, 6) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
 
@@ -43,7 +43,7 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
                 taskSpinner.setOnItemSelectedListener(this);
                 AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Database")
                         .allowMainThreadQueries()
-                        .addMigrations(MIGRATION_1_2)
+                        .addMigrations(MIGRATION_1_6)
                         .build();
 
                 profileButton_addtask = (Button) findViewById(R.id.profile_addtask);
@@ -91,6 +91,11 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
         WaterTask waterTask = new WaterTask();
         waterTask.setTaskName(taskName);
         waterTask.setWeek(week);
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
+                .allowMainThreadQueries()
+                .addMigrations(MIGRATION_1_6)
+                .build();
+        db.waterTaskDao().insertWaterTask(waterTask);
     }
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
