@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Bundle bundle = getIntent().getExtras();
 
-
         View.OnClickListener taskActivityListener;
         View.OnClickListener profileListener;
         View.OnClickListener utilityListener;
