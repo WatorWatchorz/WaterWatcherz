@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private Button profilebutton_main;
     private Button taskActivityButton_main;
     private Button listview_main;
+    private Button settingsbutton_main;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         taskActivityButton_main = (Button) findViewById(R.id.calendar_home);
         profilebutton_main = (Button) findViewById(R.id.profile_home);
+        settingsbutton_main = findViewById(R.id.settings_home);
         //listview_home = (Button) findViewById(R.id.listview);
 
 
@@ -76,6 +78,14 @@ public class MainActivity extends AppCompatActivity {
                 openTaskActivity();
             }
         });
+
+        settingsbutton_main.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openSettingsActivity();
+            }
+        });
+
+
         /*listview_home.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 listView();
@@ -94,6 +104,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openSettingsActivity() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
     public void openUtilityInformation() {
         Intent intent = new Intent(this,SettingsActivity.class);
         startActivity(intent);

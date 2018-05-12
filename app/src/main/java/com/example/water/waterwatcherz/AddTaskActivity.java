@@ -41,13 +41,13 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
                 adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 taskSpinner.setAdapter(adapter1);
                 taskSpinner.setOnItemSelectedListener(this);
-                AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Database")
-                        .allowMainThreadQueries()
-                        .addMigrations(MIGRATION_1_2)
-                        .build();
+//                AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Database")
+//                        .allowMainThreadQueries()
+//                        .addMigrations(MIGRATION_1_2)
+//                        .build();
 
                 profileButton_addtask = (Button) findViewById(R.id.profile_addtask);
-                settingsButton_addtask = (Button) findViewById(R.id.utilitybutton_addtask);
+                settingsButton_addtask = (Button) findViewById(R.id.settings_addtask);
 
                 profileButton_addtask.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
@@ -75,6 +75,12 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         // An item was selected. You can retrieve the selected item using
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Database")
+                .allowMainThreadQueries()
+                .addMigrations(MIGRATION_1_2)
+                .build();
+        
+
         Integer week = 0;
         Integer month = 0;
         parent.getItemAtPosition(pos);
@@ -91,6 +97,7 @@ public class AddTaskActivity  extends AppCompatActivity implements AdapterView.O
         WaterTask waterTask = new WaterTask();
         waterTask.setTaskName(taskName);
         waterTask.setWeek(week);
+
     }
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
