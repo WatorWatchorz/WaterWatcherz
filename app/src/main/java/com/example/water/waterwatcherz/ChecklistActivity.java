@@ -1,17 +1,12 @@
 package com.example.water.waterwatcherz;
 
-import android.arch.persistence.db.SupportSQLiteOpenHelper;
-import android.arch.persistence.room.DatabaseConfiguration;
-import android.arch.persistence.room.InvalidationTracker;
-import android.arch.persistence.room.Room;
-import android.content.Intent;
 import android.arch.persistence.db.SupportSQLiteDatabase;
+import android.arch.persistence.room.Room;
 import android.arch.persistence.room.migration.Migration;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +25,7 @@ public class ChecklistActivity  extends AppCompatActivity {
     private Button taskActivityButton_checklist;
     private Button deleteTestButton;
     List<WaterTask> waterTasks;
+    ArrayAdapter<WaterTask> myAdapter;
     ListView tasktest_listview;
     WaterTask task1;
     int WaterTaskId;
@@ -86,9 +82,14 @@ public class ChecklistActivity  extends AppCompatActivity {
                 EditText numdeleteEnter = findViewById(R.id.numDelete);
                 if(!numdeleteEnter.getText().toString().isEmpty()) {
                     int numdeleteInt = Integer.parseInt(numdeleteEnter.getText().toString());
-                    db.waterTaskDao().deleteWaterTasks(waterTasks.get(numdeleteInt-1));
+                    if(numdeleteInt<waterTasks.size() && numdeleteInt>=1) {
+                        db.waterTaskDao().deleteWaterTasks(waterTasks.get(numdeleteInt - 1));
+                        myAdapter.remove(waterTasks.get(numdeleteInt - 1));
+                        numdeleteEnter.setText("");
+                    }
                 }
-
+            }
+        });
 //            for(WaterTask task1: waterTasks){
 //                for(int i=0;i<waterTasks.size();i++) {
 //
@@ -98,8 +99,7 @@ public class ChecklistActivity  extends AppCompatActivity {
 //                    }
 //                }
 //            }
-                }
-        });
+
 
 //        for(int i=0;i<waterTasks.size();i++) {
 //
@@ -108,16 +108,18 @@ public class ChecklistActivity  extends AppCompatActivity {
         waterTasks = db.waterTaskDao().getAllWaterTasks();
 
         tasktest_listview = findViewById(R.id.taskstest_listview1);
-        ArrayAdapter<WaterTask> myAdapter =  new ArrayAdapter<WaterTask>(this,android.R.layout.simple_list_item_1,waterTasks);
+        myAdapter =  new ArrayAdapter<WaterTask>(this,android.R.layout.simple_list_item_1,waterTasks);
         tasktest_listview.setAdapter(myAdapter);
+        myAdapter.notifyDataSetChanged();
 
-        tasktest_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                task1 =(WaterTask) tasktest_listview.getItemAtPosition(position);
-                WaterTaskId = task1.getUserid();
-            }
-        });
+
+//        tasktest_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                task1 =(WaterTask) tasktest_listview.getItemAtPosition(position);
+//                WaterTaskId = task1.getUserid();
+////            }
+////        });
     }
 
     public void openProfile() {

@@ -1,10 +1,8 @@
 package com.example.water.waterwatcherz;
 
-import android.app.Activity;
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.migration.Migration;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,12 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.util.Arrays;
-import java.util.List;
-
-import java.util.List;
 
 /**
  * Created by krish on 4/12/2018.
@@ -47,7 +41,6 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     String townName = "";
     String paymentPeriod = "";
 
-
     protected void onCreate(Bundle savedInstanceState) {
         final Migration MIGRATION_1_2 = new Migration(1, 6) {
             @Override
@@ -58,7 +51,6 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
         Bundle bundle = getIntent().getExtras();
-
 
         Spinner townSpinner = findViewById(R.id.townDropDown);
         ArrayAdapter<CharSequence> adapterTown = ArrayAdapter.createFromResource(this,
@@ -119,8 +111,18 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                 db.userDao().deleteTables();
                 db.userDao().insertUser(user);
 
-                String[] towns = {"Worcester","Leominster","Auburn","Shrewsbury","Westborough","Fitchburg","West Brookfield","Leicester","Sturbridge","Holden","Northborough","Gardner","Dudley","Webster","Millbury","Milford","Northbridge","Rutland","Southbridge","Athol","Charlton","Sutton","Grafton","Oxford","Clinton","Berlin","Brookfield","Spencer","West Boylston","Southborough","Winchendon","Hardwick","Boylston","Hopedale","Ashburnham","North Brookfield","Bolton","Hubbardston","East Brookfield","New Braintree","Phillipston","Mendon","Barre","Blackstone","Royalston","Harvard","Douglas","Lunenburg","Uxbridge","Westminster","Templeton"};
-                int[] gallons = {57,55,53,54,56,59,30,44,49,51,55,72,50,49,60,49,48,43,51,53,53,52,64,58,55,53,60,54,54,68,72,53,68,52,60,44,53,53,53,53,53,53,49,64,53,53,59,57,51,49,47};
+                String[] towns = {"Other","Worcester","Leominster","Auburn","Shrewsbury","Westborough",
+                        "Fitchburg","West Brookfield","Leicester","Sturbridge","Holden",
+                        "Northborough","Gardner","Dudley","Webster","Millbury","Milford",
+                        "Northbridge","Rutland","Southbridge","Athol","Charlton","Sutton",
+                        "Grafton","Oxford","Clinton","Berlin","Brookfield","Spencer","West Boylston",
+                        "Southborough","Winchendon","Hardwick","Boylston","Hopedale","Ashburnham",
+                        "North Brookfield","Bolton","Hubbardston","East Brookfield","New Braintree",
+                        "Phillipston","Mendon","Barre","Blackstone","Royalston","Harvard","Douglas",
+                        "Lunenburg","Uxbridge","Westminster","Templeton"};
+                int[] gallons = {65,57,55,53,54,56,59,30,44,49,51,55,72,50,49,60,49,48,43,51,53,53,
+                        52,64,58,55,53,60,54,54,68,72,53,68,52,60,44,53,53,53,53,53,53,49,64,53,
+                        53,59,57,51,49,47};
                 Town[] townlist = new Town[towns.length];
                 for (int i=0;i<towns.length;i++) {
                     Town town = new Town();
@@ -130,9 +132,6 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                 }
                 db.townDao().insertAllTowns(Arrays.asList(townlist));
             }});
-
-
-
     }
 
     public void openProfile() {
