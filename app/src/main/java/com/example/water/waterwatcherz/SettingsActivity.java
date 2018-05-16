@@ -1,8 +1,10 @@
 package com.example.water.waterwatcherz;
 
+import android.app.Activity;
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.migration.Migration;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,8 +15,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.Arrays;
+import java.util.List;
+
+import java.util.List;
 
 /**
  * Created by krish on 4/12/2018.
@@ -26,43 +32,43 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     private Button taskActivityButton_settings;
     private Button checklistButton_settings;
     private Button confirmButton_settings;
-    private EditText nameEnter;
-    private EditText householdsize;
-    private EditText billamount;
-    private EditText weeklygoal;
-    private String name = "";
-    private Integer hhsize = 0;
-    private Integer billamt = 0;
-    private Integer wklygoal= 0;
-    private Integer timesBrush = 0;
-    private String townName = "";
-    private String paymentPeriod = "";
-    private User user;
+//    private EditText nameEnter;
+//    private EditText householdsize;
+//    private EditText billamount;
+//    private EditText weeklygoal;
+//    private EditText timesBrushEntry;
+//    private EditText numBoSEntry;
+    String name = "";
+    Integer hhsize = 0;
+    Integer billamt = 0;
+    Integer wklygoal= 0;
+    Integer numBoS = 0;
+    Integer timesBrush = 0;
+    String townName = "";
+    String paymentPeriod = "";
+
+    final Migration MIGRATION_1_2 = new Migration(1, 6) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+        }
+    };
+
+
+
+
 
     protected void onCreate(Bundle savedInstanceState) {
-        final Migration MIGRATION_1_2 = new Migration(1, 6) {
-            @Override
-            public void migrate(SupportSQLiteDatabase database) {
-            }
-        };
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
+
+         AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
                 .allowMainThreadQueries()
                 .addMigrations(MIGRATION_1_2)
                 .build();
 
-        if(db.userDao().getAllUsers().isEmpty())
-        {
-            user = new User();
-            db.userDao().insertUser(user);
-        }
-        else
-        {
-            user = db.userDao().getAllUsers().get(0);
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
         Bundle bundle = getIntent().getExtras();
+
+
 
         Spinner townSpinner = findViewById(R.id.townDropDown);
         ArrayAdapter<CharSequence> adapterTown = ArrayAdapter.createFromResource(this,
@@ -95,17 +101,32 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             public void onClick(View v) {openTaskActivity();
             }});
 
+
+
+        User user = new User();
+        db.userDao().insertUser(user);
+
         confirmButton_settings.setOnClickListener(new View.OnClickListener() {
+
+
             public void onClick(View v) {
                 AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
                         .allowMainThreadQueries()
                         .addMigrations(MIGRATION_1_2)
                         .build();
+
+                name = ((EditText)findViewById(R.id.PersonName)).getText().toString();
+                hhsize = Integer.parseInt(((EditText)findViewById(R.id.NumPplEdit)).getText().toString());
+                billamt = Integer.parseInt(((EditText)findViewById(R.id.BillAmountEnter)).getText().toString());
+                wklygoal = Integer.parseInt(((EditText)findViewById(R.id.GoalAmount)).getText().toString());
+                timesBrush = Integer.parseInt(((EditText)findViewById(R.id.timesBrushEntry)).getText().toString());
+                User user = db.userDao().getAllUsers().get(0);
                 user.setName(name);
                 user.setHouseSize(hhsize);
                 user.setBillamt(billamt);
                 user.setWeeklyGoal(wklygoal);
                 user.setBrushTeethNum(timesBrush);
+              //  user.setNumWash(numBoS);
                 user.setPaymentPeriod(paymentPeriod);
                 Log.d(townName,"EDT townName");
                 user.setTown(townName);
@@ -113,18 +134,8 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                 db.userDao().deleteTables();
                 db.userDao().insertUser(user);
 
-                String[] towns = {"Other","Worcester","Leominster","Auburn","Shrewsbury","Westborough",
-                        "Fitchburg","West Brookfield","Leicester","Sturbridge","Holden",
-                        "Northborough","Gardner","Dudley","Webster","Millbury","Milford",
-                        "Northbridge","Rutland","Southbridge","Athol","Charlton","Sutton",
-                        "Grafton","Oxford","Clinton","Berlin","Brookfield","Spencer","West Boylston",
-                        "Southborough","Winchendon","Hardwick","Boylston","Hopedale","Ashburnham",
-                        "North Brookfield","Bolton","Hubbardston","East Brookfield","New Braintree",
-                        "Phillipston","Mendon","Barre","Blackstone","Royalston","Harvard","Douglas",
-                        "Lunenburg","Uxbridge","Westminster","Templeton"};
-                int[] gallons = {65,57,55,53,54,56,59,30,44,49,51,55,72,50,49,60,49,48,43,51,53,53,
-                        52,64,58,55,53,60,54,54,68,72,53,68,52,60,44,53,53,53,53,53,53,49,64,53,
-                        53,59,57,51,49,47};
+                String[] towns = {"Worcester","Leominster","Auburn","Shrewsbury","Westborough","Fitchburg","West Brookfield","Leicester","Sturbridge","Holden","Northborough","Gardner","Dudley","Webster","Millbury","Milford","Northbridge","Rutland","Southbridge","Athol","Charlton","Sutton","Grafton","Oxford","Clinton","Berlin","Brookfield","Spencer","West Boylston","Southborough","Winchendon","Hardwick","Boylston","Hopedale","Ashburnham","North Brookfield","Bolton","Hubbardston","East Brookfield","New Braintree","Phillipston","Mendon","Barre","Blackstone","Royalston","Harvard","Douglas","Lunenburg","Uxbridge","Westminster","Templeton"};
+                int[] gallons = {57,55,53,54,56,59,30,44,49,51,55,72,50,49,60,49,48,43,51,53,53,52,64,58,55,53,60,54,54,68,72,53,68,52,60,44,53,53,53,53,53,53,49,64,53,53,59,57,51,49,47};
                 Town[] townlist = new Town[towns.length];
                 for (int i=0;i<towns.length;i++) {
                     Town town = new Town();
@@ -133,7 +144,11 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                     townlist[i] = town;
                 }
                 db.townDao().insertAllTowns(Arrays.asList(townlist));
+
             }});
+
+
+
     }
 
     public void openProfile() {
