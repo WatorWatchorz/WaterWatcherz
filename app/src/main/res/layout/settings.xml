@@ -68,7 +68,6 @@
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/Town_lbl"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
@@ -85,7 +84,7 @@
         android:layout_marginStart="17dp"
         android:layout_marginTop="8dp"
         android:text="@string/town"
-        android:textSize="23sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -104,7 +103,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
         android:text="@string/numOfPpl"
-        android:textSize="23sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.002"
@@ -118,16 +117,16 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="28dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="28dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="number"
-        android:textSize="23sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.982"
+        app:layout_constraintHorizontal_bias="0.961"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.246" />
@@ -159,9 +158,10 @@
         android:text="@string/confirm"
         app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NumPplEdit"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.906" />
 
     <TextView
         android:id="@+id/Name"
@@ -172,7 +172,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Name"
-        android:textSize="23sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.015"
@@ -190,7 +190,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:textSize="23sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.919"
@@ -207,7 +207,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Utility Bill Payment Period"
-        android:textSize="23sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.024"
@@ -240,7 +240,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Bill Amount (Gallons)"
-        android:textSize="23dp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.021"
@@ -258,7 +258,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="number"
-        android:textSize="23sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.919"
@@ -275,13 +275,13 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Weekly Goal (Gallons)"
-        android:textSize="23sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintHorizontal_bias="0.017"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.618" />
+        app:layout_constraintVertical_bias="0.664" />
 
     <EditText
         android:id="@+id/GoalAmount"
@@ -289,35 +289,36 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginLeft="352dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="352dp"
-        android:layout_marginLeft="352dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="number"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.611" />
+        app:layout_constraintVertical_bias="0.654" />
 
     <TextView
         android:id="@+id/goalHowTo"
-        android:layout_width="531dp"
-        android:layout_height="86dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="Choose a weekly goal based off of your town's average water use per person per day. Your town's average water use per day is:"
-        android:textSize="23sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.262"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.527" />
+        app:layout_constraintVertical_bias="0.541" />
 
     <TextView
         android:id="@+id/timesBrush"
@@ -328,17 +329,17 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="How many times a day do you brush your teeth?"
-        android:textSize="23sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintHorizontal_bias="0.028"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.692" />
+        app:layout_constraintVertical_bias="0.74" />
 
     <EditText
         android:id="@+id/timesBrushEntry"
-        android:layout_width="58dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -346,13 +347,13 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="number"
-        android:textSize="23sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.952"
+        app:layout_constraintHorizontal_bias="0.915"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.683" />
+        app:layout_constraintVertical_bias="0.732" />
 
     <!--<TextView-->
         <!--android:id="@+id/bOsAsk"-->

@@ -30,6 +30,7 @@ public class ChecklistActivity  extends AppCompatActivity {
     WaterTask task1;
     int WaterTaskId;
     int id;
+    int numdeleteInt;
 
 
     final Migration MIGRATION_1_6 = new Migration(1, 6) {
@@ -74,14 +75,17 @@ public class ChecklistActivity  extends AppCompatActivity {
 
         deleteTestButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
                 AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
                         .allowMainThreadQueries()
                         .addMigrations(MIGRATION_1_6)
                         .build();
-
                 EditText numdeleteEnter = findViewById(R.id.numDelete);
                 if(!numdeleteEnter.getText().toString().isEmpty()) {
-                    int numdeleteInt = Integer.parseInt(numdeleteEnter.getText().toString());
+                    try {
+                        numdeleteInt=Integer.parseInt(numdeleteEnter.getText().toString());
+                    } catch (NumberFormatException e) { numdeleteInt = 0;
+                    }
                     if(numdeleteInt<waterTasks.size() && numdeleteInt>=1) {
                         db.waterTaskDao().deleteWaterTasks(waterTasks.get(numdeleteInt - 1));
                         myAdapter.remove(waterTasks.get(numdeleteInt - 1));
@@ -122,6 +126,7 @@ public class ChecklistActivity  extends AppCompatActivity {
 ////        });
     }
 
+
     public void openProfile() {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
@@ -136,4 +141,5 @@ public class ChecklistActivity  extends AppCompatActivity {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
+
 }
