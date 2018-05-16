@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -70,7 +71,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
 
 
-        Spinner townSpinner = findViewById(R.id.townDropDown);
+        final Spinner townSpinner = findViewById(R.id.townDropDown);
         ArrayAdapter<CharSequence> adapterTown = ArrayAdapter.createFromResource(this,
                 R.array.towns_array, android.R.layout.simple_spinner_item);
         adapterTown.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -144,11 +145,29 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                     townlist[i] = town;
                 }
                 db.townDao().insertAllTowns(Arrays.asList(townlist));
+                Log.d("towntest",db.townDao().getallTowns().toArray().toString());
+                List<User> users = db.userDao().getAllUsers();
+                User dbuser = users.get(users.size()-1);
+                String town = dbuser.getTown();
+
+                int town1id = db.townDao().getidfromName(town);
+                List<Town> towns2 = db.townDao().getallTowns();
+                Town town1 = new Town();
+                for(int i=0;i<towns2.size();i++){
+                    if(towns2.get(i).getId()==town1id) {
+                         town1 = towns2.get(i);
+                    }
+                }
+
+                Log.d("testertester",town);
+                //int dbgallons = town1.getGallons();
+                int index = townSpinner.getSelectedItemPosition();
+                Integer gallonnum = gallons[index];
+
+                TextView goalHowto = findViewById(R.id.goalHowTo);
+                goalHowto.setText(getResources().getString(R.string.goalHowTo)+" " + Integer.toString(gallonnum));
 
             }});
-
-
-
     }
 
     public void openProfile() {
