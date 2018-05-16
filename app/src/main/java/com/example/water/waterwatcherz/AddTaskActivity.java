@@ -41,7 +41,7 @@ public class AddTaskActivity extends AppCompatActivity implements AdapterView.On
                         R.array.tasks_array, android.R.layout.simple_spinner_item);
                 adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 taskSpinner.setAdapter(adapter1);
-                taskSpinner.setOnItemSelectedListener(this);
+
                 AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Database")
                         .allowMainThreadQueries()
                         .addMigrations(MIGRATION_1_2)
@@ -62,16 +62,21 @@ public class AddTaskActivity extends AppCompatActivity implements AdapterView.On
                         openSettings();
                     }
                 });
-                checkButton_addtask.setOnClickListener(new View.OnClickListener() {
+
+            taskSpinner.setOnItemSelectedListener(this);
+            confirmButton_addtask.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+
+                }
+            });
+
+            checkButton_addtask.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 openChecklist();
             }
-        });
-        confirmButton_addtask.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
 
-            }
         });
+
 
             }
 
@@ -122,11 +127,13 @@ public class AddTaskActivity extends AppCompatActivity implements AdapterView.On
         waterTask.setWeek(week);
         waterTask.setDuration(duration);
 
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
-                .allowMainThreadQueries()
-                .addMigrations(MIGRATION_1_2)
-                .build();
-        db.waterTaskDao().insertWaterTask(waterTask);
+            AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Database")
+                    .allowMainThreadQueries()
+                    .addMigrations(MIGRATION_1_2)
+                    .build();
+        if(duration!=0) {
+            db.waterTaskDao().insertWaterTask(waterTask);
+        }
     }
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
