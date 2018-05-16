@@ -1,9 +1,9 @@
 package com.example.water.waterwatcherz;
 
-import android.content.Intent;
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.migration.Migration;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -66,7 +66,43 @@ public class AddTaskActivity extends AppCompatActivity implements AdapterView.On
             taskSpinner.setOnItemSelectedListener(this);
             confirmButton_addtask.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    Integer week;
+                    Integer month;
+                    Integer duration;
 
+                   // parent.getItemAtPosition(pos);
+                    EditText monthEnter = findViewById(R.id.monthEDT);
+                    if (!monthEnter.getText().toString().isEmpty()) {
+                        month = Integer.parseInt(monthEnter.getText().toString());
+                    }
+                    else{month=0;}
+
+                    EditText weekEnter = findViewById(R.id.weekEDT);
+                    if(!weekEnter.getText().toString().isEmpty()) {
+                        week = Integer.parseInt(weekEnter.getText().toString());
+                    }
+                    else{week=0;}
+
+                    EditText durationEnter = findViewById(R.id.duration);
+                    if(!durationEnter.getText().toString().isEmpty()){
+                        duration = Integer.parseInt(durationEnter.getText().toString());
+                    }
+                    else{duration=0;}
+
+                    String taskName = taskSpinner.getSelectedItem().toString();
+                    WaterTask waterTask = new WaterTask();
+                    waterTask.setTaskName(taskName);
+                    waterTask.setMonth(month);
+                    waterTask.setWeek(week);
+                    waterTask.setDuration(duration);
+
+                    AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Database")
+                            .allowMainThreadQueries()
+                            .addMigrations(MIGRATION_1_2)
+                            .build();
+                    if(week!=0 && month!=0 && duration!=0) {
+                        db.waterTaskDao().insertWaterTask(waterTask);
+                    }
                 }
             });
 
@@ -97,43 +133,43 @@ public class AddTaskActivity extends AppCompatActivity implements AdapterView.On
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         // An item was selected. You can retrieve the selected item using
-       Integer week;
-       Integer month;
-       Integer duration;
-
-        parent.getItemAtPosition(pos);
-        EditText monthEnter = findViewById(R.id.monthEDT);
-        if (!monthEnter.getText().toString().isEmpty()) {
-             month = Integer.parseInt(monthEnter.getText().toString());
-        }
-        else{month=0;}
-
-        EditText weekEnter = findViewById(R.id.weekEDT);
-        if(!weekEnter.getText().toString().isEmpty()) {
-             week = Integer.parseInt(weekEnter.getText().toString());
-        }
-        else{week=0;}
-
-        EditText durationEnter = findViewById(R.id.duration);
-        if(!durationEnter.getText().toString().isEmpty()){
-            duration = Integer.parseInt(durationEnter.getText().toString());
-        }
-        else{duration=0;}
-
-        String taskName = taskSpinner.getSelectedItem().toString();
-        WaterTask waterTask = new WaterTask();
-        waterTask.setTaskName(taskName);
-        waterTask.setMonth(month);
-        waterTask.setWeek(week);
-        waterTask.setDuration(duration);
-
-            AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Database")
-                    .allowMainThreadQueries()
-                    .addMigrations(MIGRATION_1_2)
-                    .build();
-        if(duration!=0) {
-            db.waterTaskDao().insertWaterTask(waterTask);
-        }
+//       Integer week;
+//       Integer month;
+//       Integer duration;
+//
+//        parent.getItemAtPosition(pos);
+//        EditText monthEnter = findViewById(R.id.monthEDT);
+//        if (!monthEnter.getText().toString().isEmpty()) {
+//             month = Integer.parseInt(monthEnter.getText().toString());
+//        }
+//        else{month=0;}
+//
+//        EditText weekEnter = findViewById(R.id.weekEDT);
+//        if(!weekEnter.getText().toString().isEmpty()) {
+//             week = Integer.parseInt(weekEnter.getText().toString());
+//        }
+//        else{week=0;}
+//
+//        EditText durationEnter = findViewById(R.id.duration);
+//        if(!durationEnter.getText().toString().isEmpty()){
+//            duration = Integer.parseInt(durationEnter.getText().toString());
+//        }
+//        else{duration=0;}
+//
+//        String taskName = taskSpinner.getSelectedItem().toString();
+//        WaterTask waterTask = new WaterTask();
+//        waterTask.setTaskName(taskName);
+//        waterTask.setMonth(month);
+//        waterTask.setWeek(week);
+//        waterTask.setDuration(duration);
+//
+//            AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Database")
+//                    .allowMainThreadQueries()
+//                    .addMigrations(MIGRATION_1_2)
+//                    .build();
+//        if(duration!=0) {
+//            db.waterTaskDao().insertWaterTask(waterTask);
+//        }
     }
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
