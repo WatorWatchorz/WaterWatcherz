@@ -30,16 +30,14 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     private EditText householdsize;
     private EditText billamount;
     private EditText weeklygoal;
-    private EditText timesBrushEntry;
-    private EditText numBoSEntry;
-    String name = "";
-    Integer hhsize = 0;
-    Integer billamt = 0;
-    Integer wklygoal= 0;
-    Integer numBoS = 0;
-    Integer timesBrush = 0;
-    String townName = "";
-    String paymentPeriod = "";
+    private String name = "";
+    private Integer hhsize = 0;
+    private Integer billamt = 0;
+    private Integer wklygoal= 0;
+    private Integer timesBrush = 0;
+    private String townName = "";
+    private String paymentPeriod = "";
+    private User user;
 
     protected void onCreate(Bundle savedInstanceState) {
         final Migration MIGRATION_1_2 = new Migration(1, 6) {
@@ -47,6 +45,20 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             public void migrate(SupportSQLiteDatabase database) {
             }
         };
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
+                .allowMainThreadQueries()
+                .addMigrations(MIGRATION_1_2)
+                .build();
+
+        if(db.userDao().getAllUsers().isEmpty())
+        {
+            user = new User();
+            db.userDao().insertUser(user);
+        }
+        else
+        {
+            user = db.userDao().getAllUsers().get(0);
+        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
@@ -83,31 +95,21 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
             public void onClick(View v) {openTaskActivity();
             }});
 
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
-                .allowMainThreadQueries()
-                .addMigrations(MIGRATION_1_2)
-                .build();
-
-        User user = new User();
-        db.userDao().insertUser(user);
-
         confirmButton_settings.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                User user = new User();
+                AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
+                        .allowMainThreadQueries()
+                        .addMigrations(MIGRATION_1_2)
+                        .build();
                 user.setName(name);
                 user.setHouseSize(hhsize);
                 user.setBillamt(billamt);
                 user.setWeeklyGoal(wklygoal);
                 user.setBrushTeethNum(timesBrush);
-              //  user.setNumWash(numBoS);
                 user.setPaymentPeriod(paymentPeriod);
                 Log.d(townName,"EDT townName");
                 user.setTown(townName);
 
-                AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
-                        .allowMainThreadQueries()
-                        .addMigrations(MIGRATION_1_2)
-                        .build();
                 db.userDao().deleteTables();
                 db.userDao().insertUser(user);
 

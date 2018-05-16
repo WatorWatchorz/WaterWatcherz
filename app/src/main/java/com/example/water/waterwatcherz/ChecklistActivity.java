@@ -27,8 +27,6 @@ public class ChecklistActivity  extends AppCompatActivity {
     List<WaterTask> waterTasks;
     ArrayAdapter<WaterTask> myAdapter;
     ListView tasktest_listview;
-    WaterTask task1;
-    int WaterTaskId;
     int id;
     int numdeleteInt;
 
@@ -40,15 +38,13 @@ public class ChecklistActivity  extends AppCompatActivity {
     };
 
     protected void onCreate(Bundle savedInstanceState) {
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Database")
                 .allowMainThreadQueries()
                 .addMigrations(MIGRATION_1_6)
                 .build();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.checklist);
-
-        Bundle bundle = getIntent().getExtras();
 
         profileButton_checklist = (Button) findViewById(R.id.profile_checklist);
         taskActivityButton_checklist = (Button) findViewById(R.id.calendar_checklist);
@@ -76,17 +72,18 @@ public class ChecklistActivity  extends AppCompatActivity {
         deleteTestButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
+                AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Database")
                         .allowMainThreadQueries()
                         .addMigrations(MIGRATION_1_6)
                         .build();
                 EditText numdeleteEnter = findViewById(R.id.numDelete);
-                if(!numdeleteEnter.getText().toString().isEmpty()) {
+                if (!numdeleteEnter.getText().toString().isEmpty()) {
                     try {
-                        numdeleteInt=Integer.parseInt(numdeleteEnter.getText().toString());
-                    } catch (NumberFormatException e) { numdeleteInt = 0;
+                        numdeleteInt = Integer.parseInt(numdeleteEnter.getText().toString());
+                    } catch (NumberFormatException e) {
+                        numdeleteInt = 0;
                     }
-                    if(numdeleteInt<waterTasks.size() && numdeleteInt>=1) {
+                    if (numdeleteInt < waterTasks.size() && numdeleteInt >= 1) {
                         db.waterTaskDao().deleteWaterTasks(waterTasks.get(numdeleteInt - 1));
                         myAdapter.remove(waterTasks.get(numdeleteInt - 1));
                         numdeleteEnter.setText("");
@@ -94,38 +91,14 @@ public class ChecklistActivity  extends AppCompatActivity {
                 }
             }
         });
-//            for(WaterTask task1: waterTasks){
-//                for(int i=0;i<waterTasks.size();i++) {
-//
-//                    if (id == task1.getUserid()) {
-//                        int place = i;
-//                        db.waterTaskDao().deleteWaterTasks(waterTasks.get(place));
-//                    }
-//                }
-//            }
 
-
-//        for(int i=0;i<waterTasks.size();i++) {
-//
-//            Log.d(waterTasks.get(i).toString(),"WaterTasks");
-//        }
         waterTasks = db.waterTaskDao().getAllWaterTasks();
 
         tasktest_listview = findViewById(R.id.taskstest_listview1);
-        myAdapter =  new ArrayAdapter<WaterTask>(this,android.R.layout.simple_list_item_1,waterTasks);
+        myAdapter = new ArrayAdapter<WaterTask>(this, android.R.layout.simple_list_item_1, waterTasks);
         tasktest_listview.setAdapter(myAdapter);
         myAdapter.notifyDataSetChanged();
-
-
-//        tasktest_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                task1 =(WaterTask) tasktest_listview.getItemAtPosition(position);
-//                WaterTaskId = task1.getUserid();
-////            }
-////        });
     }
-
 
     public void openProfile() {
         Intent intent = new Intent(this, HomeActivity.class);
