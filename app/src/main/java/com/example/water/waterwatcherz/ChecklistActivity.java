@@ -14,7 +14,6 @@ import android.widget.ListView;
 
 import java.util.List;
 
-
 /**
  * Created by eesha on 5/10/2018.
  */
@@ -29,7 +28,6 @@ public class ChecklistActivity  extends AppCompatActivity {
     ListView tasktest_listview;
     int id;
     int numdeleteInt;
-
 
     final Migration MIGRATION_1_6 = new Migration(1, 6) {
         @Override
@@ -51,7 +49,6 @@ public class ChecklistActivity  extends AppCompatActivity {
         settingsButton_checklist = (Button) findViewById(R.id.settings_checklist);
 
         deleteTestButton = (Button) findViewById(R.id.DeleteTask_checklist);
-
 
         profileButton_checklist.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -82,11 +79,15 @@ public class ChecklistActivity  extends AppCompatActivity {
                         numdeleteInt = Integer.parseInt(numdeleteEnter.getText().toString());
                     } catch (NumberFormatException e) {
                         numdeleteInt = 0;
+
                     }
-                    if (numdeleteInt < waterTasks.size() && numdeleteInt >= 1) {
+
+                    if (numdeleteInt <= waterTasks.size() && numdeleteInt >= 1) {
                         db.waterTaskDao().deleteWaterTasks(waterTasks.get(numdeleteInt - 1));
+
                         myAdapter.remove(waterTasks.get(numdeleteInt - 1));
                         numdeleteEnter.setText("");
+
                     }
                 }
             }
@@ -114,5 +115,4 @@ public class ChecklistActivity  extends AppCompatActivity {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
-
 }
