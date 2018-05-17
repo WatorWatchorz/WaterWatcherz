@@ -14,7 +14,6 @@ import android.widget.ListView;
 
 import java.util.List;
 
-
 /**
  * Created by eesha on 5/10/2018.
  */
@@ -27,11 +26,8 @@ public class ChecklistActivity  extends AppCompatActivity {
     List<WaterTask> waterTasks;
     ArrayAdapter<WaterTask> myAdapter;
     ListView tasktest_listview;
-    WaterTask task1;
-    int WaterTaskId;
     int id;
     int numdeleteInt;
-
 
     final Migration MIGRATION_1_6 = new Migration(1, 6) {
         @Override
@@ -40,7 +36,7 @@ public class ChecklistActivity  extends AppCompatActivity {
     };
 
     protected void onCreate(Bundle savedInstanceState) {
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Database")
                 .allowMainThreadQueries()
                 .addMigrations(MIGRATION_1_6)
                 .build();
@@ -55,7 +51,6 @@ public class ChecklistActivity  extends AppCompatActivity {
         settingsButton_checklist = (Button) findViewById(R.id.settings_checklist);
 
         deleteTestButton = (Button) findViewById(R.id.DeleteTask_checklist);
-
 
         profileButton_checklist.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -76,24 +71,39 @@ public class ChecklistActivity  extends AppCompatActivity {
         deleteTestButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
+                AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Database")
                         .allowMainThreadQueries()
                         .addMigrations(MIGRATION_1_6)
                         .build();
                 EditText numdeleteEnter = findViewById(R.id.numDelete);
-                if(!numdeleteEnter.getText().toString().isEmpty()) {
+                if (!numdeleteEnter.getText().toString().isEmpty()) {
+                    numdeleteInt = Integer.parseInt(numdeleteEnter.getText().toString());
+
                     try {
-                        numdeleteInt=Integer.parseInt(numdeleteEnter.getText().toString());
-                    } catch (NumberFormatException e) { numdeleteInt = 0;
+                        numdeleteInt = Integer.parseInt(numdeleteEnter.getText().toString());
+                    } catch (NumberFormatException e) {
+                        numdeleteInt = 0;
+
                     }
-                    if(numdeleteInt<waterTasks.size() && numdeleteInt>=1) {
+
+                    if (numdeleteInt <= waterTasks.size() && numdeleteInt >= 1) {
                         db.waterTaskDao().deleteWaterTasks(waterTasks.get(numdeleteInt - 1));
+
                         myAdapter.remove(waterTasks.get(numdeleteInt - 1));
                         numdeleteEnter.setText("");
+
                     }
                 }
             }
         });
+
+        waterTasks = db.waterTaskDao().getAllWaterTasks();
+
+        tasktest_listview = findViewById(R.id.taskstest_listview1);
+        myAdapter = new ArrayAdapter<WaterTask>(this, android.R.layout.simple_list_item_1, waterTasks);
+        tasktest_listview.setAdapter(myAdapter);
+        myAdapter.notifyDataSetChanged();
+
 //            for(WaterTask task1: waterTasks){
 //                for(int i=0;i<waterTasks.size();i++) {
 //
@@ -109,12 +119,6 @@ public class ChecklistActivity  extends AppCompatActivity {
 //
 //            Log.d(waterTasks.get(i).toString(),"WaterTasks");
 //        }
-        waterTasks = db.waterTaskDao().getAllWaterTasks();
-
-        tasktest_listview = findViewById(R.id.taskstest_listview1);
-        myAdapter =  new ArrayAdapter<WaterTask>(this,android.R.layout.simple_list_item_1,waterTasks);
-        tasktest_listview.setAdapter(myAdapter);
-        myAdapter.notifyDataSetChanged();
 
 
 //        tasktest_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -125,7 +129,6 @@ public class ChecklistActivity  extends AppCompatActivity {
 ////            }
 ////        });
     }
-
 
     public void openProfile() {
         Intent intent = new Intent(this, HomeActivity.class);
@@ -141,5 +144,4 @@ public class ChecklistActivity  extends AppCompatActivity {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
-
 }

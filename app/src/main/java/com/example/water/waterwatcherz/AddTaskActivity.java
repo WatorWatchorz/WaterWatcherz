@@ -73,7 +73,7 @@ public class AddTaskActivity extends AppCompatActivity implements AdapterView.On
                    // parent.getItemAtPosition(pos);
                     EditText monthEnter = findViewById(R.id.monthEDT);
                     if (!monthEnter.getText().toString().isEmpty()) {
-                        month = Integer.parseInt(monthEnter.getText().toString());
+                            month=Integer.parseInt(monthEnter.getText().toString());
                     }
                     else{month=0;}
 
@@ -108,13 +108,7 @@ public class AddTaskActivity extends AppCompatActivity implements AdapterView.On
 
             checkButton_addtask.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                openChecklist();
-            }
-
-        });
-
-
-            }
+                openChecklist(); }}); }
 
     public void openProfile() {
         Intent intent = new Intent(this,HomeActivity.class);
