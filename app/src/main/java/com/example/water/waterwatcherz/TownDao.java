@@ -17,8 +17,8 @@ import java.util.List;
         public void insertTown(Town...towns);
         @Insert(onConflict = OnConflictStrategy.REPLACE)
         public void insertAllTowns(List<Town> towns);
-        @Query("SELECT * FROM town WHERE townname=:townname")
-        public Town getTownfromName(String townname);
+        @Query("SELECT * FROM Town where townname LIKE :name")
+        public int getidfromName(String name);
     }
 
 
