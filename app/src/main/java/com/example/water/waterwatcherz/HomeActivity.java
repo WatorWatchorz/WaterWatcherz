@@ -61,7 +61,7 @@ public class HomeActivity  extends AppCompatActivity {
             int perc = 0;
             Log.d("HOME ACTIVIDAD", "#SquadGoals: " + String.valueOf(user.getWeeklyGoal()));
             if (user.getWeeklyGoal() != 0) {
-                perc = (int) sum / user.getWeeklyGoal();
+                perc = (int) (100.0*sum) / user.getWeeklyGoal();
                 Log.d("HOME ACTIVITY", "Perc = " + String.valueOf(perc));
             } else {
                 perc = 0;

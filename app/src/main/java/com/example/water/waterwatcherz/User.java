@@ -289,7 +289,7 @@ public class User
     public String toString() {
       //  return "Your tasks are " + getTasks(); //+ " and you goal weekly goal is " + weeklyGoal + " for a household size of " + houseSize +
                 //" in " + zip + ".";
-        return name+houseSize+weeklyGoal+numWash;
+        return name+houseSize+billamt+weeklyGoal+brushTeethNum+town;
     }
 
     public int getBillamt() {
