@@ -346,5 +346,5 @@
     <string name="goal_met" translatable="false">Did You Meet Your Goal?</string>
     <string name="yes" translatable="false">Yes</string>
     <string name="no" translatable="false">No</string>
-    <string name = "goalHowTo" translatable="false">"Choose a weekly goal based off of your town's average water use per person per day. Your town's average water use per day is:"</string>
+    <string name = "goalHowTo" translatable="false">"Choose a weekly goal based off of your town's average water use per person per week. Your town's average water use per week is:"</string>
 </resources>
