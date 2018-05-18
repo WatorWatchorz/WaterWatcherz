@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 /**
  * Created by krish on 4/12/2018.
@@ -102,6 +103,9 @@ public class AddTaskActivity extends AppCompatActivity implements AdapterView.On
                             .build();
                     if(week!=0 && month!=0 && duration!=0) {
                         db.waterTaskDao().insertWaterTask(waterTask);
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(),"Please enter all fields",Toast.LENGTH_SHORT).show();
                     }
                 }
             });
