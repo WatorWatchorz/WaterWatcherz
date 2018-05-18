@@ -1,10 +1,8 @@
 package com.example.water.waterwatcherz;
 
-import android.app.Activity;
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.migration.Migration;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,10 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.List;
-
 import java.util.List;
 
 /**
@@ -54,10 +49,6 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         }
     };
 
-
-
-
-
     protected void onCreate(Bundle savedInstanceState) {
 
          AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"Database")
@@ -67,9 +58,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
-        Bundle bundle = getIntent().getExtras();
-
-
+       // Bundle bundle = getIntent().getExtras();
 
         final Spinner townSpinner = findViewById(R.id.townDropDown);
         ArrayAdapter<CharSequence> adapterTown = ArrayAdapter.createFromResource(this,
