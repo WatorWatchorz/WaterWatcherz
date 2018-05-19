@@ -179,13 +179,13 @@ public class WaterTask
             case "Brushing Teeth":
                 return duration;
             case "Filling Pool":
-                return 16590;
+                return 17*duration;
             case "Laundry":
-                return 25;
+                return 2*duration;
             case "Shower":
                 return duration*3;
             case "Washing Dishes":
-                return 6;
+                return duration*1.5;
             case "Watering Lawn":
                 return duration*2;
             default:
