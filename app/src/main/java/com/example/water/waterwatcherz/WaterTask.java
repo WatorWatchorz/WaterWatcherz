@@ -57,14 +57,6 @@ public class WaterTask
         this.taskName = taskName;
     }
 
- /*   public void setDate(ArrayList<Integer> date) {
-        this.date = date;
-    }*/
-
-  /*  public void setTime(int time) {
-        this.time = time;
-    }*/
-
     public void setDuration(int duration) {
         this.duration = duration;
     }
@@ -161,19 +153,7 @@ public class WaterTask
         return taskName;
     }
 
-    /**
-     * Gets the date the water task takes place
-     * @return the month, day, and year when the task takes place
-     */
-   /* public String getDate()
-    {
-        return date.get(0) + "/" + date.get (1) + "/" + date.get(2);
-    }*/
 
-    /**
-     * Gets the time when the water task takes place
-     * @return the time when the task takes place
-     */
     public int getTime()
     {
         return time;

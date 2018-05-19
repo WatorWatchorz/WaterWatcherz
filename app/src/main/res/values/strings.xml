@@ -17,7 +17,6 @@
     <string name="numOfPpl" translatable="false">Household Size:</string>
     <string-array name="tasks_array">
         <item>Bath</item>
-        <item>Brushing Teeth</item>
         <item>Filling Pool</item>
         <item>Laundry</item>
         <item>Shower</item>

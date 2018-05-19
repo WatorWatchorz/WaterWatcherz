@@ -22,6 +22,4 @@ public interface UserDao {
     public void insertUser(User user);
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insertallUsers(List<User> users);
-    //@Query("SELECT * FROM watertask WHERE userid=:id")
-    //public void getUserWaterTasks(int id);
 }

@@ -10,6 +10,8 @@ import android.util.Log;
 import android.widget.Button;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+
 import java.util.List;
 
 /**
@@ -47,9 +49,7 @@ public class HomeActivity  extends AppCompatActivity {
         for (int i = 0; i < waterTasks.size(); i++) {
             sum = sum + waterTasks.get(i).getAmt_gallons();
         }
-        Log.d("SUM ", String.valueOf(sum));
         List<User> users = db.userDao().getAllUsers();
-        Log.d("HOME ACTIVITY", "users list: " + users.toString());
         progBar = findViewById(R.id.BarOfProgress);
 
         if (users.isEmpty()) {
@@ -57,22 +57,19 @@ public class HomeActivity  extends AppCompatActivity {
             db.userDao().insertUser(user);
         } else {
             User user = users.get(0);
-            Log.d("HOME ACTIVITY", "user obj exists");
             int perc = 0;
-            Log.d("HOME ACTIVIDAD", "#SquadGoals: " + String.valueOf(user.getWeeklyGoal()));
             if (user.getWeeklyGoal() != 0) {
-                perc = (int) (100.0*sum) / user.getWeeklyGoal();
-                Log.d("HOME ACTIVITY", "Perc = " + String.valueOf(perc));
+                int  gallonsused = (int)((100.0*sum) + 2.0*7*user.getBrushTeethNum());
+                perc = (int) ((100.0*sum) + 2.0*7*user.getBrushTeethNum())/ user.getWeeklyGoal();
+                TextView gallons = findViewById(R.id.gallonsused);
+                gallons.setText("Gallons Used: " + gallonsused);
             } else {
                 perc = 0;
-                Log.d("PERC", "there are no goals yet");
             }
             if (perc > 99) {
                 perc = 99;
-                Log.d("HOME ACTIVITY", "Perc" + String.valueOf(perc));
             }
             progBar.setProgress(perc);
-            Log.d("HOME ACTIVITY", "progBar progress" + String.valueOf(progBar.getProgress()));
         }
 
         taskActivityButton_home = (Button) findViewById(R.id.calendar_home);

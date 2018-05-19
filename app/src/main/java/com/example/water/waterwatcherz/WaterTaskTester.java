@@ -22,7 +22,6 @@ public class WaterTaskTester
             WaterTask activity2 = new WaterTask();
 
             System.out.println(activity2.getTaskName());
-         //   System.out.println(activity2.getDate());
 
             System.out.println(activity2.getWeek());
             System.out.println(activity2.getTime());
