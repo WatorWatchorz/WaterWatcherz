@@ -35,10 +35,6 @@ public class HomeActivity  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Bundle bundle = getIntent().getExtras();
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
-        //getSupportActionBar().setLogo(R.drawable.watericon);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "Database")
                 .allowMainThreadQueries()
@@ -59,7 +55,7 @@ public class HomeActivity  extends AppCompatActivity {
             User user = users.get(0);
             int perc = 0;
             if (user.getWeeklyGoal() != 0) {
-                int  gallonsused = (int)((100.0*sum) + 2.0*7*user.getBrushTeethNum());
+                int  gallonsused = (int)((sum) + 2.0*7*user.getBrushTeethNum());
                 perc = (int) ((100.0*sum) + 2.0*7*user.getBrushTeethNum())/ user.getWeeklyGoal();
                 TextView gallons = findViewById(R.id.gallonsused);
                 gallons.setText("Gallons Used: " + gallonsused);

@@ -12,9 +12,9 @@ public class UserTest {
 
     public static void main(String[] args) {
         ArrayList<WaterTask> testTask = new ArrayList<>();
-        testTask.add(new WaterTask("Watering Lawn", 1, 3, 4, 2018,
-                1, 2, 2, 7));
-        User user = new User(testTask, 4, 15, "Chris","Quarterly", 2, 2, "Shower",1);
+        testTask.add(new WaterTask("Watering Lawn", 1, 3, 2, 7));
+        User user = new User(testTask, 4, 15, "Chris",
+                        "Quarterly", 2, 2, "Shower",1);
 
         System.out.println(user.getHouseSize());
         System.out.println(user.getWeeklyGoal());

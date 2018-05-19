@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Created by WaterWatcherz on 3/28/2018.
  */
 @Entity
-        //(foreignKeys = @ForeignKey(entity = User.class, parentColumns = "id",childColumns = "userid"))
+
 public class WaterTask
 {
 
@@ -37,69 +37,16 @@ public class WaterTask
 
     @ColumnInfo(name = "taskName")
     private String taskName;
-//    private ArrayList<Integer> date;
+
     @ColumnInfo(name = "month")
     private int month;
-
-    @ColumnInfo(name = "day")
-    private int day;
-    @ColumnInfo(name = "year")
-    private int year;
-
-    @ColumnInfo(name = "time")
-    private int time;
 
     @ColumnInfo(name = "week")
     private int week;
 
-
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
     private int duration;
 
     //Constructors
-
-    public int getMonth() {
-        return month;
-    }
-
-    public void setMonth(int month) {
-        this.month = month;
-    }
-
-    public int getWeek() {
-        return week;
-    }
-
-    public void setWeek(int week) {
-        this.week = week;
-    }
-
-    public int getDay() {
-        return day;
-    }
-
-    public void setDay(int day) {
-        this.day = day;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public void setTime(int time) {
-        this.time = time;
-    }
 
     /**
      * Constructs a WaterTask object with a given name, date of occurrence(M/D/Y format),
@@ -107,23 +54,14 @@ public class WaterTask
      * @param taskName the name of the water task
      * @param month the month the water task takes place
      * @param week the week the water task takes place
-     * @param day the day the water task takes place
-     * @param year the year the water task takes place
-     * @param hour the hour the water task takes place
-     * @param minute the minute the water task takes place
      * @param durationHour the integer number of hours the water task takes place
      * @param durationMinute the integer number of minutes extra, after the number of hours, the
      *                       water task takes place
      */
-    public WaterTask(String taskName, int month, int week, int day, int year, int hour, int minute,
+    public WaterTask(String taskName, int month, int week,
                      int durationHour, int durationMinute)
     {
         this.taskName = taskName;
-   /*     date = new ArrayList<>();
-            date.add(month);
-            date.add(day);
-            date.add(year);*/
-        time = hour * 60 + minute;
         duration = durationHour * 60 + durationMinute;
     }
 
@@ -134,15 +72,40 @@ public class WaterTask
     public WaterTask()
     {
         this.taskName = "Empty";
-       /* date = new ArrayList<>();
-            date.add(0);
-            date.add(0);
-            date.add(0);*/
-        time = 0;
         duration = 0;
     }
 
-    //Methods
+    /**
+     * gets the month of the water-related task
+     * @return the month of the water-related task
+     */
+    public int getMonth() {
+        return month;
+    }
+
+    /**
+     * sets the month of the water-related task
+     * @param month
+     */
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    /**
+     * gets the week in the month the water-related task takes place
+     * @return week in the month the water-related task takes place
+     */
+    public int getWeek() {
+        return week;
+    }
+
+    /**
+     * sets the week in the month the water-related task takes place
+     * @param week
+     */
+    public void setWeek(int week) {
+        this.week = week;
+    }
 
     /**
      * Gets the name of the water task
@@ -153,18 +116,28 @@ public class WaterTask
         return taskName;
     }
 
-
-    public int getTime()
-    {
-        return time;
-    }
-
     /**
      * Gets the duration of the water task in minutes
      * @return the duration of the task in minutes
      */
     public int getDuration() {
         return duration;
+    }
+
+    /**
+     * sets the name of the water-related task
+     * @param taskName
+     */
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
+
+    /**
+     * sets the duration of the water-related task
+     * @param duration
+     */
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
     /**
@@ -193,29 +166,10 @@ public class WaterTask
         }
     }
 
-    public double getAmt_ActualGallons() {
-        int total = 0;
-        switch (taskName)
-        {
-            case "Bath":
-                return total + 36;
-            case "Brushing Teeth":
-                return duration;
-            case "Filling Pool":
-                return total + 16590;
-            case "Laundry":
-                return total + 25;
-            case "Shower":
-                return total + duration*3;
-            case "Washing Dishes":
-                return total + 6;
-            case "Watering Lawn":
-                return total + duration * 2;
-            default:
-                return 0;
-        }
-    }
-
+    /**
+     * gets a String statement that tells the user the month, week, and the task
+     * @return "Month: " + Integer.toString(month) + " Week: " + Integer.toString(week) + "\t" + "\t" + "\t" + taskName
+     */
     public String toString() {
         return "Month: " + Integer.toString(month) + " Week: " + Integer.toString(week) + "\t" + "\t" + "\t" + taskName;
     }
