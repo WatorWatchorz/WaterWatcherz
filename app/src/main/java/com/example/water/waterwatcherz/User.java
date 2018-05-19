@@ -17,28 +17,25 @@ import java.util.ArrayList;
 public class User
 {
 
-    public int getId() {
-        return id;
-    }
-
-    public int getNumWash() {
-        return numWash;
-    }
 
     //Data
     //Stores the name of the user
+    /**
+     * The id is the primary key index for all users
+     */
     @PrimaryKey(autoGenerate = true)
     private int id;
+    /**
+     * Storing the user's name to display within the app
+     */
+    //ColumnInfo designates a field to be entered into the User table in the Room API
 
     @ColumnInfo(name = "name")
     private String name;
 
-    @Ignore
-    private ArrayList<WaterTask> tasks;
-
-    //Stores a list of water task objects
-   // private ArrayList<WaterTask> tasks;
-    //Stores the number of people in the user's household
+    /**
+     * The household size as entered by the user
+     */
 
     @ColumnInfo(name = "houseSize")
     private int houseSize;
@@ -56,26 +53,49 @@ public class User
     @ColumnInfo(name="brushTeethNum")
     private int brushTeethNum;
 
+    /**
+     * gets the user ID. required for the Room API to index users
+     * @return
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * sets the user ID
+     * @param id the primary key value used to identify the user
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /*
+    Stores the name of the town the user lives in
+     */
+
     @ColumnInfo(name="town")
     public String town;
+
+    /*
+    Gets the name of the town the user lives in
+     */
 
     public String getTown() {
         return town;
     }
+/*
+    Sets the name of the town the user lives in
+ */
 
     public void setTown(String town) {
         this.town = town;
     }
 
 
-    /*    public void setTasks(ArrayList<WaterTask> tasks) {
-        this.tasks = tasks;
-    }
-*/
+
+  /*
+    Sets the number of times the user brushes
+   */
     public void setBrushTeethNum(int brushTeethNum) {
         this.brushTeethNum = brushTeethNum;
     }
@@ -88,6 +108,11 @@ public class User
         this.numWash = numWash;
     }
     //Stores the amount of time the user brushes their teeth for
+
+
+    public int getNumWash() {
+        return numWash;
+    }
 
     @ColumnInfo(name="brushTeethTime")
     private int brushTeethTime;
@@ -105,11 +130,8 @@ public class User
     private int billamt;
     //Constructor
 
-    //take out zipcode
-
     /**
      * Constructs a new User object
-     * @param userTask an ArrayList containing the user's WaterTask objects
      * @param houseNumber an integer value containing the number of people in the user's household
      * @param weeklyWaterGoal a String containing the user's weekly goal
      * @param userName a String containing the name of the user
@@ -119,9 +141,9 @@ public class User
      * @param wash a String that stores whether the user generally showers or takes a bath
      * @param numWash the number of times the user generally shower or takes a bath in a day
      */
-    public User(ArrayList<WaterTask> userTask, int houseNumber, int weeklyWaterGoal, String userName,
+    public User( int houseNumber, int weeklyWaterGoal, String userName,
                 String paymentPeriod, int brushTeethNum, int brushTeethTime, String wash, int numWash) {
-        tasks = userTask;
+//        tasks = userTask;
         houseSize = houseNumber;
         weeklyGoal = weeklyWaterGoal;
         name = userName;
@@ -136,7 +158,7 @@ public class User
      * Constructs an empty User object
      */
     public User() {
-        tasks = new ArrayList<>();
+//        tasks = new ArrayList<>();
         houseSize = 1;
         weeklyGoal = 0;
         name = "null";
@@ -169,18 +191,18 @@ public class User
      * Gets a string containing all the user's water tasks
      * @return the user's water tasks
      */
-    public String getTasks() {
-        String str = "";
-        for(int i = 0; i < tasks.size(); i++)
-        {str = str + (tasks.get(i)).getTaskName();}
-        return str;
-    }
+//    public String getTasks() {
+//        String str = "";
+//        for(int i = 0; i < tasks.size(); i++)
+//        {str = str + (tasks.get(i)).getTaskName();}
+//        return str;
+//    }
 
     /**
      * Adds a water task to the user's list of water tasks
      * @param userTask a new water task
      */
-    public void setUserTask(WaterTask userTask){tasks.add(userTask);}
+    //public void setUserTask(WaterTask userTask){tasks.add(userTask);}
 
     /**
      * Sets the weekly water goal
@@ -273,7 +295,6 @@ public class User
     public int getnumWash(){return numWash;}
 
 
- //UNFINISHED vvvvvvvvvvvvv NEED??
 
     /**
      * Generates and returns a string representation of ----------------
@@ -286,9 +307,19 @@ public class User
         return name+houseSize+billamt+weeklyGoal+brushTeethNum+town;
     }
 
+    /**
+     * gets the bill amount as an integer
+     * @return billamt
+     */
+
     public int getBillamt() {
         return billamt;
     }
+
+    /**
+     * sets the bill amount entered by user
+     * @param billamt
+     */
 
     public void setBillamt(int billamt) {
         this.billamt = billamt;

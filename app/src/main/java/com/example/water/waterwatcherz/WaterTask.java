@@ -32,23 +32,40 @@ public class WaterTask
     //Data
 
     @PrimaryKey(autoGenerate = true)
+ /*
+    the id of the user associated with the watertask
+    ColumnInfo designates the field to be a row in the SQL table
+  */
     @ColumnInfo(name = "userid")
     int userid;
-
+/*
+    the name of the task
+ */
     @ColumnInfo(name = "taskName")
     private String taskName;
-//    private ArrayList<Integer> date;
+    /*
+    The month in which the task occurs
+     */
     @ColumnInfo(name = "month")
     private int month;
-
+/*
+The day in which the task occurs
+ */
     @ColumnInfo(name = "day")
     private int day;
+    /*
+    The year in which the task occurs
+     */
     @ColumnInfo(name = "year")
     private int year;
-
+/*
+The time of the day in which the task occurs
+ */
     @ColumnInfo(name = "time")
     private int time;
-
+/*
+The week in which the task occurs
+ */
     @ColumnInfo(name = "week")
     private int week;
 
