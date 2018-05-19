@@ -64,24 +64,26 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
                         .addMigrations(MIGRATION_1_2)
                         .build();
 
-                Object item = parent.getItemAtPosition(pos);
-                System.out.println(item.toString());     //prints the text in spinner item.
-                String[] towns = {"Worcester","Leominster","Auburn","Shrewsbury","Westborough","Fitchburg","West Brookfield","Leicester","Sturbridge","Holden","Northborough","Gardner","Dudley","Webster","Millbury","Milford","Northbridge","Rutland","Southbridge","Athol","Charlton","Sutton","Grafton","Oxford","Clinton","Berlin","Brookfield","Spencer","West Boylston","Southborough","Winchendon","Hardwick","Boylston","Hopedale","Ashburnham","North Brookfield","Bolton","Hubbardston","East Brookfield","New Braintree","Phillipston","Mendon","Barre","Blackstone","Royalston","Harvard","Douglas","Lunenburg","Uxbridge","Westminster","Templeton"};
-                int[] gallons = {57,55,53,54,56,59,30,44,49,51,55,72,50,49,60,49,48,43,51,53,53,52,64,58,55,53,60,54,54,68,72,53,68,52,60,44,53,53,53,53,53,53,49,64,53,53,59,57,51,49,47};
-                Town[] townlist = new Town[towns.length];
-                for (int i=0;i<towns.length;i++) {
-                    Town town = new Town();
-                    town.setTownname(towns[i]);
-                    town.setGallons(gallons[i]);
-                    townlist[i] = town;
-                    }
-                    db.townDao().insertAllTowns(Arrays.asList(townlist));
-                List<User> users = db.userDao().getAllUsers();
-                User dbuser = users.get(users.size()-1);
-                String town = dbuser.getTown();
-                int town1id = db.townDao().getidfromName(town);
-                List<Town> towns2 = db.townDao().getallTowns();
-                Town town1 = new Town();
+                        Object item = parent.getItemAtPosition(pos);
+                        System.out.println(item.toString());     //prints the text in spinner item.
+                        String[] towns = {"Other","Worcester","Leominster","Auburn","Shrewsbury","Westborough","Fitchburg","West Brookfield","Leicester","Sturbridge","Holden","Northborough","Gardner","Dudley","Webster","Millbury","Milford","Northbridge","Rutland","Southbridge","Athol","Charlton","Sutton","Grafton","Oxford","Clinton","Berlin","Brookfield","Spencer","West Boylston","Southborough","Winchendon","Hardwick","Boylston","Hopedale","Ashburnham","North Brookfield","Bolton","Hubbardston","East Brookfield","New Braintree","Phillipston","Mendon","Barre","Blackstone","Royalston","Harvard","Douglas","Lunenburg","Uxbridge","Westminster","Templeton"};
+                        int[] gallons = {65,57,55,53,54,56,59,30,44,49,51,55,72,50,49,60,49,48,43,51,53,53,52,64,58,55,53,60,54,54,68,72,53,68,52,60,44,53,53,53,53,53,53,49,64,53,53,59,57,51,49,47};
+                        Town[] townlist = new Town[towns.length];
+                        for (int i=0;i<towns.length;i++) {
+                            Town town = new Town();
+                            town.setTownname(towns[i]);
+                            town.setGallons(gallons[i]);
+                            townlist[i] = town;
+                        }
+
+                        db.townDao().insertAllTowns(Arrays.asList(townlist));
+                        List<User> users = db.userDao().getAllUsers();
+                        User dbuser = users.get(users.size()-1);
+                        String town = dbuser.getTown();
+
+                        int town1id = db.townDao().getidfromName(town);
+                        List<Town> towns2 = db.townDao().getallTowns();
+                        Town town1 = new Town();
 
                 int index = townSpinner.getSelectedItemPosition();
                 Integer gallonnum = gallons[index];
