@@ -44,16 +44,13 @@ public class DatabaseTest extends AppCompatActivity {
             String name = nameEnter.getText().toString();
             if(!name.isEmpty()) {
                 User jim = new User();
-                //jim.setId(1);
                 jim.setName(name);
                 jim.setBrushTeethTime(5);
                 WaterTask waterTask = new WaterTask();
                 waterTask.setTaskName(name);
                 db.waterTaskDao().insertWaterTask(waterTask);
-                //db.userDao().insertUser(jim);
 
                 }
-            //List<WaterTask> waterTasks = db.waterTaskDao().getAllWaterTasks();
             List<Town> towns = db.townDao().getallTowns();
             ArrayAdapter<Town> myAdapter = new ArrayAdapter<Town>(this, android.R.layout.simple_list_item_1, towns);
             ListView listView = findViewById(R.id.simple_listview);
