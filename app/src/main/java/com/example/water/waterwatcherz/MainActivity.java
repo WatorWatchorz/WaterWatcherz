@@ -15,9 +15,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
-        //getSupportActionBar().setLogo(R.drawable.watericon);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         taskActivityButton_main = (Button) findViewById(R.id.calendar_home);
         profilebutton_main = (Button) findViewById(R.id.profile_home);
@@ -34,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
                 openSettingsActivity();
             }
         });
-
-
     }
 
     public void openTaskActivity() {
